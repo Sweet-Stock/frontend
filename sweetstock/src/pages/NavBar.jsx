@@ -3,10 +3,10 @@ import Logo from "./images/logo.svg";
 import "./NavBar.css";
 import Button from "./components/Button"
 
-const home = () => {
+export default () => {
   return (
-    <section className="nav-container">
-      <div className="container">
+    <section className="nav">
+      <div className="nav-container">
         <div className="navBar">
           <img src={Logo} />
           <ul >
@@ -33,4 +33,4 @@ const home = () => {
   );
 };
 
-export default home;
+

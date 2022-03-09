@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Rubik:wght@400;700&display=swap");
+
+/*font-family: 'Raleway', sans-serif;
+font-family: 'Rubik', sans-serif;*/
+
+:root {
+  --main-color: #26223b;
+  --secondary-color: #d38c88;
+  --tertiary-color: #6b829a;
+  --neultral-color: #fcfdfe;
+}
+
+.home {
+  position: relative;
+  width: 100%;
+  height: 57.45em;
+}
+.home-container {
+  width: 90%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.bg-home {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  z-index: -1;
+}
+.home-aligner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+.home-text-box{
+    margin: 2em
+}
+h1 {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 3em;
+  line-height: 126%;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #29233b;
+ 
+}
+p {
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 138.5%;
+  
+  letter-spacing: 0.08em;
+  text-transform: capitalize;
+  font-feature-settings: "pnum" on, "lnum" on;
+
+  color: #616161;
+}

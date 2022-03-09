@@ -10,20 +10,18 @@ font-family: 'Rubik', sans-serif;*/
   --neultral-color: #fcfdfe;
 }
 
-.nav-container {
-  background-color: #e5e5e5;
+.nav {
+  position: fixed;
+  z-index: 2;
 }
-.container {
-  width: 90%;
-  margin: auto;
-}
+
 .navBar {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  width: 90%;
+  width: 95%;
 }
 li {
   list-style: none;
@@ -33,11 +31,10 @@ a {
   text-decoration: none;
   font-family: "Raleway", sans-serif;
   color: #000;
-  font-size: 10px;
   font-style: normal;
   font-weight: bold;
   font-size: 1em;
-  line-height: 12px;
+  line-height: 0.8em;
   letter-spacing: 0.14em;
 }
 ul {
