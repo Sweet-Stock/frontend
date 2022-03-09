@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Rubik:wght@400;700&display=swap");
+
+/*font-family: 'Raleway', sans-serif;
+font-family: 'Rubik', sans-serif;*/
+
+:root {
+  --main-color: #26223b;
+  --secondary-color: #d38c88;
+  --tertiary-color: #6b829a;
+  --neultral-color: #fcfdfe;
+}
+
+.nav-container {
+  background-color: #e5e5e5;
+}
+.container {
+  width: 90%;
+  margin: auto;
+}
+.navBar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 90%;
+}
+li {
+  list-style: none;
+  margin: 1em;
+}
+a {
+  text-decoration: none;
+  font-family: "Raleway", sans-serif;
+  color: #000;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1em;
+  line-height: 12px;
+  letter-spacing: 0.14em;
+}
+ul {
+  display: flex;
+  flex-flow: row wrap;
+}
