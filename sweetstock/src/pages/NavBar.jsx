@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useEffect, useState }  from "react";
 import Logo from "./images/logo.svg";
-import "./NavBar.css";
+import  "./NavBar.css";
 import Button from "./components/Button"
 
 export default () => {
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+      const onScroll = () => setOffset(window.pageYOffset);
+      // clean up code 
+      window.removeEventListener('scroll', onScroll);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  
   return (
-    <section className="nav">
+    <section id="id_navbar" className="nav">
       <div className="nav-container">
-        <div className="navBar">
-          <img src={Logo} />
+        <div className={offset <= 60 ? "navBar":"navBg"}>
+          <img className={offset <= 60 ? "nav-img":"nav-img-small"} src={Logo} />
           <ul >
             <li>
               <a href="">HOME</a>

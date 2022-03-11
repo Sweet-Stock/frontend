@@ -18,9 +18,9 @@ font-family: 'Rubik', sans-serif;*/
 .about-container {
   width: 90%;
   height: 100%;
-  margin:  3em auto 0 auto;
+  margin: 0 auto 5em auto;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   flex-flow: column;
   align-items: center;
 }
@@ -40,7 +40,7 @@ font-family: 'Rubik', sans-serif;*/
 .about-text-box{
     margin: 2em
 }
-p {
+.about-paragraph {
     font-family: Rubik;
     font-style: normal;
     font-weight: normal;

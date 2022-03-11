@@ -13,16 +13,68 @@ font-family: 'Rubik', sans-serif;*/
 .nav {
   position: fixed;
   z-index: 2;
+
+}
+
+.navBg {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  animation:  scrollIn .2s;
+  background-color: rgb(229, 229, 229);
 }
 
 .navBar {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   position: fixed;
-  width: 95%;
+  width: 100%;
+  background-color: "";
 }
+
+@keyframes scrollIn {
+  0% { 
+    background-color: rgb(229, 229, 229,0.1);
+   }
+  50% { 
+    background-color: rgb(229, 229, 229,0.4);
+   }
+  75% { 
+    background-color: rgb(229, 229, 229,0.8);
+   }
+  100% { 
+    background-color: rgb(229, 229, 229);
+  }
+}
+
+.nav-img{
+  width: 15em;
+}
+.nav-img-small{
+  width: 10em;
+  animation: imgIn .2s;
+}
+
+@keyframes imgIn {
+  0% { 
+    width: 15em;
+   }
+  50% { 
+    width: 13em;
+   }
+  75% { 
+    width: 12em;
+   }
+  100% { 
+    width: 10em;
+  }
+}
+
 li {
   list-style: none;
   margin: 1em;
