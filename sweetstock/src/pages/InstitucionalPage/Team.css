@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Rubik:wght@400;700&display=swap');
+
+/*font-family: 'Raleway', sans-serif;
+font-family: 'Rubik', sans-serif;*/
+
+:root {
+  --main-color: #26223B;
+  --secondary-color: #D38C88;
+  --tertiary-color: #6B829A;
+  --neultral-color: #FCFDFE;
+}
+.team{
+  height: 80em;
+}
+.team-container{
+  margin: auto;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  width: 90%;
+  align-items: center;
+  height: 100%;
+}
+.team-container > img {
+  width: 770px;
+}
+.team-aligner{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  width: 100%;
+}
+

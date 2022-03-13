@@ -38,16 +38,16 @@ font-family: 'Rubik', sans-serif;*/
 }
 
 @keyframes scrollIn {
-  0% { 
+  from { 
     background-color: rgb(229, 229, 229,0.1);
    }
-  50% { 
+  /* 50% { 
     background-color: rgb(229, 229, 229,0.4);
    }
   75% { 
     background-color: rgb(229, 229, 229,0.8);
-   }
-  100% { 
+   } */
+  to { 
     background-color: rgb(229, 229, 229);
   }
 }
@@ -61,16 +61,16 @@ font-family: 'Rubik', sans-serif;*/
 }
 
 @keyframes imgIn {
-  0% { 
+  from { 
     width: 15em;
    }
-  50% { 
+  /* 50% { 
     width: 13em;
    }
   75% { 
     width: 12em;
-   }
-  100% { 
+   } */
+  to { 
     width: 10em;
   }
 }

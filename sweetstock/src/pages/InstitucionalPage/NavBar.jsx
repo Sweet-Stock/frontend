@@ -1,22 +1,21 @@
 import React, { useEffect, useState }  from "react";
-import Logo from "./images/logo.svg";
+import Logo from "../images/logo.svg";
+import Button from "../components/Button"
 import  "./NavBar.css";
-import Button from "./components/Button"
 
 export default () => {
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
       const onScroll = () => setOffset(window.pageYOffset);
-      // clean up code 
+
       window.removeEventListener('scroll', onScroll);
       window.addEventListener('scroll', onScroll, { passive: true });
       return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  
   return (
-    <section id="id_navbar" className="nav">
+    <header id="id_navbar" className="nav">
       <div className="nav-container">
         <div className={offset <= 60 ? "navBar":"navBg"}>
           <img className={offset <= 60 ? "nav-img":"nav-img-small"} src={Logo} />
@@ -40,7 +39,7 @@ export default () => {
           <Button content = "ENTRAR" />
         </div>
       </div>
-    </section>
+    </header>
   );
 };
 

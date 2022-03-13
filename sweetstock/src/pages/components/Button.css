@@ -23,3 +23,22 @@ button{
     line-height: 12px;
     letter-spacing: 0.14em;
 }
+button:hover{
+  animation: buttonHover .2s;
+  width: 135px;
+  height: 45px;
+  background: var(--main-color);
+}
+
+@keyframes buttonHover {
+  from{
+    width: 130px;
+    height: 40px;
+    background: var(--secondary-color);
+  }
+  to{
+    width: 135px;
+    height: 45px;
+    background: var(--main-color);
+  }
+}

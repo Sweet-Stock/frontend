@@ -1,13 +1,13 @@
 import React from "react";
-import AboutUsImage from "./images/sobreNosImg.svg";
-import AboutUsImage2 from "./images/sobreNosImg2.svg";
+import AboutUsImage from "../images/sobreNosImg.svg";
+import AboutUsImage2 from "../images/sobreNosImg2.svg";
 import "./AboutUs.css";
 
 export default () => {
   return (
-    <section className="about-us" id="teste">
+  <section className="about-us" id="aboutUs">
       <div className="about-container">
-        <img src={AboutUsImage} />
+        <img src={AboutUsImage}  alt=""/>
         <div className="about-aligner">
           <div className="about-text-box">
             <p className="about-paragraph">Somos uma empresa que propôe</p>
@@ -16,7 +16,7 @@ export default () => {
             <p className="about-paragraph">melhorar o processo de produção á</p>
             <p className="about-paragraph">venda dos produtos fabricados.</p>
           </div>
-          <img src={AboutUsImage2} />
+          <img src={AboutUsImage2}  alt=""/>
         </div>
       </div>
     </section>

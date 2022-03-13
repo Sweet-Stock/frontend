@@ -1,8 +1,8 @@
 import React from "react";
-import BackGround from "./images/backGroundHome.svg";
-import HomeImage from "./images/homeImage.svg";
+import BackGround from "../images/backGroundHome.svg";
+import HomeImage from "../images/homeImage.svg";
 import "./Home.css";
-import Button from "./components/Button";
+import Button from "../components/Button";
 
 export default () => {
   return (
