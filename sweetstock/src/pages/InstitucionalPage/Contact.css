@@ -44,7 +44,7 @@ font-family: 'Rubik', sans-serif;*/
   font-feature-settings: "pnum" on, "lnum" on;
   color: var(--main-color);
 }
-.contact-aligner > div > div > input, select{
+.contact-aligner > div > div > input, select , textarea{
   margin: 1em 0;
   border: 2px solid #D38C88;
   box-sizing: border-box;
