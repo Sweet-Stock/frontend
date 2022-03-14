@@ -10,7 +10,7 @@ export default () => {
         <img src={AboutUsImage}  alt=""/>
         <div className="about-aligner">
           <div className="about-text-box">
-            <p className="about-paragraph">Somos uma empresa que propôe</p>
+            <p className="about-paragraph">Somos uma empresa que propõe</p>
             <p className="about-paragraph">soluções técnológicas para</p>
             <p className="about-paragraph">docerias e confeitarias, visando</p>
             <p className="about-paragraph">melhorar o processo de produção á</p>

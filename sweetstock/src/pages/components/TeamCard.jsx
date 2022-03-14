@@ -11,9 +11,9 @@ export default (props) => {
         <img src={props.cardImg} alt="" />
         <h1>{props.cardName}</h1>
         <div>
-          <a href=""><img src={InstagramIcon} alt="" /></a>
-          <a href=""><img src={GitHubIcon} alt="" /></a>
-          <a href=""><img src={LinkedinIcon} alt="" /></a>
+          <a href={props.instagram}><img src={InstagramIcon} alt="" /></a>
+          <a href={props.github}><img src={GitHubIcon} alt="" /></a>
+          <a href={props.linkedin}><img src={LinkedinIcon} alt="" /></a>
         </div>
       </div>
     </div>

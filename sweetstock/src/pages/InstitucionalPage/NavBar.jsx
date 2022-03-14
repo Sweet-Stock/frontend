@@ -21,19 +21,19 @@ export default () => {
           <img className={offset <= 60 ? "nav-img":"nav-img-small"} src={Logo} />
           <ul >
             <li>
-              <a href="">HOME</a>
+              <a href="#home">HOME</a>
             </li>
             <li>
-              <a href="">SOBRE NÓS</a>
+              <a href="#aboutUs">SOBRE NÓS</a>
             </li>
             <li>
-              <a href="">EQUIPE</a>
+              <a href="#team">EQUIPE</a>
             </li>
             <li>
-              <a href="">SERVIÇOS</a>
+              <a href="#service">SERVIÇOS</a>
             </li>
             <li>
-              <a href="">CONTATO</a>
+              <a href="#contact">CONTATO</a>
             </li>
           </ul>
           <Button content = "ENTRAR" />

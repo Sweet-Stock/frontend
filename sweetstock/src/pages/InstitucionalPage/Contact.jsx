@@ -6,7 +6,7 @@ import "./Contact.css";
 
 export default () => {
   return (
-    <section className="contact">
+    <section id="contact" className="contact">
       <div className="contact-container">
         <img src={ContactTitle} alt="" />
         <div className="contact-aligner">

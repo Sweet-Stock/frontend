@@ -6,7 +6,7 @@ import Button from "../components/Button";
 
 export default () => {
   return (
-    <section className="home">
+    <section id="home" className="home">
       <img className="bg-home" src={BackGround} />
       <div className="home-container">
         <div className="home-aligner">

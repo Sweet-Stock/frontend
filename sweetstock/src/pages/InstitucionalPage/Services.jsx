@@ -7,7 +7,7 @@ import Button from "../components/Button";
 
 export default () => {
   return (
-    <section className="service">
+    <section id="service" className="service">
       <div className="service-container">
         <img src={ServiceTitle}  alt="Serviços"/>
         <div>
@@ -16,7 +16,7 @@ export default () => {
             <img src={Logo}  alt=""/>
             <div>
               <h2>O controle do seu estoque com a facilidade</h2>
-              <h2>que seu negocio precisa</h2>
+              <h2>que seu negócio precisa</h2>
             </div>
             <Button content="ADQUIRIR" />
           </div>

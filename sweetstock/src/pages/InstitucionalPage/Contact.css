@@ -63,4 +63,5 @@ font-family: 'Rubik', sans-serif;*/
 }
 .describe{
   height: 6em !important;
+  resize: none;
 }
