@@ -16,7 +16,7 @@ export default () => {
             <img src={Logo}  alt=""/>
             <div>
               <h2>O controle do seu estoque com a facilidade</h2>
-              <h2>que seu negócio precisa</h2>
+              <h2>que seu negócio precisa.</h2>
             </div>
             <Button content="ADQUIRIR" />
           </div>

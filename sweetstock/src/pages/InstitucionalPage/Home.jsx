@@ -15,7 +15,7 @@ export default () => {
             <h1 className="home-title">dentro de controle</h1>
             <p className="home-paragraph">Sua doceria com controle de estoque e</p>
             <p className="home-paragraph">ingredientes, a evolução do seu negócio</p>
-            <p className="home-paragraph">em nossas mãos</p>
+            <p className="home-paragraph">em nossas mãos.</p>
           </div>
           <Button content="SAIBA MAIS" />
         </div>
