@@ -24,7 +24,7 @@ export default () => {
                 <option value="sugestao">Sugestão</option>
               </select>
               <h1>Descrição</h1>
-              <textarea type="text" className="describe" />
+              <textarea  type="text" className="describe" />
             </div>
             <Button content="ENVIAR" />
           </div>

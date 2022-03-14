@@ -18,7 +18,7 @@ export default () => {
               <h2>O controle do seu estoque com a facilidade</h2>
               <h2>que seu negocio precisa</h2>
             </div>
-            <Button content="ADIQUIRIR" />
+            <Button content="ADQUIRIR" />
           </div>
         </div>
       </div>
