@@ -20,7 +20,7 @@ export default () => {
               <select>
                 <option value="elogio">Elogio</option>
                 <option value="critica">Crítica</option>
-                <option value="duvida">Duvida</option>
+                <option value="duvida">Dúvida</option>
                 <option value="sugestao">Sugestão</option>
               </select>
               <h1>Descrição</h1>
