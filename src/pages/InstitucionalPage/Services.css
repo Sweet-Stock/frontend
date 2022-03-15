@@ -34,7 +34,7 @@ font-family: 'Rubik', sans-serif;*/
 }
 .service-container > div > div {
   height: 25em;
-  width: 100%;
+  width: 25em;
   display: flex;
   align-items: center;
   justify-content: space-between;
