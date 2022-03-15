@@ -9,7 +9,7 @@ font-family: 'Rubik', sans-serif;*/
   --tertiary-color: #6B829A;
   --neultral-color: #FCFDFE;
 }
-button{
+.input-button{
     width: 130px;
     height: 40px;
     background: var(--secondary-color);
@@ -23,7 +23,7 @@ button{
     line-height: 12px;
     letter-spacing: 0.14em;
 }
-button:hover{
+.input-button:hover{
   animation: buttonHover .2s;
   width: 135px;
   height: 45px;
