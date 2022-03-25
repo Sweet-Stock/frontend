@@ -13,18 +13,18 @@
 .sidebar-container {
   height: 100vh;
   background-color: var(--main-color);
-  width: 10em;
+  width: 8em;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-flow: column;
 }
 .sidebar-photo{
-    width: 5em;
-    height: 5em;
+    width: 4em;
+    height: 4em;
     border-radius: 50%;
 } 
 .sidebar-logout{
-    width: 4em;
-    height: 4em;
+    width: 3em;
+    height: 3em;
 } 
