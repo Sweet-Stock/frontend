@@ -10,7 +10,7 @@ font-family: 'Rubik', sans-serif;*/
   --neultral-color: #FCFDFE;
 }
 .team{
-  height: 80em;
+  height: 150%;
 }
 .team-container{
   margin: auto;
@@ -18,7 +18,7 @@ font-family: 'Rubik', sans-serif;*/
   flex-flow: column;
   justify-content: space-between;
   width: 90%;
-  align-items: center;
+  align-items: flex-start;
   height: 100%;
 }
 .team-container > img {
@@ -29,5 +29,19 @@ font-family: 'Rubik', sans-serif;*/
   flex-flow: row wrap;
   justify-content: space-evenly;
   width: 100%;
+}
+.team-title {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 38px;
+  letter-spacing: 0.14em;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #d38c88;
+  padding: 0 0 0 0;
+  border-bottom: 5px solid black;
+  width: fit-content;
+  margin: 0 0 0 3em;
 }
 

@@ -8,7 +8,7 @@ export default () => {
   return (
     <section id="contact" className="contact">
       <div className="contact-container">
-        <img src={ContactTitle} alt="" />
+        <h1 className="contact-title">FALE CONOSCO</h1>
         <div className="contact-aligner">
           <div>
             <div>
@@ -24,7 +24,7 @@ export default () => {
                 <option value="sugestao">Sugestão</option>
               </select>
               <h1>Descrição</h1>
-              <textarea  type="text" className="describe" />
+              <textarea type="text" className="describe" />
             </div>
             <Button content="ENVIAR" />
           </div>

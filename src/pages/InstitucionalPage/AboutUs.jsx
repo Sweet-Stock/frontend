@@ -1,5 +1,4 @@
 import React from "react";
-import AboutUsImage from "../images/sobreNosImg.svg";
 import AboutUsImage2 from "../images/sobreNosImg2.svg";
 import "./AboutUs.css";
 
@@ -7,9 +6,9 @@ export default () => {
   return (
   <section className="about-us" id="aboutUs">
       <div className="about-container">
-        <img src={AboutUsImage}  alt=""/>
         <div className="about-aligner">
           <div className="about-text-box">
+          <h1 className="about-title">SOBRE NÓS</h1>
             <p className="about-paragraph">Somos uma empresa que propõe</p>
             <p className="about-paragraph">soluções técnológicas para</p>
             <p className="about-paragraph">docerias e confeitarias, visando</p>

@@ -18,7 +18,7 @@ export default () => {
     <header id="id_navbar" className="nav">
       <div className="nav-container">
         <div className={offset <= 60 ? "navBar":"navBg"}>
-          <img className={offset <= 60 ? "nav-img":"nav-img-small"} src={Logo} />
+          <img className={offset <= 60 ? "nav-img imgImportant":"nav-img-small imgImportant"} src={Logo} />
           <ul >
             <li>
               <a href="#home">HOME</a>

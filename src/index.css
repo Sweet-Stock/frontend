@@ -1,14 +1,64 @@
-*{
+:root {
+  --main-color: #26223b;
+  --secondary-color: #d38c88;
+  --tertiary-color: #6b829a;
+  --neultral-color: #fcfdfe;
+}
+
+* {
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
+  scrollbar-width: auto;
+  scrollbar-color: var(--secondary-color) var(--tertiary-color);
 }
 body {
-  background-color: #E5E5E5;
+  background-color: #e5e5e5;
 }
-@media (max-width: 1366px)
-{
-  *{
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--tertiary-color);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+  border: 3px none var(--tertiary-color);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--main-color);
+  border-radius: 10px;
+  border: 3px none var(--tertiary-color);
+}
+/* width 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--main-color);
+}
+*/
+@media (max-width: 1366px) {
+  * {
     font-size: 12px;
+  }
+  .arrow {
+    bottom: 0 !important;
   }
   /* .bg-home {
   position: absolute;
@@ -16,5 +66,23 @@ body {
   height: 45em
 } */
 }
+@media (max-width: 866px) {
+  * {
+    font-size: 12px;
+  }
+  .arrow {
+    bottom: 0 !important;
+  }
+  img{
+    display: none;
+  }
 
-
+  .imgImportant{
+    display: block !important;
+  }
+  /* .bg-home {
+  position: absolute;
+  right: 0;
+  height: 45em
+} */
+}

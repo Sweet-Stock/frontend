@@ -1,0 +1,35 @@
+:root {
+  --main-color: #26223b;
+  --secondary-color: #d38c88;
+  --tertiary-color: #6b829a;
+  --neultral-color: #fcfdfe;
+}
+
+@keyframes iconColoring {
+    from {
+      background: var(--main-color);
+      border: 1px solid var(--main-color);
+    }
+    to {
+      background: var(--secondary-color);
+      border: 1.00493px solid var(--secondary-color);
+  
+    }
+  }
+  .sidebar-icon-short {
+    width: 4.5em;
+    height: 4.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--main-color);
+    border: 1px solid var(--main-color);
+    box-sizing: border-box;
+    border-radius: 19.0938px;
+  }
+  .sidebar-icon-short:hover {
+    background: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    animation: iconColoring .3s normal;
+  }
+ 

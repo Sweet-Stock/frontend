@@ -24,35 +24,47 @@ font-family: 'Rubik', sans-serif;*/
   flex-flow: column;
   align-items: center;
 }
+.about-title {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 38px;
+  letter-spacing: 0.14em;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #d38c88;
+  padding: 0 0 0 0;
+  border-bottom: 5px solid black;
+  width: fit-content;
+  margin: 0 0 2em 0;
+}
 .bg-home {
   position: absolute;
   right: 0;
   height: 100%;
   z-index: -1;
 }
-.about-aligner{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-flow: row wrap;
-    width: 100%;
+.about-aligner {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-flow: row wrap;
+  width: 100%;
 }
-.about-text-box{
-    margin: 2em
+.about-text-box {
+  margin: 2em;
 }
 .about-paragraph {
-    font-family: Rubik;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 2em;
-    line-height: 138.5%;
-    
-    /* or 33px */
-    text-align: justify;
-    letter-spacing: 0.08em;
-    font-feature-settings: 'pnum' on, 'lnum' on;
-    
-    color: #2E263C;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2em;
+  line-height: 138.5%;
+
+  /* or 33px */
+  text-align: justify;
+  letter-spacing: 0.08em;
+  font-feature-settings: "pnum" on, "lnum" on;
+
+  color: #2e263c;
 }
-
-

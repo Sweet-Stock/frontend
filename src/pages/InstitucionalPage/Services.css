@@ -22,19 +22,33 @@ font-family: 'Rubik', sans-serif;*/
   margin: 5em auto 5em auto;
   display: flex;
   justify-content:center ;
-  align-items: center;
+  align-items: flex-start;
   flex-flow: column;
+}
+.service-title {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 38px;
+  letter-spacing: 0.14em;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #d38c88;
+  padding: 0 0 0 0;
+  border-bottom: 5px solid black;
+  width: fit-content;
+  margin: 0 0 2em 3em;
 }
 .service-container > div {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-flow: row;
 }
 .service-container > div > div {
   height: 25em;
-  width: 25em;
+  width: 40em;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -44,9 +58,9 @@ font-family: 'Rubik', sans-serif;*/
   font-family: "Rubik";
   font-style: normal;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 2em;
   line-height: 126%;
-
+  text-align: center;
   /* or 30px */
   font-feature-settings: "pnum" on, "lnum" on;
 

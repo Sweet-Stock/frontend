@@ -1,9 +1,10 @@
 import InstitucionalPage from "./pages/InstitucionalPage";
+import DashBoard from "./pages/DashBoard";
 
 function App() {
   return (
     <>
-      <InstitucionalPage />
+      <DashBoard/>
     </>
   );
 }
