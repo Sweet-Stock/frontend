@@ -1,10 +1,10 @@
 import React from "react";
-import SideBar from "./Dash/SideBar";
+import SideBar from "./DashboardPage/SideBar";
 
 export default () => {
   return (
     <>
-      <SideBar />
+      <SideBar name="Rafael"/>
     </>
   );
 };

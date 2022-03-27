@@ -1,11 +1,10 @@
 import InstitucionalPage from "./pages/InstitucionalPage";
-import DashBoard from "./pages/DashBoard";
+import DashBoardPage from "./pages/DashBoardPage";
+import SignPage from "./pages/SignPage";
 
 function App() {
   return (
-    <>
-      <DashBoard/>
-    </>
+      <SignPage/>
   );
 }
 

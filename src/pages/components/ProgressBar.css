@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Rubik:wght@400;700&display=swap");
+:root {
+  --main-color: #26223b;
+  --secondary-color: #d38c88;
+  --tertiary-color: #6b829a;
+  --neultral-color: #e5e5e5;
+}
+.progress-bg {
+  background-color: var(--main-color);
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+  width: 40em !important;
+}
+.progress-bg-bar {
+  position: absolute;
+  z-index: -3;
+  width: 40em !important;
+}
+.progress-bg > img{
+width: 8em;
+}
+

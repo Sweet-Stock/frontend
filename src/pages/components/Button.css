@@ -10,25 +10,25 @@ font-family: 'Rubik', sans-serif;*/
   --neultral-color: #FCFDFE;
 }
 .input-button{
-    width: 130px;
-    height: 40px;
-    background: var(--secondary-color);
-    border-radius: 5px;
-    font-family: 'Raleway', sans-serif;
-    border-style: none;
-    color: #FCFDFE;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 1em;
-    line-height: 12px;
-    letter-spacing: 0.14em;
+    width: 130px !important;
+    height: 40px !important;
+    background: var(--secondary-color) !important;
+    border-radius: 5px !important;
+    font-family: 'Raleway', sans-serif !important;
+    border-style: none !important;
+    color: #FCFDFE !important;
+    font-style: normal !important;
+    font-weight: bold !important;
+    font-size: 1em !important;
+    line-height: 12px !important;
+    letter-spacing: 0.14em !important;
 }
-.input-button:hover{
+/* .input-button:hover{
   animation: buttonHover .2s;
   width: 135px;
   height: 45px;
   background: var(--main-color);
-}
+} */
 
 @keyframes buttonHover {
   from{
