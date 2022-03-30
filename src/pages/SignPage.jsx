@@ -4,13 +4,16 @@ import InputMask from "react-input-mask";
 import ProgressBar from "./components/ProgressBar";
 import Eye from "./images/Eye.svg";
 import SignBg from "./images/Sign up-pana 1.svg";
+import PasswordHealth from "./components/PasswordHealth";
 import axios from "axios";
 import "./SignPage.css";
 
 export default () => {
   const [signProgress, setSignProgress] = React.useState(0);
   const [person, setPerson] = React.useState(true);
-  const [password, setPassword] = React.useState(false);
+  const [password, setPassword] = React.useState(true);
+  const [passwordStrength, setPasswordStrength] = React.useState("red");
+
   const [viaCep, setViaCep] = React.useState();
   const [inputName, setInputName] = React.useState();
   const [inputFantasyName, setFantasyInputName] = React.useState();
@@ -22,10 +25,22 @@ export default () => {
   const modal = [
     {
       name: inputName,
+      fantasyName: inputFantasyName,
+      telephoneNumber: inputPhone,
+      peopleType: "FISICA",
+      ceo: inputCEO,
+      cpf: "",
+      cnpj: "",
+      addressRequest: {
+        street: "",
+        number: "",
+        complement: "",
+        city: "",
+        state: "",
+        neighborhood: "",
+      },
       email: inputEmail,
       password: inputPassword,
-      telephoneNumber: inputPhone,
-      levelAccess: "ADMINISTRATOR",
     },
   ];
 
@@ -48,6 +63,57 @@ export default () => {
     }
   };
 
+  const strengthTest = (password) => {
+    {
+      if (
+        password.match(
+          "^(?=(.*[a-z]){3,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()-__+.]){1,}).{10,}$"
+        )
+      ) {
+        setPasswordStrength("green");
+      } else if (
+        password.match(
+          "^(?=(.*[a-z]){3,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,}).{8,}$"
+        )
+      ) {
+        setPasswordStrength("yellow");
+        setPassword(password);
+      } else {
+        setPasswordStrength("red");
+        setPassword(password);
+      }
+    }
+  };
+
+  const passwordEye = () => {
+    password ? setPassword(false) : setPassword(true);
+  };
+
+  const inputValidation = (condicion, inputId, divId, menssage) => {
+    if (condicion) {
+      document.getElementById(inputId).animate(
+        [
+          {
+            borderColor: "var(--neultral-color)",
+            borderBottomWidth: "1px",
+          },
+          { borderColor: "red", borderBottomWidth: "2px" },
+          {
+            borderColor: "var(--neultral-color)",
+            borderBottomWidth: "1px",
+          },
+          { borderColor: "red", borderBottomWidth: "2px" },
+        ],
+        {
+          duration: 500,
+        }
+      );
+      document.getElementById(inputId).style.borderColor = "red";
+    } else {
+      document.getElementById(inputId).style.borderColor =
+        "var(--neultral-color)";
+    }
+  };
   return (
     <section className="sign-root">
       <div className="sign">
@@ -60,8 +126,10 @@ export default () => {
           <div className={signProgress === 0 ? "" : "display-none"}>
             <h1>NOME</h1>
             <InputMask
+              id="name_id"
               onChange={(text) => {
                 setInputName(text.target.value);
+                inputValidation((text.target.value.length <= 3), "name_id");
               }}
             />
           </div>
@@ -127,22 +195,18 @@ export default () => {
           </div>
           <div className={signProgress === 3 ? "" : "display-none"}>
             <h1>SENHA</h1>
-            <InputMask type="password" />
-            <img className="password-eye" src={Eye} alt="" />
-            <p className="password-text">
-              A senha deve conter 8 caracteres, contendo letras maiusculas ,
-              minusculas e números
-            </p>
-          </div>
-          <div className={signProgress === 3 ? "" : "display-none"}>
-            <h1>CONFIRMAR SENHA</h1>
-            <InputMask type={password ? "text" : "password"} />
+            <InputMask
+              type={password ? "password" : "text"}
+              onChange={(text) => {
+                strengthTest(text.target.value);
+              }}
+            />
             <img
               className="password-eye"
               src={Eye}
               alt=""
               onClick={() => {
-                password ? setPassword(false) : setPassword(true);
+                passwordEye();
               }}
             />
             <p className="password-text">
@@ -150,6 +214,27 @@ export default () => {
               minusculas e números
             </p>
           </div>
+          <div className={signProgress === 3 ? "" : "display-none"}>
+            <h1>CONFIRMAR SENHA</h1>
+            <InputMask 
+            type={password ? "password" : "text"} />
+            <img
+              className="password-eye"
+              src={Eye}
+              alt=""
+              onClick={() => {
+                passwordEye();
+              }}
+            />
+            <p className="password-text">
+              A senha deve conter 8 caracteres, contendo letras maiusculas ,
+              minusculas e números
+            </p>
+          </div>
+          <PasswordHealth
+            class={signProgress === 3 ? "bar-meter" : "display-none"}
+            sinal={passwordStrength}
+          />
           <div
             className={
               signProgress === 0 ? "sign-btn-align" : "sign-btn-aligner"

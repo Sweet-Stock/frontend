@@ -6,21 +6,23 @@
 }
 .display-none {
   display: none;
-} 
-.sign-root{
+}
+.sign-root {
   display: flex;
   flex-flow: row;
+  width: 100%;
 }
-.sign-bg{
+.sign-bg {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 50%;
 }
-.password-text{
+.password-text {
   color: var(--neultral-color);
   font-family: "Rubik";
-  font-size: .7rem;
-  padding: .5rem 0 0 0;
+  font-size: 0.7rem;
+  padding: 0.5rem 0 0 0;
 }
 .sign {
   padding: 0em;
@@ -55,8 +57,8 @@
 }
 
 .sign-container > div > select,
-input {  
-height: 1.5rem !important;
+input {
+  height: 1.5rem !important;
   margin: 0;
   height: 1rem;
   width: 100%;
@@ -70,6 +72,7 @@ height: 1.5rem !important;
   border-bottom: 1px solid var(--neultral-color);
   color: var(--neultral-color);
   border-radius: 0;
+  outline: 0;
 }
 .sign-aligner {
   display: flex;
@@ -134,7 +137,7 @@ height: 1.5rem !important;
 .adress-aligner > div {
   width: 45%;
 }
-.password-eye{
+.password-eye {
   width: 2em;
   position: absolute;
   right: 0;
