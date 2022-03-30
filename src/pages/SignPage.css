@@ -6,6 +6,21 @@
 }
 .display-none {
   display: none;
+} 
+.sign-root{
+  display: flex;
+  flex-flow: row;
+}
+.sign-bg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.password-text{
+  color: var(--neultral-color);
+  font-family: "Rubik";
+  font-size: .7rem;
+  padding: .5rem 0 0 0;
 }
 .sign {
   padding: 0em;
@@ -28,27 +43,28 @@
   font-family: "Rubik";
   font-style: normal;
   font-weight: 400;
-  font-size: 1.5em;
-  line-height: 2.2em;
+  font-size: 1rem;
+  line-height: 1.5rem;
 
   color: var(--neultral-color);
 }
 .sign-container > div {
-  width: 40em;
-  margin: 1em;
+  width: 30rem;
+  margin: 1rem;
+  position: relative;
 }
 
 .sign-container > div > select,
 input {  
-height: 1.5em !important;
+height: 1.5rem !important;
   margin: 0;
-  height: 1em;
+  height: 1rem;
   width: 100%;
   font-family: "Rubik";
   font-style: normal;
   font-weight: 300;
-  font-size: 1.5em;
-  line-height: 2.2em;
+  font-size: 1rem;
+  line-height: 1.5rem;
   background-color: var(--main-color);
   border-style: none;
   border-bottom: 1px solid var(--neultral-color);
@@ -66,7 +82,7 @@ height: 1.5em !important;
   font-family: "Rubik";
   font-style: normal;
   font-weight: 400;
-  font-size: 36px;
+  font-size: 2em;
   line-height: 49px;
 
   color: var(--neultral-color);
@@ -75,16 +91,16 @@ height: 1.5em !important;
   font-family: "Rubik";
   font-style: normal;
   font-weight: 400;
-  font-size: 1.5rem;
-  line-height: 2em;
+  font-size: 1.5rrem;
+  line-height: 2rem;
   color: var(--neultral-color);
 }
 .have-login > a {
   font-family: "Rubik";
   font-style: normal;
   font-weight: 400;
-  font-size: 1.5rem;
-  line-height: 2em;
+  font-size: 1.5rrem;
+  line-height: 2rem;
   color: var(--secondary-color);
 }
 .sign-btn-aligner {
@@ -109,12 +125,20 @@ height: 1.5em !important;
   font-family: "Rubik";
   font-style: normal;
   font-weight: 400;
-  font-size: 1.5em;
-  line-height: 2.2em;
+  font-size: 1rem;
+  line-height: 1.5rem;
 
   color: var(--neultral-color);
 }
 
 .adress-aligner > div {
   width: 45%;
+}
+.password-eye{
+  width: 2em;
+  position: absolute;
+  right: 0;
+  top: 1px;
+  bottom: 1px;
+  z-index: 5;
 }

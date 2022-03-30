@@ -13,14 +13,14 @@
   justify-content: space-between;
   align-items: center;
   z-index: 1;
-  width: 40em !important;
+  width: 30em !important;
 }
 .progress-bg-bar {
   position: absolute;
   z-index: -3;
-  width: 40em !important;
+  width: 30em !important;
 }
 .progress-bg > img{
-width: 8em;
+width: 6em;
 }
 
