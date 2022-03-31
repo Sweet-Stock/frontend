@@ -11,6 +11,8 @@
   display: flex;
   flex-flow: row;
   width: 100%;
+  overflow: hidden;
+
 }
 .sign-bg {
   display: flex;

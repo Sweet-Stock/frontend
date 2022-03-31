@@ -67,7 +67,7 @@ export default () => {
     {
       if (
         password.match(
-          "^(?=(.*[a-z]){3,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()-__+.]){1,}).{10,}$"
+          "^(?=(.*[a-z]){3,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()-__+.]){1,}).{12,}$"
         )
       ) {
         setPasswordStrength("green");
@@ -89,7 +89,13 @@ export default () => {
     password ? setPassword(false) : setPassword(true);
   };
 
-  const inputValidation = (condicion, inputId, divId, menssage) => {
+  const inputValidation = (
+    condicion,
+    inputId,
+    titleId,
+    divId,
+    menssage,
+  ) => {
     if (condicion) {
       document.getElementById(inputId).animate(
         [
@@ -103,15 +109,49 @@ export default () => {
             borderBottomWidth: "1px",
           },
           { borderColor: "red", borderBottomWidth: "2px" },
+          {
+            borderColor: "var(--neultral-color)",
+            borderBottomWidth: "1px",
+          },
+          { borderColor: "red", borderBottomWidth: "2px" },
+          {
+            borderColor: "var(--neultral-color)",
+            borderBottomWidth: "1px",
+          },
+          { borderColor: "red", borderBottomWidth: "2px" },
         ],
         {
-          duration: 500,
+          duration: 300,
+        }
+      );
+      document.getElementById(titleId).animate(
+        [
+          {
+            transform: "translateX(5px)",
+            color: "red",
+          },
+          { transform: "translateX(-5px)" },
+          {
+            transform: "translateX(0)",
+          },
+          {
+            transform: "translateX(5px)",
+          },
+          { transform: "translateX(-5px)" },
+          {
+            transform: "translateX(0)",
+          },
+        ],
+        {
+          duration: 300,
         }
       );
       document.getElementById(inputId).style.borderColor = "red";
+      document.getElementById(titleId).style.color = "red";
     } else {
       document.getElementById(inputId).style.borderColor =
         "var(--neultral-color)";
+      document.getElementById(titleId).style.color = "var(--neultral-color)";
     }
   };
   return (
@@ -124,12 +164,19 @@ export default () => {
         <div className="sign-container">
           <ProgressBar img={signProgress} />
           <div className={signProgress === 0 ? "" : "display-none"}>
-            <h1>NOME</h1>
+            <h1 id="name_title_id">NOME</h1>
             <InputMask
-              id="name_id"
+              id="name_input_id"
               onChange={(text) => {
-                setInputName(text.target.value);
-                inputValidation((text.target.value.length <= 3), "name_id");
+                setInputName(text.target.value)
+                inputValidation(
+                  text.target.value.length <= 3,
+                  "name_input_id",
+                  "name_title_id",
+                  "",
+                  "",
+                  
+                );
               }}
             />
           </div>
@@ -216,8 +263,7 @@ export default () => {
           </div>
           <div className={signProgress === 3 ? "" : "display-none"}>
             <h1>CONFIRMAR SENHA</h1>
-            <InputMask 
-            type={password ? "password" : "text"} />
+            <InputMask type={password ? "password" : "text"} />
             <img
               className="password-eye"
               src={Eye}
