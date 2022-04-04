@@ -12,7 +12,6 @@
   flex-flow: row;
   width: 100%;
   overflow: hidden;
-
 }
 .sign-bg {
   display: flex;
@@ -146,4 +145,11 @@ input {
   top: 1px;
   bottom: 1px;
   z-index: 5;
+}
+.message-alert {
+  color: var(--neultral-color);
+  font-family: "Rubik";
+  font-size: 0.7rem;
+  padding: 0.5rem 0 0 0;
+  display: none;
 }

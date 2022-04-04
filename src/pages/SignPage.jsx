@@ -14,11 +14,13 @@ export default () => {
   const [password, setPassword] = React.useState(true);
   const [passwordStrength, setPasswordStrength] = React.useState("red");
 
-  const [viaCep, setViaCep] = React.useState();
+  const [viaCep, setViaCep] = React.useState({});
   const [inputName, setInputName] = React.useState();
   const [inputFantasyName, setFantasyInputName] = React.useState();
   const [inputPhone, setInputPhone] = React.useState();
   const [inputCEO, setInputCEO] = React.useState();
+  const [inputCPF, setInputCPF] = React.useState();
+  const [inputCNPJ, setInputCNPJ] = React.useState();
   const [inputEmail, setInputEmail] = React.useState();
   const [inputPassword, setInputPassword] = React.useState();
 
@@ -27,9 +29,9 @@ export default () => {
       name: inputName,
       fantasyName: inputFantasyName,
       telephoneNumber: inputPhone,
-      peopleType: "FISICA",
+      peopleType: person,
       ceo: inputCEO,
-      cpf: "",
+      cpf: inputCPF,
       cnpj: "",
       addressRequest: {
         street: "",
@@ -89,13 +91,7 @@ export default () => {
     password ? setPassword(false) : setPassword(true);
   };
 
-  const inputValidation = (
-    condicion,
-    inputId,
-    titleId,
-    divId,
-    menssage,
-  ) => {
+  const inputValidation = (condicion, inputId, titleId, divId) => {
     if (condicion) {
       document.getElementById(inputId).animate(
         [
@@ -148,10 +144,14 @@ export default () => {
       );
       document.getElementById(inputId).style.borderColor = "red";
       document.getElementById(titleId).style.color = "red";
+      document.getElementById(divId).style.color = "red";
+      document.getElementById(divId).style.display = "block";
     } else {
       document.getElementById(inputId).style.borderColor =
         "var(--neultral-color)";
       document.getElementById(titleId).style.color = "var(--neultral-color)";
+      document.getElementById(divId).style.color = "var(--neultral-color)";
+      document.getElementById(divId).style.display = "none";
     }
   };
   return (
@@ -164,29 +164,62 @@ export default () => {
         <div className="sign-container">
           <ProgressBar img={signProgress} />
           <div className={signProgress === 0 ? "" : "display-none"}>
-            <h1 id="name_title_id">NOME</h1>
+            <h1 id="name_title_id">NOME E SOBRENOME</h1>
             <InputMask
               id="name_input_id"
-              onChange={(text) => {
-                setInputName(text.target.value)
+              onBlur={(text) => {
+                setInputName(text.target.value);
                 inputValidation(
                   text.target.value.length <= 3,
                   "name_input_id",
                   "name_title_id",
-                  "",
-                  "",
-                  
+                  "name_div_id"
                 );
               }}
             />
+            <p id="name_div_id" className="message-alert">
+              Nome inválido
+            </p>
           </div>
           <div className={signProgress === 0 ? "" : "display-none"}>
-            <h1>NOME FANTASIA</h1>
-            <InputMask />
+            <h1 id="fantasy_title_id">NOME FANTASIA</h1>
+            <InputMask
+              id="fantasy_input_id"
+              onBlur={(text) => {
+                setFantasyInputName(text.target.value);
+                inputValidation(
+                  text.target.value.length <= 3,
+                  "fantasy_input_id",
+                  "fantasy_title_id",
+                  "fantasy_div_id"
+                );
+              }}
+            />
+            <p id="fantasy_div_id" className="message-alert">
+              Nome fantasia inválido
+            </p>
           </div>
           <div className={signProgress === 0 ? "" : "display-none"}>
-            <h1>TELEFONE</h1>
-            <InputMask mask="(99) 99999-9999" alwaysShowMask={true} />
+            <h1 id="phone_title_id">TELEFONE CELULAR</h1>
+            <InputMask
+              id="phone_input_id"
+              mask="99 99999-9999"
+              alwaysShowMask={true}
+              onBlur={(text) => {
+                setInputPhone(text.target.value);
+                inputValidation(
+                  !text.target.value.match(
+                    "^[1-9]{2} [9]{0,1}[5-9]{1}[0-9]{3}\-[0-9]{4}$"
+                  ),
+                  "phone_input_id",
+                  "phone_title_id",
+                  "phone_div_id"
+                );
+              }}
+            />
+            <p id="phone_div_id" className="message-alert">
+              Número de celular inválido
+            </p>
           </div>
           <div className={signProgress === 1 ? "" : "display-none"}>
             <h1>TIPO DE PESSOA</h1>
@@ -197,34 +230,104 @@ export default () => {
                 setPerson(value.target.value);
               }}
             >
-              <option value="pf">Pessoa Fisica</option>
-              <option value="pj">Pessoa Jurídica</option>
+              <option value="FISICA">Pessoa Fisica</option>
+              <option value="JURIDICA">Pessoa Jurídica</option>
             </select>
           </div>
           <div className={signProgress === 1 ? "" : "display-none"}>
-            <h1>CEO</h1>
-            <InputMask />
+            <h1 id="ceo_title_id">CEO</h1>
+            <InputMask
+              id="ceo_input_id"
+              onBlur={(text) => {
+                setInputCEO(text.target.value);
+                inputValidation(
+                  text.target.value.length <= 3,
+                  "ceo_input_id",
+                  "ceo_title_id",
+                  "ceo_div_id"
+                );
+              }}
+            />
+            <p id="ceo_div_id" className="message-alert">
+              Nome do CEO inválido
+            </p>
           </div>
           <div className={signProgress === 1 ? "" : "display-none"}>
-            <h1>{person === "pj" ? "CNJP" : "CPF"}</h1>
+            <h1 id="cpf_title_id">{person === "JURIDICA" ? "CNJP" : "CPF"}</h1>
             <InputMask
-              mask={person === "pj" ? "99.999.9999/9999-99" : "999.999.999-99"}
+              mask={
+                person === "JURIDICA" ? "99.999.999/9999-99" : "999.999.999-99"
+              }
               alwaysShowMask={true}
+              id="cpf_input_id"
+              onBlur={(text) => {
+                person === "JURIDICA"
+                  ? setInputCNPJ(text.target.value)
+                  : setInputCPF(text.target.value);
+                person === "JURIDICA" ? setInputCPF(null) : setInputCNPJ(null);
+                inputValidation(
+                  person === "JURIDICA"
+                    ? !text.target.value.match(
+                        "(^[0-9]{2,3}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}$)"
+                      )
+                    : !text.target.value.match(
+                        "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})"
+                      ),
+                  "cpf_input_id",
+                  "cpf_title_id",
+                  "cpf_div_id"
+                );
+                console.log(modal);
+              }}
             />
+            <p id="cpf_div_id" className="message-alert">
+              {person === "JURIDICA" ? "CNPJ" : "CPF"} inválido
+            </p>
           </div>
           <div className={signProgress === 2 ? "" : "display-none"}>
-            <h1>CEP</h1>
+            <h1 id="cep_title_id">CEP</h1>
             <InputMask
-              onChange={(value) => {
-                requestViaCep(value.target.value);
-              }}
               mask="99999-999"
               alwaysShowMask={true}
+              id="cep_input_id"
+              onBlur={(text) => {
+                requestViaCep(text.target.value);
+                inputValidation(
+                  !text.target.value.match("[0-9]{5}-[0-9]{3}"),
+                  "cep_input_id",
+                  "cep_title_id",
+                  "cep_div_id"
+                );
+                inputValidation(
+                  !text.target.value.match("[0-9]{5}-[0-9]{3}"),
+                  "street_input_id",
+                  "street_title_id",
+                  "street_div_id"
+                );
+              }}
             />
+            <p id="cep_div_id" className="message-alert">
+              CEP inválido
+            </p>
           </div>
           <div className={signProgress === 2 ? "" : "display-none"}>
-            <h1>RUA</h1>
-            <InputMask value={viaCep?.logradouro} />
+            <h1 id="street_title_id">RUA</h1>
+            <InputMask
+              value={viaCep?.logradouro}
+              id="street_input_id"
+              onBlur={(text) => {
+                requestViaCep(text.target.value);
+                inputValidation(
+                  text.target.value <= 4,
+                  "street_input_id",
+                  "street_title_id",
+                  "street_div_id"
+                );
+              }}
+            />
+            <p id="street_div_id" className="message-alert">
+              Rua inválido
+            </p>
           </div>
           <div className="adress-aligner">
             <div className={signProgress === 2 ? "" : "display-none"}>
