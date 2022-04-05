@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Button from "./components/Button";
 import InputMask from "react-input-mask";
 import ProgressBar from "./components/ProgressBar";
@@ -10,19 +10,26 @@ import "./SignPage.css";
 
 export default () => {
   const [signProgress, setSignProgress] = React.useState(0);
-  const [person, setPerson] = React.useState(true);
+  const [person, setPerson] = React.useState("FISICA");
   const [password, setPassword] = React.useState(true);
   const [passwordStrength, setPasswordStrength] = React.useState("red");
 
   const [viaCep, setViaCep] = React.useState({});
-  const [inputName, setInputName] = React.useState();
-  const [inputFantasyName, setFantasyInputName] = React.useState();
-  const [inputPhone, setInputPhone] = React.useState();
-  const [inputCEO, setInputCEO] = React.useState();
-  const [inputCPF, setInputCPF] = React.useState();
-  const [inputCNPJ, setInputCNPJ] = React.useState();
-  const [inputEmail, setInputEmail] = React.useState();
-  const [inputPassword, setInputPassword] = React.useState();
+  const [inputName, setInputName] = React.useState(null);
+  const [inputFantasyName, setFantasyInputName] = React.useState(null);
+  const [inputPhone, setInputPhone] = React.useState(null);
+  const [inputCEO, setInputCEO] = React.useState(null);
+  const [inputCPF, setInputCPF] = React.useState(null);
+  const [inputCNPJ, setInputCNPJ] = React.useState(null);
+  const [inputUrlLogo, setInputUrlLogo] = React.useState(null);
+  const [inputStreet, setInputStreet] = React.useState(null);
+  const [inputNumber, setInputNumber] = React.useState(null);
+  const [inputComplement, setInputComplement] = React.useState(null);
+  const [inputCity, setInputCity] = React.useState(null);
+  const [inputState, setInputState] = React.useState(null);
+  const [inputNeighbor, setInputNeighbor] = React.useState(null);
+  const [inputEmail, setInputEmail] = React.useState(null);
+  const [inputPassword, setInputPassword] = React.useState(null);
 
   const modal = [
     {
@@ -32,14 +39,14 @@ export default () => {
       peopleType: person,
       ceo: inputCEO,
       cpf: inputCPF,
-      cnpj: "",
+      cnpj: inputCNPJ,
       addressRequest: {
-        street: "",
-        number: "",
-        complement: "",
-        city: "",
-        state: "",
-        neighborhood: "",
+        street: inputStreet,
+        number: inputNumber,
+        complement: inputComplement,
+        city: inputCity,
+        state: inputState,
+        neighborhood: inputNeighbor,
       },
       email: inputEmail,
       password: inputPassword,
@@ -154,6 +161,60 @@ export default () => {
       document.getElementById(divId).style.display = "none";
     }
   };
+
+  const progressValidation = () => {
+    switch (signProgress) {
+      case 0:
+        if (inputName < 3 || inputName === null) {
+          inputValidation(
+            true,
+            "name_input_id",
+            "name_title_id",
+            "name_div_id"
+          );
+          break;
+        }
+        if (inputFantasyName < 3 || inputFantasyName === null) {
+          inputValidation(
+            true,
+            "fantasy_input_id",
+            "fantasy_title_id",
+            "fantasy_div_id"
+          );
+          break;
+        }
+        if (
+          inputPhone === null ||
+          !inputPhone.match("^[1-9]{2} [9]{0,1}[0-9]{1}[0-9]{3}-[0-9]{4}$")
+        ) {
+          inputValidation(
+            true,
+            "phone_input_id",
+            "phone_title_id",
+            "phone_div_id"
+          );
+          break;
+        }
+        setSignProgress(signProgress + 1);
+        break;
+      case 1:
+        if (inputCEO< 3 || inputCEO === null) {
+          inputValidation(
+            true,
+            "ceo_input_id",
+            "ceo_title_id",
+            "ceo_div_id"
+          );
+          break;
+        }
+
+        
+        setSignProgress(signProgress + 1);
+        break;
+      default:
+        break;
+    }
+  };
   return (
     <section className="sign-root">
       <div className="sign">
@@ -209,7 +270,7 @@ export default () => {
                 setInputPhone(text.target.value);
                 inputValidation(
                   !text.target.value.match(
-                    "^[1-9]{2} [9]{0,1}[5-9]{1}[0-9]{3}\-[0-9]{4}$"
+                    "^[1-9]{2} [9]{0,1}[0-9]{1}[0-9]{3}-[0-9]{4}$"
                   ),
                   "phone_input_id",
                   "phone_title_id",
@@ -284,6 +345,26 @@ export default () => {
               {person === "JURIDICA" ? "CNPJ" : "CPF"} inválido
             </p>
           </div>
+
+          <div className={signProgress === 1 ? "" : "display-none"}>
+            <h1 id="logo_title_id">Logo</h1>
+            <InputMask
+              id="logo_input_id"
+              placeholder="URL Logotipo"
+              onBlur={(text) => {
+                setInputUrlLogo(text.target.value);
+                inputValidation(
+                  text.target.value.length < 5,
+                  "logo_input_id",
+                  "logo_title_id",
+                  "logo_div_id"
+                );
+              }}
+            />
+            <p id="logo_div_id" className="message-alert">
+              URL da logo inválido
+            </p>
+          </div>
           <div className={signProgress === 2 ? "" : "display-none"}>
             <h1 id="cep_title_id">CEP</h1>
             <InputMask
@@ -326,22 +407,56 @@ export default () => {
               }}
             />
             <p id="street_div_id" className="message-alert">
-              Rua inválido
+              Nome da rua invalido
             </p>
           </div>
           <div className="adress-aligner">
             <div className={signProgress === 2 ? "" : "display-none"}>
-              <h1>NÚMERO</h1>
-              <InputMask />
+              <h1 id="num_title_id">NÚMERO</h1>
+              <InputMask
+                id="num_input_id"
+                onBlur={(text) => {
+                  setInputNumber(text.target.value);
+                  inputValidation(
+                    text.target.value < 5,
+                    "num_input_id",
+                    "num_title_id",
+                    "num_div_id"
+                  );
+                }}
+              />
+              <p id="num_div_id" className="message-alert">
+                Numero inválido
+              </p>
             </div>
             <div className={signProgress === 2 ? "" : "display-none"}>
               <h1>COMPLEMENTO</h1>
-              <InputMask />
+              <InputMask
+                onChange={(text) => {
+                  setInputNumber(text.target.value);
+                }}
+              />
             </div>
           </div>
           <div className={signProgress === 3 ? "" : "display-none"}>
-            <h1>E-MAIL</h1>
-            <InputMask />
+            <h1 id="email_title_id">E-MAIL</h1>
+            <InputMask
+              id="email_input_id"
+              onBlur={(text) => {
+                setInputNumber(text.target.value);
+                inputValidation(
+                  !text.target.value.match(
+                    "^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$"
+                  ),
+                  "email_input_id",
+                  "email_title_id",
+                  "email_div_id"
+                );
+              }}
+            />
+            <p id="email_div_id" className="message-alert">
+              Email inválido
+            </p>
           </div>
           <div className={signProgress === 3 ? "" : "display-none"}>
             <h1>SENHA</h1>
@@ -397,11 +512,7 @@ export default () => {
             >
               <Button content="Voltar" />
             </div>
-            <div
-              onClick={() => {
-                setSignProgress(signProgress + 1);
-              }}
-            >
+            <div onClick={progressValidation}>
               <Button content={signProgress === 3 ? "Cadastrar" : "Próximo"} />
             </div>
           </div>
