@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "./components/Button";
 import InputMask from "react-input-mask";
 import ProgressBar from "./components/ProgressBar";
@@ -6,6 +6,7 @@ import Eye from "./images/Eye.svg";
 import SignBg from "./images/Sign up-pana 1.svg";
 import PasswordHealth from "./components/PasswordHealth";
 import axios from "axios";
+import api from "../services/api";
 import "./SignPage.css";
 
 export default () => {
@@ -19,9 +20,9 @@ export default () => {
   const [inputFantasyName, setFantasyInputName] = React.useState(null);
   const [inputPhone, setInputPhone] = React.useState(null);
   const [inputCEO, setInputCEO] = React.useState(null);
-  const [inputCPF, setInputCPF] = React.useState(null);
-  const [inputCNPJ, setInputCNPJ] = React.useState(null);
-  const [inputUrlLogo, setInputUrlLogo] = React.useState(null);
+  const [inputCPF, setInputCPF] = React.useState("");
+  const [inputCNPJ, setInputCNPJ] = React.useState("");
+  const [inputCEP, setInputCEP] = React.useState(null);
   const [inputStreet, setInputStreet] = React.useState(null);
   const [inputNumber, setInputNumber] = React.useState(null);
   const [inputComplement, setInputComplement] = React.useState(null);
@@ -30,6 +31,7 @@ export default () => {
   const [inputNeighbor, setInputNeighbor] = React.useState(null);
   const [inputEmail, setInputEmail] = React.useState(null);
   const [inputPassword, setInputPassword] = React.useState(null);
+  const [inputConfirmPassword, setInputConfirmPassword] = React.useState(null);
 
   const modal = [
     {
@@ -65,6 +67,11 @@ export default () => {
         .then(function (response) {
           setViaCep(response.data);
           console.log(response.data);
+          setInputCity(response.data.localidade);
+          setInputStreet(response.data.logradouro);
+          setInputNeighbor(response.data.bairro);
+          setInputState(response.data.uf);
+          setInputCEP(response.data.cep);
         })
         .catch(function (error) {
           console.error(error);
@@ -198,18 +205,99 @@ export default () => {
         setSignProgress(signProgress + 1);
         break;
       case 1:
-        if (inputCEO< 3 || inputCEO === null) {
+        if (inputCEO < 3 || inputCEO === null) {
+          inputValidation(true, "ceo_input_id", "ceo_title_id", "ceo_div_id");
+          break;
+        }
+        if (
+          person === "FISICA"
+            ? !inputCPF.match(
+                "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})"
+              )
+            : !inputCNPJ.match(
+                "(^[0-9]{2,3}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}$)"
+              )
+        ) {
+          inputValidation(true, "cpf_input_id", "cpf_title_id", "cpf_div_id");
+          break;
+        }
+        person === "JURIDICA" ? setInputCPF(null) : setInputCNPJ(null);
+        setSignProgress(signProgress + 1);
+        break;
+      case 2:
+        if (inputCEP === null || !inputCEP.match("[0-9]{5}-[0-9]{3}")) {
+          inputValidation(true, "cep_input_id", "cep_title_id", "cep_div_id");
           inputValidation(
             true,
-            "ceo_input_id",
-            "ceo_title_id",
-            "ceo_div_id"
+            "street_input_id",
+            "street_title_id",
+            "street_div_id"
           );
           break;
         }
-
-        
+        if (inputNumber === null || inputNumber === 0) {
+          inputValidation(true, "num_input_id", "num_title_id", "num_div_id");
+          break;
+        }
         setSignProgress(signProgress + 1);
+
+        break;
+
+      case 3:
+        if (
+          inputEmail === null ||
+          !inputEmail.match("^[a-z0-9.]+@[a-z0-9]+.[a-z]+(.[a-z]+)?$")
+        ) {
+          inputValidation(
+            true,
+            "email_input_id",
+            "email_title_id",
+            "email_div_id"
+          );
+          break;
+        }
+        if (
+          inputPassword === null ||
+          inputPassword !== inputConfirmPassword ||
+          passwordStrength === "red"
+        ) {
+          inputValidation(
+            true,
+            "password_input_id",
+            "password_title_id",
+            "password_div_id"
+          );
+          inputValidation(
+            true,
+            "confirmPassword_input_id",
+            "confirmPassword_title_id",
+            "confirmPassword_div_id"
+          );
+          break;
+        }
+        inputValidation(
+          false,
+          "password_input_id",
+          "password_title_id",
+          "password_div_id"
+        );
+        inputValidation(
+          false,
+          "confirmPassword_input_id",
+          "confirmPassword_title_id",
+          "confirmPassword_div_id"
+        );
+
+        const requestApi = () => {
+          api
+            .post("https://minhaapi/novo-usuario", modal)
+            .then((response) => console.log(response.data))
+            .catch((err) => {
+              console.error(err);
+            });
+        };
+        requestApi();
+        console.log(modal);
         break;
       default:
         break;
@@ -325,7 +413,7 @@ export default () => {
                 person === "JURIDICA"
                   ? setInputCNPJ(text.target.value)
                   : setInputCPF(text.target.value);
-                person === "JURIDICA" ? setInputCPF(null) : setInputCNPJ(null);
+                person === "JURIDICA" ? setInputCPF("") : setInputCNPJ("");
                 inputValidation(
                   person === "JURIDICA"
                     ? !text.target.value.match(
@@ -338,7 +426,6 @@ export default () => {
                   "cpf_title_id",
                   "cpf_div_id"
                 );
-                console.log(modal);
               }}
             />
             <p id="cpf_div_id" className="message-alert">
@@ -346,7 +433,7 @@ export default () => {
             </p>
           </div>
 
-          <div className={signProgress === 1 ? "" : "display-none"}>
+          {/* <div className={signProgress === 1 ? "" : "display-none"}>
             <h1 id="logo_title_id">Logo</h1>
             <InputMask
               id="logo_input_id"
@@ -364,7 +451,7 @@ export default () => {
             <p id="logo_div_id" className="message-alert">
               URL da logo inválido
             </p>
-          </div>
+          </div> */}
           <div className={signProgress === 2 ? "" : "display-none"}>
             <h1 id="cep_title_id">CEP</h1>
             <InputMask
@@ -418,7 +505,7 @@ export default () => {
                 onBlur={(text) => {
                   setInputNumber(text.target.value);
                   inputValidation(
-                    text.target.value < 5,
+                    text.target.value === null || text.target.value === "0",
                     "num_input_id",
                     "num_title_id",
                     "num_div_id"
@@ -433,7 +520,7 @@ export default () => {
               <h1>COMPLEMENTO</h1>
               <InputMask
                 onChange={(text) => {
-                  setInputNumber(text.target.value);
+                  setInputComplement(text.target.value);
                 }}
               />
             </div>
@@ -443,10 +530,10 @@ export default () => {
             <InputMask
               id="email_input_id"
               onBlur={(text) => {
-                setInputNumber(text.target.value);
+                setInputEmail(text.target.value);
                 inputValidation(
                   !text.target.value.match(
-                    "^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$"
+                    "^[a-z0-9.]+@[a-z0-9]+.[a-z]+(.[a-z]+)?$"
                   ),
                   "email_input_id",
                   "email_title_id",
@@ -459,10 +546,12 @@ export default () => {
             </p>
           </div>
           <div className={signProgress === 3 ? "" : "display-none"}>
-            <h1>SENHA</h1>
+            <h1 id="password_title_id">SENHA</h1>
             <InputMask
+              id="password_input_id"
               type={password ? "password" : "text"}
               onChange={(text) => {
+                setInputPassword(text.target.value);
                 strengthTest(text.target.value);
               }}
             />
@@ -474,14 +563,20 @@ export default () => {
                 passwordEye();
               }}
             />
-            <p className="password-text">
+            <p id="password_div_id" className="password-text">
               A senha deve conter 8 caracteres, contendo letras maiusculas ,
               minusculas e números
             </p>
           </div>
           <div className={signProgress === 3 ? "" : "display-none"}>
-            <h1>CONFIRMAR SENHA</h1>
-            <InputMask type={password ? "password" : "text"} />
+            <h1 id="confirmPassword_title_id">CONFIRMAR SENHA</h1>
+            <InputMask
+              id="confirmPassword_input_id"
+              type={password ? "password" : "text"}
+              onBlur={(text) => {
+                setInputConfirmPassword(text.target.value);
+              }}
+            />
             <img
               className="password-eye"
               src={Eye}
@@ -490,7 +585,7 @@ export default () => {
                 passwordEye();
               }}
             />
-            <p className="password-text">
+            <p id="confirmPassword_div_id" className="password-text">
               A senha deve conter 8 caracteres, contendo letras maiusculas ,
               minusculas e números
             </p>
