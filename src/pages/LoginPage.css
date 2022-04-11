@@ -4,10 +4,16 @@
   --tertiary-color: #6b829a;
   --neultral-color: #e5e5e5;
 }
+:root {
+  --main-color: #26223b;
+  --secondary-color: #d38c88;
+  --tertiary-color: #6b829a;
+  --neultral-color: #e5e5e5;
+}
 .display-none {
   display: none;
 }
-.sign-root {
+.login-root {
   display: flex;
   flex-flow: row;
   width: 100%;
@@ -15,13 +21,13 @@
   overflow-x: hidden;
   height: 100vh;
 }
-.sign-bg {
+.login-bg {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 50%;
 }
-.sign-bg > img{
+.login-bg > img {
   width: 100%;
 }
 .password-text {
@@ -30,7 +36,7 @@
   font-size: 0.7rem;
   padding: 0.5rem 0 0 0;
 }
-.sign {
+.login {
   padding: 0em;
   background-color: var(--main-color);
   width: 50%;
@@ -41,13 +47,13 @@
   justify-content: space-evenly;
   border-radius: 0 3% 3% 0;
 }
-.sign-container {
+.login-container {
   width: 100%;
   display: flex;
   align-items: center;
   flex-flow: column;
 }
-.sign-container > div > h1 {
+.login-container > div > h1 {
   font-family: "Rubik";
   font-style: normal;
   font-weight: 400;
@@ -56,14 +62,13 @@
 
   color: var(--neultral-color);
 }
-.sign-container > div {
+.login-container > div {
   width: 30rem;
   margin: 1rem;
   position: relative;
 }
 
-.sign-container > div > select,
-input {
+.login-container > div > input {
   height: 1.5rem !important;
   margin: 0;
   height: 1rem;
@@ -80,14 +85,14 @@ input {
   border-radius: 0;
   outline: 0;
 }
-.sign-aligner {
+.login-aligner {
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-flow: row;
   width: 100%;
 }
-.sign-title {
+.login-title {
   font-family: "Rubik";
   font-style: normal;
   font-weight: 400;
@@ -96,30 +101,23 @@ input {
 
   color: var(--neultral-color);
 }
-.have-login {
+.forgot-password {
   font-family: "Rubik";
   font-style: normal;
   font-weight: 400;
-  font-size: 1.5rrem;
+  font-size: 1rem;
   line-height: 2rem;
   color: var(--neultral-color);
-}
-.have-login > a {
-  font-family: "Rubik";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1.5rrem;
-  line-height: 2rem;
-  color: var(--secondary-color);
   text-decoration: none;
 }
-.sign-btn-aligner {
+
+.login-btn-aligner {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
   align-items: center;
 }
-.sign-btn-align {
+.login-btn-align {
   display: flex;
   flex-flow: row;
   justify-content: center;
@@ -159,3 +157,20 @@ input {
   padding: 0.5rem 0 0 0;
   display: none;
 }
+.sign-login {
+    font-family: "Rubik";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rrem;
+    line-height: 2rem;
+    color: var(--neultral-color);
+  }
+  .sign-login > a {
+    font-family: "Rubik";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rrem;
+    line-height: 2rem;
+    color: var(--secondary-color);
+    text-decoration: none;
+  }

@@ -24,7 +24,9 @@ export default () => {
             </p>
             <p className="home-paragraph">em nossas mãos.</p>
           </div>
-          <Button content="SAIBA MAIS" />
+          <a href="#service">
+            <Button content="SAIBA MAIS" />
+          </a>
         </div>
         <img src={HomeImage} />
         <a className="arrow" href="#aboutUs">

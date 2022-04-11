@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Button from "./components/Button";
 import InputMask from "react-input-mask";
 import ProgressBar from "./components/ProgressBar";
@@ -685,7 +685,7 @@ export default () => {
         </div>
         <div className="sign-aligner">
           <label className="have-login">
-            Já tem uma conta? Faça <a>Login</a>
+            Já tem uma conta? Faça <Link to="/login"><a>Login</a></Link>
           </label>
         </div>
       </div>
