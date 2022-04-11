@@ -11,13 +11,18 @@
   display: flex;
   flex-flow: row;
   width: 100%;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  height: 100vh;
 }
 .sign-bg {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 50%;
+}
+.sign-bg > img{
+  width: 100%;
 }
 .password-text {
   color: var(--neultral-color);

@@ -77,17 +77,17 @@ export default () => {
             response.data.bairro === undefined ? "" : response.data.bairro;
           response.data.erro === true
             ? inputValidation(
-                true,
-                "cep_input_id",
-                "cep_title_id",
-                "cep_div_id"
-              )
+              true,
+              "cep_input_id",
+              "cep_title_id",
+              "cep_div_id"
+            )
             : inputValidation(
-                false,
-                "cep_input_id",
-                "cep_title_id",
-                "cep_div_id"
-              );
+              false,
+              "cep_input_id",
+              "cep_title_id",
+              "cep_div_id"
+            );
         })
         .catch(function (error) {
           console.error(error);
@@ -226,11 +226,11 @@ export default () => {
         if (
           person === "FISICA"
             ? !inputCPF.match(
-                "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})"
-              )
+              "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})"
+            )
             : !inputCNPJ.match(
-                "(^[0-9]{2,3}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}$)"
-              )
+              "(^[0-9]{2,3}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}$)"
+            )
         ) {
           inputValidation(true, "cpf_input_id", "cpf_title_id", "cpf_div_id");
           break;
@@ -323,6 +323,7 @@ export default () => {
               console.log(response.status);
               sessionStorage.setItem("data", JSON.stringify(response.data));
               sessionStorage.setItem("status", JSON.stringify(response.status));
+              login(Number(sessionStorage.getItem("status")));
             })
             .catch((err) => {
               console.error(err);
@@ -330,12 +331,12 @@ export default () => {
                 "status",
                 JSON.stringify(err.response.status)
               );
+              login(Number(sessionStorage.getItem("status")));
               console.log(err.response.status);
             });
         };
 
         signApi();
-        login(Number(sessionStorage.getItem("status")));
         break;
       default:
         break;
@@ -344,6 +345,7 @@ export default () => {
   const navigate = useNavigate();
 
   const login = (statusCode) => {
+
     console.log(statusCode);
     switch (statusCode) {
       case 201:
@@ -469,11 +471,11 @@ export default () => {
                 inputValidation(
                   person === "JURIDICA"
                     ? !text.target.value.match(
-                        "(^[0-9]{2,3}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}$)"
-                      )
+                      "(^[0-9]{2,3}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}$)"
+                    )
                     : !text.target.value.match(
-                        "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})"
-                      ),
+                      "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})"
+                    ),
                   "cpf_input_id",
                   "cpf_title_id",
                   "cpf_div_id"
