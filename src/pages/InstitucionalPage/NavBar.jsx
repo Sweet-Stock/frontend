@@ -1,25 +1,33 @@
-import React, { useEffect, useState }  from "react";
+import React, { useEffect, useState } from "react";
+import { Outlet, Link } from "react-router-dom";
 import Logo from "../images/logo.svg";
-import Button from "../components/Button"
-import  "./NavBar.css";
+import Button from "../components/Button";
+import "./NavBar.css";
 
 export default () => {
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
-      const onScroll = () => setOffset(window.pageYOffset);
+    const onScroll = () => setOffset(window.pageYOffset);
 
-      window.removeEventListener('scroll', onScroll);
-      window.addEventListener('scroll', onScroll, { passive: true });
-      return () => window.removeEventListener('scroll', onScroll);
+    window.removeEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <header id="id_navbar" className="nav">
       <div className="nav-container">
-        <div className={offset <= 60 ? "navBar":"navBg"}>
-          <img className={offset <= 60 ? "nav-img imgImportant":"nav-img-small imgImportant"} src={Logo} />
-          <ul >
+        <div className={offset <= 60 ? "navBar" : "navBg"}>
+          <img
+            className={
+              offset <= 60
+                ? "nav-img imgImportant"
+                : "nav-img-small imgImportant"
+            }
+            src={Logo}
+          />
+          <ul>
             <li>
               <a href="#home">HOME</a>
             </li>
@@ -36,11 +44,12 @@ export default () => {
               <a href="#contact">CONTATO</a>
             </li>
           </ul>
-          <Button content = "ENTRAR" />
+          <Link to="/cadastro">
+            <Button content="ENTRAR" />
+          </Link>
+        
         </div>
       </div>
     </header>
   );
 };
-
-

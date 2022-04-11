@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "./components/Button";
 import InputMask from "react-input-mask";
 import ProgressBar from "./components/ProgressBar";
@@ -15,7 +16,6 @@ export default () => {
   const [password, setPassword] = React.useState(true);
   const [passwordStrength, setPasswordStrength] = React.useState("red");
 
-  const [viaCep, setViaCep] = React.useState({});
   const [inputName, setInputName] = React.useState(null);
   const [inputFantasyName, setFantasyInputName] = React.useState(null);
   const [inputPhone, setInputPhone] = React.useState(null);
@@ -23,37 +23,35 @@ export default () => {
   const [inputCPF, setInputCPF] = React.useState("");
   const [inputCNPJ, setInputCNPJ] = React.useState("");
   const [inputCEP, setInputCEP] = React.useState(null);
-  const [inputStreet, setInputStreet] = React.useState(null);
+  const [inputStreet, setInputStreet] = React.useState("");
   const [inputNumber, setInputNumber] = React.useState(null);
   const [inputComplement, setInputComplement] = React.useState(null);
   const [inputCity, setInputCity] = React.useState(null);
   const [inputState, setInputState] = React.useState(null);
-  const [inputNeighbor, setInputNeighbor] = React.useState(null);
+  const [inputNeighbor, setInputNeighbor] = React.useState("");
   const [inputEmail, setInputEmail] = React.useState(null);
   const [inputPassword, setInputPassword] = React.useState(null);
   const [inputConfirmPassword, setInputConfirmPassword] = React.useState(null);
 
-  const modal = [
-    {
-      name: inputName,
-      fantasyName: inputFantasyName,
-      telephoneNumber: inputPhone,
-      peopleType: person,
-      ceo: inputCEO,
-      cpf: inputCPF,
-      cnpj: inputCNPJ,
-      addressRequest: {
-        street: inputStreet,
-        number: inputNumber,
-        complement: inputComplement,
-        city: inputCity,
-        state: inputState,
-        neighborhood: inputNeighbor,
-      },
-      email: inputEmail,
-      password: inputPassword,
+  const modal = {
+    name: inputName,
+    fantasyName: inputFantasyName,
+    telephoneNumber: inputPhone,
+    peopleType: person,
+    ceo: inputCEO,
+    cpf: inputCPF,
+    cnpj: inputCNPJ,
+    addressRequest: {
+      street: inputStreet,
+      number: inputNumber,
+      complement: inputComplement,
+      city: inputCity,
+      state: inputState,
+      neighborhood: inputNeighbor,
     },
-  ];
+    email: inputEmail,
+    password: inputPassword,
+  };
 
   const requestViaCep = (cep) => {
     if (cep.match("[0-9]{5}-[0-9]{3}")) {
@@ -65,13 +63,31 @@ export default () => {
       axios
         .request(options)
         .then(function (response) {
-          setViaCep(response.data);
           console.log(response.data);
           setInputCity(response.data.localidade);
           setInputStreet(response.data.logradouro);
           setInputNeighbor(response.data.bairro);
           setInputState(response.data.uf);
           setInputCEP(response.data.cep);
+          document.getElementById("street_input_id").value =
+            response.data.logradouro === undefined
+              ? ""
+              : response.data.logradouro;
+          document.getElementById("neighbor_input_id").value =
+            response.data.bairro === undefined ? "" : response.data.bairro;
+          response.data.erro === true
+            ? inputValidation(
+                true,
+                "cep_input_id",
+                "cep_title_id",
+                "cep_div_id"
+              )
+            : inputValidation(
+                false,
+                "cep_input_id",
+                "cep_title_id",
+                "cep_div_id"
+              );
         })
         .catch(function (error) {
           console.error(error);
@@ -80,24 +96,22 @@ export default () => {
   };
 
   const strengthTest = (password) => {
-    {
-      if (
-        password.match(
-          "^(?=(.*[a-z]){3,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()-__+.]){1,}).{12,}$"
-        )
-      ) {
-        setPasswordStrength("green");
-      } else if (
-        password.match(
-          "^(?=(.*[a-z]){3,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,}).{8,}$"
-        )
-      ) {
-        setPasswordStrength("yellow");
-        setPassword(password);
-      } else {
-        setPasswordStrength("red");
-        setPassword(password);
-      }
+    if (
+      password.match(
+        "^(?=(.*[a-z]){3,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()-__+.]){1,}).{12,}$"
+      )
+    ) {
+      setPasswordStrength("green");
+    } else if (
+      password.match(
+        "^(?=(.*[a-z]){3,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,}).{8,}$"
+      )
+    ) {
+      setPasswordStrength("yellow");
+      setPassword(password);
+    } else {
+      setPasswordStrength("red");
+      setPassword(password);
     }
   };
 
@@ -172,7 +186,7 @@ export default () => {
   const progressValidation = () => {
     switch (signProgress) {
       case 0:
-        if (inputName < 3 || inputName === null) {
+        if (inputName === null || inputName.length < 3) {
           inputValidation(
             true,
             "name_input_id",
@@ -181,7 +195,7 @@ export default () => {
           );
           break;
         }
-        if (inputFantasyName < 3 || inputFantasyName === null) {
+        if (inputFantasyName === null || inputFantasyName.length < 3) {
           inputValidation(
             true,
             "fantasy_input_id",
@@ -205,7 +219,7 @@ export default () => {
         setSignProgress(signProgress + 1);
         break;
       case 1:
-        if (inputCEO < 3 || inputCEO === null) {
+        if (inputCEO === null || inputCEO.length < 3) {
           inputValidation(true, "ceo_input_id", "ceo_title_id", "ceo_div_id");
           break;
         }
@@ -225,13 +239,23 @@ export default () => {
         setSignProgress(signProgress + 1);
         break;
       case 2:
-        if (inputCEP === null || !inputCEP.match("[0-9]{5}-[0-9]{3}")) {
+        if (
+          inputCEP === null ||
+          inputCEP === undefined ||
+          !inputCEP.match("[0-9]{5}-[0-9]{3}")
+        ) {
           inputValidation(true, "cep_input_id", "cep_title_id", "cep_div_id");
           inputValidation(
             true,
             "street_input_id",
             "street_title_id",
             "street_div_id"
+          );
+          inputValidation(
+            true,
+            "neighbor_input_id",
+            "neighbor_title_id",
+            "neighbor_div_id"
           );
           break;
         }
@@ -288,18 +312,45 @@ export default () => {
           "confirmPassword_div_id"
         );
 
-        const requestApi = () => {
+        const signApi = () => {
           api
-            .post("https://minhaapi/novo-usuario", modal)
-            .then((response) => console.log(response.data))
+            .post(
+              "https://6250e7e5e3e5d24b34282a74.mockapi.io/sweet-stock/v1/teste",
+              modal
+            )
+            .then((response) => {
+              console.log(response.data);
+              console.log(response.status);
+              sessionStorage.setItem("data", JSON.stringify(response.data));
+              sessionStorage.setItem("status", response.status);
+            })
             .catch((err) => {
               console.error(err);
+              sessionStorage.setItem(
+                "status",
+                JSON.stringify(err.response.status)
+              );
+              console.log(err.response.status);
             });
         };
-        requestApi();
-        console.log(modal);
+
+        signApi();
+        login(sessionStorage.getItem("status"));
         break;
       default:
+        break;
+    }
+  };
+  const navigate = useNavigate();
+
+  const login = (statusCode) => {
+    switch (statusCode) {
+      case "201":
+        navigate("/dashboard");
+        break;
+
+      default:
+        navigate(`/error/${sessionStorage.getItem("status")}`);
         break;
     }
   };
@@ -313,13 +364,13 @@ export default () => {
         <div className="sign-container">
           <ProgressBar img={signProgress} />
           <div className={signProgress === 0 ? "" : "display-none"}>
-            <h1 id="name_title_id">NOME E SOBRENOME</h1>
+            <h1 id="name_title_id">NOME</h1>
             <InputMask
               id="name_input_id"
               onBlur={(text) => {
                 setInputName(text.target.value);
                 inputValidation(
-                  text.target.value.length <= 3,
+                  text.target.value.length < 3,
                   "name_input_id",
                   "name_title_id",
                   "name_div_id"
@@ -337,7 +388,7 @@ export default () => {
               onBlur={(text) => {
                 setFantasyInputName(text.target.value);
                 inputValidation(
-                  text.target.value.length <= 3,
+                  text.target.value.length < 3,
                   "fantasy_input_id",
                   "fantasy_title_id",
                   "fantasy_div_id"
@@ -390,7 +441,7 @@ export default () => {
               onBlur={(text) => {
                 setInputCEO(text.target.value);
                 inputValidation(
-                  text.target.value.length <= 3,
+                  text.target.value.length < 3,
                   "ceo_input_id",
                   "ceo_title_id",
                   "ceo_div_id"
@@ -481,12 +532,11 @@ export default () => {
           <div className={signProgress === 2 ? "" : "display-none"}>
             <h1 id="street_title_id">RUA</h1>
             <InputMask
-              value={viaCep?.logradouro}
               id="street_input_id"
               onBlur={(text) => {
-                requestViaCep(text.target.value);
+                setInputStreet(text.target.value);
                 inputValidation(
-                  text.target.value <= 4,
+                  text.target.value < 3,
                   "street_input_id",
                   "street_title_id",
                   "street_div_id"
@@ -495,6 +545,24 @@ export default () => {
             />
             <p id="street_div_id" className="message-alert">
               Nome da rua invalido
+            </p>
+          </div>
+          <div className={signProgress === 2 ? "" : "display-none"}>
+            <h1 id="neighbor_title_id">BAIRRO</h1>
+            <InputMask
+              id="neighbor_input_id"
+              onBlur={(text) => {
+                setInputNeighbor(text.target.value);
+                inputValidation(
+                  text.target.value < 3,
+                  "neighbor_input_id",
+                  "neighbor_title_id",
+                  "neighbor_div_id"
+                );
+              }}
+            />
+            <p id="neighbor_div_id" className="message-alert">
+              Nome da Bairro invalido
             </p>
           </div>
           <div className="adress-aligner">
@@ -530,11 +598,11 @@ export default () => {
             <InputMask
               id="email_input_id"
               onBlur={(text) => {
-                setInputEmail(text.target.value);
+                setInputEmail(text.target.value.toLowerCase());
                 inputValidation(
-                  !text.target.value.match(
-                    "^[a-z0-9.]+@[a-z0-9]+.[a-z]+(.[a-z]+)?$"
-                  ),
+                  !text.target.value
+                    .toLowerCase()
+                    .match("^[a-z0-9.]+@[a-z0-9]+.[a-z]+(.[a-z]+)?$"),
                   "email_input_id",
                   "email_title_id",
                   "email_div_id"
