@@ -322,7 +322,7 @@ export default () => {
               console.log(response.data);
               console.log(response.status);
               sessionStorage.setItem("data", JSON.stringify(response.data));
-              sessionStorage.setItem("status", response.status);
+              sessionStorage.setItem("status", JSON.stringify(response.status));
             })
             .catch((err) => {
               console.error(err);
@@ -335,7 +335,7 @@ export default () => {
         };
 
         signApi();
-        login(sessionStorage.getItem("status"));
+        login(Number(sessionStorage.getItem("status")));
         break;
       default:
         break;
@@ -344,13 +344,14 @@ export default () => {
   const navigate = useNavigate();
 
   const login = (statusCode) => {
+    console.log(statusCode);
     switch (statusCode) {
-      case "201":
+      case 201:
         navigate("/dashboard");
         break;
 
       default:
-        navigate(`/error/${sessionStorage.getItem("status")}`);
+        navigate(`/error/${statusCode}`);
         break;
     }
   };
