@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "./components/Button";
 import InputMask from "react-input-mask";
@@ -11,6 +11,68 @@ import api from "../services/api";
 import "./SignPage.css";
 
 export default () => {
+  useEffect(() => {
+    api
+      .get("http://localhost:8080/v1/sweet-stock/products")
+      .then((response) => {
+        console.log(response.data);
+        // console.log(response.status);
+        // sessionStorage.setItem("data", JSON.stringify(response.data));
+        // sessionStorage.setItem("status", response.status);
+        // login(sessionStorage.getItem("status"));
+      })
+      .catch((err) => {
+        console.error(err);
+        // sessionStorage.setItem(
+        //   "status",
+        //   JSON.stringify(err.response.status)
+        // );
+        // console.log(err.response.status);
+        // login(sessionStorage.getItem("status"));
+      });
+  }, []);
+  useEffect(() => {
+    api
+      .post(
+        "http://localhost:8080/v1/sweet-stock/companies",
+        {
+          name: "inputName",
+          fantasyName: "inputFantasyName",
+          telephoneNumber: "inputPhone",
+          peopleType: "FISICA",
+          ceo: "inputCEO",
+          cpf: "inputCPF",
+          cnpj: null,
+          addressRequest: {
+            street: "inputStreet",
+            number: "inputNumber",
+            complement: "inputComplement",
+            city: "inputCity",
+            state: "inputState",
+            neighborhood: "inputNeighbor",
+          },
+          email: "inpufdsssdaweadsassaatEmail",
+          password: "inpufdsfdsfds",
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        // console.log(response.status);
+        // sessionStorage.setItem("data", JSON.stringify(response.data));
+        // sessionStorage.setItem("status", response.status);
+        // login(sessionStorage.getItem("status"));
+      })
+      .catch((err) => {
+        console.error(err);
+        // sessionStorage.setItem(
+        //   "status",
+        //   JSON.stringify(err.response.status)
+        // );
+        // console.log(err.response.status);
+        // login(sessionStorage.getItem("status"));
+      });
+  }, []);
+
   const [signProgress, setSignProgress] = React.useState(0);
   const [person, setPerson] = React.useState("FISICA");
   const [password, setPassword] = React.useState(true);
@@ -314,28 +376,27 @@ export default () => {
 
         const signApi = () => {
           api
-            .post(
-              "https://6250e7e5e3e5d24b34282a74.mockapi.io/sweet-stock/v1/teste",
-              modal
-            )
+            .post("http://localhost:8080/v1/sweet-stock/companies", modal)
             .then((response) => {
-              console.log(response.data);
-              console.log(response.status);
-              sessionStorage.setItem("data", JSON.stringify(response.data));
-              sessionStorage.setItem("status", response.status);
+              console.log(response);
+              // console.log(response.status);
+              // sessionStorage.setItem("data", JSON.stringify(response.data));
+              // sessionStorage.setItem("status", response.status);
+              // login(sessionStorage.getItem("status"));
             })
             .catch((err) => {
               console.error(err);
-              sessionStorage.setItem(
-                "status",
-                JSON.stringify(err.response.status)
-              );
-              console.log(err.response.status);
+              // sessionStorage.setItem(
+              //   "status",
+              //   JSON.stringify(err.response.status)
+              // );
+              // console.log(err.response.status);
+              // login(sessionStorage.getItem("status"));
             });
         };
 
         signApi();
-        login(sessionStorage.getItem("status"));
+
         break;
       default:
         break;
