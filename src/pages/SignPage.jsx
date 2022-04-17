@@ -317,19 +317,18 @@ export default () => {
             .post("http://localhost:8080/v1/sweet-stock/companies", modal)
             .then((response) => {
               console.log(response);
-              // console.log(response.status);
-              // sessionStorage.setItem("data", JSON.stringify(response.data));
-              // sessionStorage.setItem("status", response.status);
-              // login(sessionStorage.getItem("status"));
+              console.log(response.status);
+              sessionStorage.setItem("token", JSON.stringify(response.data));
+              login(response.status);
             })
             .catch((err) => {
               console.error(err);
-              // sessionStorage.setItem(
-              //   "status",
-              //   JSON.stringify(err.response.status)
-              // );
-              // console.log(err.response.status);
-              // login(sessionStorage.getItem("status"));
+              console.log(err.response.status);
+              sessionStorage.setItem(
+                "status",
+                JSON.stringify(err.response.status)
+              );
+              login(err.response.status);
             });
         };
 
@@ -348,6 +347,9 @@ export default () => {
         navigate("/dashboard");
         break;
 
+      case "401":
+        alert("Email já cadastrado");
+        break;
       default:
         navigate(`/error/${sessionStorage.getItem("status")}`);
         break;
