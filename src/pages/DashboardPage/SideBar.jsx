@@ -1,14 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LittleArrowRight from "../images/littlearrow.svg";
 import LittleArrowLeft from "../images/littlearrowleft.svg";
 import DashIcon from "../images/dashicon.svg";
+import CarIcon from "../images/carIcon.svg"
+import PeopleIcon from "../images/People.svg"
+import BaskIcon from "../images/Bagage.svg"
+import ProductIcon from "../images/Confectionery.svg"
+import FileIcon from "../images/Documents Folder.svg"
 import ProfilePhoto from "../images/profilephoto.jpg";
 import Icon from "../components/Icon.jsx";
 import LogoutIcon from "../images/iconlogout.svg";
 import "./SideBar.css";
+import { useNavigate } from "react-router-dom";
 
 export default (props) => {
+  const [verify, setVerify] = React.useState(true);
   const [grow, setGrow] = React.useState(0);
+  const navigate = useNavigate();
+  let dataStorage = sessionStorage.getItem("data")
+  useEffect(() => {
+    if (dataStorage == undefined || dataStorage == "null") {
+      navigate("/login")
+    }
+  }, [verify])
+
+  const logoff = () => {
+    sessionStorage.setItem("data", "null")
+    setVerify(false)
+  };
 
   const data = [
     {
@@ -19,36 +38,36 @@ export default (props) => {
       dashPage: 0,
     },
     {
-      icon: DashIcon,
-      content: "Dashboard",
+      icon: CarIcon,
+      content: "Fornecedores",
       classShort: "sidebar-icon-short",
       classLong: "sidebar-icon-long",
       dashPage: 1,
     },
     {
-      icon: DashIcon,
-      content: "Dashboard",
+      icon: PeopleIcon,
+      content: "Funcionarios",
       classShort: "sidebar-icon-short",
       classLong: "sidebar-icon-long",
       dashPage: 2,
     },
     {
-      icon: DashIcon,
-      content: "Dashboard",
+      icon: BaskIcon,
+      content: "Ingredientes",
       classShort: "sidebar-icon-short",
       classLong: "sidebar-icon-long",
       dashPage: 3,
     },
     {
-      icon: DashIcon,
-      content: "Dashboard",
+      icon: ProductIcon,
+      content: "Produtos",
       classShort: "sidebar-icon-short",
       classLong: "sidebar-icon-long",
       dashPage: 4,
     },
     {
-      icon: DashIcon,
-      content: "Dashboard",
+      icon: FileIcon,
+      content: "Relatórios",
       classShort: "sidebar-icon-short",
       classLong: "sidebar-icon-long",
       dashPage: 5,
@@ -74,6 +93,7 @@ export default (props) => {
         <div className="sidebar-box">
           {data.map((value) => (
             <div
+              className="sidebar-outer-icon"
               key={Math.random()}
               onClick={() => {
                 props.setPage(value.dashPage);
@@ -88,6 +108,7 @@ export default (props) => {
           ))}
         </div>
         <img
+          onClick={logoff}
           className={
             grow % 2 === 0 ? "sidebar-logout-short" : "sidebar-logout-long"
           }
