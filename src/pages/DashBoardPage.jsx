@@ -14,43 +14,43 @@ export default (props) => {
     case 0:
       return (
         <>
-          <SideBar name={dataStorage.username} setPage={setPage} />
+          <SideBar name={dataStorage?dataStorage.username:""} setPage={setPage} />
         </>
       );
     case 1:
       return (
         <>
-          <SideBar name={dataStorage.username} setPage={setPage} />
+          <SideBar name={dataStorage?dataStorage.username:""} setPage={setPage} />
         </>
       );
     case 2:
       return (
         <>
-          <SideBar name={dataStorage.username} setPage={setPage} />
+          <SideBar name={dataStorage?dataStorage.username:""} setPage={setPage} />
         </>
       );
     case 3:
       return (
         <>
-          <SideBar name={dataStorage.username} setPage={setPage} />
+          <SideBar name={dataStorage?dataStorage.username:""} setPage={setPage} />
         </>
       );
     case 4:
       return (
         <>
-          <SideBar name={dataStorage.username} setPage={setPage} />
+          <SideBar name={dataStorage?dataStorage.username:""} setPage={setPage} />
         </>
       );
     case 5:
       return (
         <>
-        <SideBar name={dataStorage.username} setPage={setPage} />
+        <SideBar name={dataStorage?dataStorage.username:""} setPage={setPage} />
         </>
       );
     default:
       return (
         <>
-          <SideBar name={dataStorage.username} setPage={setPage} />
+          <SideBar name={dataStorage?dataStorage.username:""} setPage={setPage} />
         </>
       );
   }
