@@ -9,9 +9,6 @@ import "./SideBar.css";
 
 export default (props) => {
   const [grow, setGrow] = React.useState(0);
-  const [dashPages, setDashPages] = React.useState(0);
-  
-
   const data = [
     {
       icon: DashIcon,
