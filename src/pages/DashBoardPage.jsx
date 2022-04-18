@@ -5,7 +5,6 @@ export default () => {
   switch (1) {
     case 1:
       return(<div></div>)
-      break;
   
     default:
       break;
