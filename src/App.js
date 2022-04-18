@@ -20,8 +20,6 @@ function App() {
               path={sessionStorage.getItem("status")}
               element={<ErrorPage status={sessionStorage.getItem("status")} />}
             />
-            <Route path={"404"} element={<ErrorPage status={"404"} />} />
-            <Route path={"500"} element={<ErrorPage status={"500"} />} />
           </Route>
           <Route path="*" element={<ErrorPage status={"404"} />} />
         </Route>

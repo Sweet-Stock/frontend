@@ -5,7 +5,6 @@ export default () => {
   return (
     <>
       <SideBar name="Rafael"/>
-
     </>
   );
 };
