@@ -44,7 +44,7 @@ export default () => {
               <a href="#contact">CONTATO</a>
             </li>
           </ul>
-          <Link to="/cadastro">
+          <Link to="/login">
             <Button content="ENTRAR" />
           </Link>
         

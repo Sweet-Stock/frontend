@@ -22,6 +22,7 @@ export default (props) => {
       return (
         <div className="error-page">
           <img src={Error500} alt="" />
+        <div className="back-error-btn" onClick={goHome}><img src={Arrow} alt=""/></div>
         </div>
       );
     default:
