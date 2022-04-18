@@ -58,12 +58,12 @@
   border-radius: 50%;
 }
 .sidebar-logout-long {
-  width: 4em;
-  height: 4em;
-}
-.sidebar-logout-short {
   width: 3em;
   height: 3em;
+}
+.sidebar-logout-short {
+  width: 2em;
+  height: 2em;
 }
 .sidebar-grow-btn {
   width: 2em;
@@ -87,4 +87,10 @@
   display: flex;
   align-items: center;
   flex-flow: column;
+}
+.sidebar-outer-icon{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

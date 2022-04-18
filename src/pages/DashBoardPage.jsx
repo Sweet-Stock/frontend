@@ -4,51 +4,53 @@ import SideBar from "./DashboardPage/SideBar";
 export default (props) => {
   const [page, setPage] = React.useState(0);
 
-React.useEffect(()=>{
-  console.log(page);
-},[page])
+  React.useEffect(() => {
+    console.log(page);
+  }, [page])
+
+  let dataStorage = JSON.parse(sessionStorage.getItem("data"));
 
   switch (page) {
     case 0:
       return (
         <>
-          <SideBar name="Rafael" setPage={setPage}/>
+          <SideBar name={dataStorage.username} setPage={setPage} />
         </>
       );
-      case 1:
-        return (
-          <>
-            <SideBar name="sdadsa" setPage={setPage}/>
-          </>
-        );
-        case 2:
+    case 1:
       return (
         <>
-          <SideBar name="dasdsa" setPage={setPage}/>
+          <SideBar name={dataStorage.username} setPage={setPage} />
         </>
       );
-      case 3:
+    case 2:
       return (
         <>
-          <SideBar name="dsa" setPage={setPage}/>
+          <SideBar name={dataStorage.username} setPage={setPage} />
         </>
       );
-      case 4:
+    case 3:
       return (
         <>
-          <SideBar name="dsasda" setPage={setPage}/>
+          <SideBar name={dataStorage.username} setPage={setPage} />
         </>
       );
-      case 5:
+    case 4:
       return (
         <>
-          <SideBar name="dasdas" setPage={setPage}/>
+          <SideBar name={dataStorage.username} setPage={setPage} />
+        </>
+      );
+    case 5:
+      return (
+        <>
+        <SideBar name={dataStorage.username} setPage={setPage} />
         </>
       );
     default:
       return (
         <>
-          <SideBar name="dsadas" setPage={setPage}/>
+          <SideBar name={dataStorage.username} setPage={setPage} />
         </>
       );
   }

@@ -92,7 +92,7 @@ export default () => {
       .then((response) => {
         console.log(response);
         console.log(response.status);
-        sessionStorage.setItem("token", JSON.stringify(response.data));
+        sessionStorage.setItem("data", JSON.stringify(response.data));
         login(response.status);
       })
       .catch((err) => {
