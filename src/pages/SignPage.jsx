@@ -314,7 +314,7 @@ export default () => {
 
         const signApi = () => {
           api
-            .post("http://localhost:8080/v1/sweet-stock/companies", modal)
+            .post("/companies", modal)
             .then((response) => {
               console.log(response);
               console.log(response.status);
@@ -343,11 +343,10 @@ export default () => {
 
   const login = (statusCode) => {
     switch (statusCode) {
-      case "201":
+      case 201:
         navigate("/dashboard");
         break;
-
-      case "401":
+      case 401:
         alert("Email já cadastrado");
         break;
       default:
@@ -683,7 +682,9 @@ export default () => {
         </div>
         <div className="sign-aligner">
           <label className="have-login">
-            Já tem uma conta? Faça <a>Login</a>
+            Já tem uma conta? Faça <a onClick={()=>{
+              navigate("/login")
+            }}>Login</a>
           </label>
         </div>
       </div>
