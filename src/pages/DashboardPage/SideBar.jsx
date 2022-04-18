@@ -9,8 +9,6 @@ import "./SideBar.css";
 
 export default (props) => {
   const [grow, setGrow] = React.useState(0);
-  const [dashPages, setDashPages] = React.useState(0);
-  
 
   const data = [
     {
@@ -18,36 +16,42 @@ export default (props) => {
       content: "Dashboard",
       classShort: "sidebar-icon-short",
       classLong: "sidebar-icon-long",
+      dashPage: 0,
     },
     {
       icon: DashIcon,
       content: "Dashboard",
       classShort: "sidebar-icon-short",
       classLong: "sidebar-icon-long",
+      dashPage: 1,
     },
     {
       icon: DashIcon,
       content: "Dashboard",
       classShort: "sidebar-icon-short",
       classLong: "sidebar-icon-long",
+      dashPage: 2,
     },
     {
       icon: DashIcon,
       content: "Dashboard",
       classShort: "sidebar-icon-short",
       classLong: "sidebar-icon-long",
+      dashPage: 3,
     },
     {
       icon: DashIcon,
       content: "Dashboard",
       classShort: "sidebar-icon-short",
       classLong: "sidebar-icon-long",
+      dashPage: 4,
     },
     {
       icon: DashIcon,
       content: "Dashboard",
       classShort: "sidebar-icon-short",
       classLong: "sidebar-icon-long",
+      dashPage: 5,
     },
   ];
   return (
@@ -69,12 +73,18 @@ export default (props) => {
         </div>
         <div className="sidebar-box">
           {data.map((value) => (
-            <Icon
+            <div
               key={Math.random()}
-              icon={value.icon}
-              content={grow % 2 === 0 ? "" : value.content}
-              class={grow % 2 === 0 ? value.classShort : value.classLong}
-            />
+              onClick={() => {
+                props.setPage(value.dashPage);
+              }}
+            >
+              <Icon
+                icon={value.icon}
+                content={grow % 2 === 0 ? "" : value.content}
+                class={grow % 2 === 0 ? value.classShort : value.classLong}
+              />
+            </div>
           ))}
         </div>
         <img
