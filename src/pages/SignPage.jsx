@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "./components/Button";
 import InputMask from "react-input-mask";
 import ProgressBar from "./components/ProgressBar";
@@ -77,17 +77,17 @@ export default () => {
             response.data.bairro === undefined ? "" : response.data.bairro;
           response.data.erro === true
             ? inputValidation(
-              true,
-              "cep_input_id",
-              "cep_title_id",
-              "cep_div_id"
-            )
+                true,
+                "cep_input_id",
+                "cep_title_id",
+                "cep_div_id"
+              )
             : inputValidation(
-              false,
-              "cep_input_id",
-              "cep_title_id",
-              "cep_div_id"
-            );
+                false,
+                "cep_input_id",
+                "cep_title_id",
+                "cep_div_id"
+              );
         })
         .catch(function (error) {
           console.error(error);
@@ -226,11 +226,11 @@ export default () => {
         if (
           person === "FISICA"
             ? !inputCPF.match(
-              "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})"
-            )
+                "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})"
+              )
             : !inputCNPJ.match(
-              "(^[0-9]{2,3}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}$)"
-            )
+                "(^[0-9]{2,3}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}$)"
+              )
         ) {
           inputValidation(true, "cpf_input_id", "cpf_title_id", "cpf_div_id");
           break;
@@ -314,29 +314,26 @@ export default () => {
 
         const signApi = () => {
           api
-            .post(
-              "https://6250e7e5e3e5d24b34282a74.mockapi.io/sweet-stock/v1/teste",
-              modal
-            )
+            .post("/companies", modal)
             .then((response) => {
-              console.log(response.data);
+              console.log(response);
               console.log(response.status);
-              sessionStorage.setItem("data", JSON.stringify(response.data));
-              sessionStorage.setItem("status", JSON.stringify(response.status));
-              login(Number(sessionStorage.getItem("status")));
+              sessionStorage.setItem("token", JSON.stringify(response.data));
+              login(response.status);
             })
             .catch((err) => {
               console.error(err);
+              console.log(err.response.status);
               sessionStorage.setItem(
                 "status",
                 JSON.stringify(err.response.status)
               );
-              login(Number(sessionStorage.getItem("status")));
-              console.log(err.response.status);
+              login(err.response.status);
             });
         };
 
         signApi();
+
         break;
       default:
         break;
@@ -345,15 +342,15 @@ export default () => {
   const navigate = useNavigate();
 
   const login = (statusCode) => {
-
-    console.log(statusCode);
     switch (statusCode) {
       case 201:
         navigate("/dashboard");
         break;
-
+      case 401:
+        alert("Email já cadastrado");
+        break;
       default:
-        navigate(`/error/${statusCode}`);
+        navigate(`/error/${sessionStorage.getItem("status")}`);
         break;
     }
   };
@@ -471,11 +468,11 @@ export default () => {
                 inputValidation(
                   person === "JURIDICA"
                     ? !text.target.value.match(
-                      "(^[0-9]{2,3}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}$)"
-                    )
+                        "(^[0-9]{2,3}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}$)"
+                      )
                     : !text.target.value.match(
-                      "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})"
-                    ),
+                        "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})"
+                      ),
                   "cpf_input_id",
                   "cpf_title_id",
                   "cpf_div_id"
@@ -685,7 +682,9 @@ export default () => {
         </div>
         <div className="sign-aligner">
           <label className="have-login">
-            Já tem uma conta? Faça <Link to="/login"><a>Login</a></Link>
+            Já tem uma conta? Faça <a onClick={()=>{
+              navigate("/login")
+            }}>Login</a>
           </label>
         </div>
       </div>
