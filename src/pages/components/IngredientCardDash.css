@@ -1,0 +1,29 @@
+.ingredient-card-body {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 20rem;
+  height: 5rem;
+  background-color: #e0e0e0;
+}
+.card-title {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 140%;
+  /* identical to box height, or 20px */
+
+  color: #344767;
+}
+.card-amount {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+  /* identical to box height, or 17px */
+
+  color: #2f2e41;
+}

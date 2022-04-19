@@ -5,7 +5,7 @@ import DashBoardPage from "./pages/DashBoardPage";
 import SignPage from "./pages/SignPage";
 import LoginPage from "./pages/LoginPage";
 import ErrorPage from "./pages/ErrorPage";
-
+import IngredientCardDash from "./pages/components/IngredientCardDash"
 export default () => {
     return (
         <BrowserRouter>
@@ -15,6 +15,7 @@ export default () => {
                     <Route path="dashboard" element={<DashBoardPage />} />
                     <Route path="cadastro" element={<SignPage />} />
                     <Route path="login" element={<LoginPage />} />
+                    <Route path="teste-componente" element={<IngredientCardDash cardTitle="Leite condesado - Nestlé" cardAmount={20} />} />
                     <Route path="error">
                         <Route
                             path={sessionStorage.getItem("status")}
