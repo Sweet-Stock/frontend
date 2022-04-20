@@ -1,6 +1,7 @@
 import React from "react";
 import NearExpireItemsList from "./DashHome/NearExpireItemsList";
 import MoneyChart from "./DashHome/MoneyChart";
+import NearEndIngredients from "./DashHome/NearEndIngredients";
 import "./DashBoardHome.css";
 
 export default () => {
@@ -107,11 +108,14 @@ export default () => {
   });
   return (
     <section className="dash-board-home-body">
-      <div className="near-expireItems-list-dash">
+      <div className="near-expire-items-list-dash">
         <NearExpireItemsList dashData={data.nearExpireIngredients} />
       </div>
       <div className="money-chart-dash">
         <MoneyChart dashData={data.chart} />
+      </div>
+      <div className="near-end-itens-dash">
+        <NearEndIngredients dashData={data.nearEndIngredients}/>
       </div>
     </section>
   );

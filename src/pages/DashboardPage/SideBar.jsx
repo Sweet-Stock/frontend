@@ -19,7 +19,7 @@ export default (props) => {
   const navigate = useNavigate();
   let dataStorage = sessionStorage.getItem("data");
   useEffect(() => {
-    if (dataStorage == undefined || dataStorage == null) {
+    if (dataStorage == undefined || dataStorage == "null") {
       navigate("/login");
     }
   }, [verify]);

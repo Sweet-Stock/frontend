@@ -4,17 +4,17 @@
   justify-content: space-evenly;
   align-items: center;
   width: 20rem;
-  height: 5rem;
+  height: 4rem;
   margin: 0 !important;
 }
 .ingredient-card-body > img{
-  width: 3em;
+  width: 2.5em;
 }
 .card-title {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 1rem;
   line-height: 140%;
   /* identical to box height, or 20px */
 
@@ -24,7 +24,7 @@
   font-family: "Rubik";
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: .8rem;
   line-height: 140%;
   /* identical to box height, or 17px */
 

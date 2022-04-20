@@ -5,7 +5,7 @@ import "./NearExpireItemsList.css";
 export default (props) => {
   
   return (
-    <div className="near-expireItems-list-body">
+    <div className="near-expire-items-list-body">
         <h1>Ingredientes próximos do vencimento</h1>
       <div>
         {props.dashData.map((value) => (

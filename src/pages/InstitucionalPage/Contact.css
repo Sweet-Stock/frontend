@@ -64,7 +64,7 @@ font-family: 'Rubik', sans-serif;*/
   box-sizing: border-box;
   border-radius: 10px;
   width: 30em;
-  height: 2.5em;
+  height: 2.5em !important;
   font-family: "Rubik";
   font-style: normal;
   font-weight: 700;
@@ -74,6 +74,8 @@ font-family: 'Rubik', sans-serif;*/
   letter-spacing: 0.14em;
   font-feature-settings: "pnum" on, "lnum" on;
   color: var(--main-color);
+  background-color: var(--neultral-color);
+  padding: 0 0 0 1rem;
 }
 .describe{
   height: 6em !important;
