@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import LittleArrowRight from "../images/littlearrow.svg";
 import LittleArrowLeft from "../images/littlearrowleft.svg";
 import DashIcon from "../images/dashicon.svg";
-import CarIcon from "../images/carIcon.svg"
-import PeopleIcon from "../images/People.svg"
-import BaskIcon from "../images/Bagage.svg"
-import ProductIcon from "../images/Confectionery.svg"
-import FileIcon from "../images/Documents Folder.svg"
+import CarIcon from "../images/carIcon.svg";
+import PeopleIcon from "../images/People.svg";
+import BaskIcon from "../images/Bagage.svg";
+import ProductIcon from "../images/Confectionery.svg";
+import FileIcon from "../images/Documents Folder.svg";
 import ProfilePhoto from "../images/profilephoto.jpg";
 import Icon from "../components/Icon.jsx";
 import LogoutIcon from "../images/iconlogout.svg";
@@ -17,16 +17,16 @@ export default (props) => {
   const [verify, setVerify] = React.useState(true);
   const [grow, setGrow] = React.useState(0);
   const navigate = useNavigate();
-  let dataStorage = sessionStorage.getItem("data")
+  let dataStorage = sessionStorage.getItem("data");
   useEffect(() => {
-    if (dataStorage == undefined || dataStorage == "null") {
-      navigate("/login")
+    if (dataStorage == undefined || dataStorage == null) {
+      navigate("/login");
     }
-  }, [verify])
+  }, [verify]);
 
   const logoff = () => {
-    sessionStorage.setItem("data", "null")
-    setVerify(false)
+    sessionStorage.setItem("data", "null");
+    setVerify(false);
   };
 
   const data = [

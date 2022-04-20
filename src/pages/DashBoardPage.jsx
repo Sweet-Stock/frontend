@@ -1,5 +1,6 @@
 import React from "react";
 import SideBar from "./DashboardPage/SideBar";
+import DashBoardHome from "./DashboardPage/DashBoardHome";
 
 export default (props) => {
   const [page, setPage] = React.useState(0);
@@ -15,6 +16,7 @@ export default (props) => {
       return (
         <>
           <SideBar name={dataStorage?dataStorage.username:""} setPage={setPage} />
+          <DashBoardHome/>
         </>
       );
     case 1:

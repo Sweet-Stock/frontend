@@ -1,9 +1,10 @@
 import React from "react";
-import IngredientDateDash from "../components/IngredientDateDash";
-import "./NearExpireItemsList.css";
+import NearExpireItemsList from "./DashHome/NearExpireItemsList";
+import MoneyChart from "./DashHome/MoneyChart";
+import "./DashBoardHome.css";
 
-export default (props) => {
-  const dashData = {
+export default () => {
+  const [data, setData] = React.useState({
     cards: {
       nearEndIngredients: 38,
       productsSoldMonth: 50,
@@ -103,15 +104,15 @@ export default (props) => {
         quantity: 20,
       },
     ],
-  };
+  });
   return (
-    <div className="near-expireItems-list-body">
-        <h1>Ingredientes próximos do vencimento</h1>
-      <div>
-        {dashData.nearExpireIngredients.map((value) => (
-          <IngredientDateDash key={value.date} data={value} />
-        ))}
+    <section className="dash-board-home-body">
+      <div className="near-expireItems-list-dash">
+        <NearExpireItemsList dashData={data.nearExpireIngredients} />
       </div>
-    </div>
+      <div className="money-chart-dash">
+        <MoneyChart dashData={data.chart} />
+      </div>
+    </section>
   );
 };

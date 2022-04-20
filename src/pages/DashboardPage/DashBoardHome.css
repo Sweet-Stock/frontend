@@ -1,0 +1,15 @@
+.dash-board-home-body {
+  margin-left: 18rem;
+  position: relative;
+  height: 100vh;
+}
+.near-expireItems-list-dash {
+    position: absolute;
+    right: 2rem;
+    top:2em
+}
+.money-chart-dash{
+  position: absolute;
+  left: 2rem;
+  bottom:2em
+}
