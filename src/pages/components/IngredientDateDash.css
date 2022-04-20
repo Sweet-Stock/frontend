@@ -1,0 +1,16 @@
+
+.ingredient-date-body > h1 {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 140%;
+
+  /* or 22px */
+
+  color: #d38c88;
+}
+.ingredient-date-body > ul {
+    display: flex;
+    flex-flow: column;
+}
