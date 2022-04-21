@@ -35,17 +35,19 @@ export default (props) => {
     },
   };
 
-  const data = {
+  const labels = props.dashData.map((value)=>value.month);
 
+  const data = {
+    labels,
     datasets: [
       {
         label: "Gasto - Mensais",
-        data: props.dashData,
+        data: props.dashData.map((value)=> value.spent) ,
         backgroundColor: "#D38C88",
       },
       {
         label: "Lucro - Mensais",
-        data: props.dashData,
+        data: props.dashData.map((value)=> value.profit),
         backgroundColor: "#2F2E41",
       },
     ],
@@ -53,7 +55,6 @@ export default (props) => {
 
   return (
     <div className="money-chart-body">
-      <h1></h1>
       <Bar className="money-chart" options={options} data={data} />
     </div>
   );

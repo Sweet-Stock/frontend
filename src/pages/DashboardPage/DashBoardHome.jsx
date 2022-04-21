@@ -12,20 +12,49 @@ export default () => {
       expiredIngredients: 2,
       monthExpenses: 8.456,
     },
-    chart: {
-      january: 1900,
-      february: 2000,
-      march: 3000,
-      april: 4000,
-      may: 5000,
-      june: 8000,
-      july: 12300,
-      august: 12000,
-      september: 11000,
-      october: 22000,
-      november: 8000,
-      december: 2000,
-    },
+    chart: [
+      {
+        month: "janeiro",
+        profit: 2000,
+        spent: 1000,
+      },
+      {
+        month: "janeiro",
+        profit: 2000,
+        spent: 1000,
+      },
+      {
+        month: "janeiro",
+        profit: 2000,
+        spent: 1000,
+      },
+      {
+        month: "janeiro",
+        profit: 2000,
+        spent: 1000,
+      },
+      {
+        month: "janeiro",
+        profit: 2000,
+        spent: 1000,
+      },
+      {
+        month: "janeiro",
+        profit: 2000,
+        spent: 1000,
+      },
+      {
+        month: "janeiro",
+        profit: 2000,
+        spent: 1000,
+      },
+      {
+        month: "janeiro",
+        profit: 2000,
+        spent: 1000,
+      },
+
+    ],
     nearExpireIngredients: [
       {
         date: "30-04-2022",
@@ -33,22 +62,22 @@ export default () => {
           {
             uuid: "6cba576a8-c01f-11ec-9d64-0242ac120002",
             name: "Leite condensado - Nestlé",
-            quantity: 20,
+            amount: 20,
           },
           {
             uuid: "6cb576a8-c01fa-11ec-9d64-0242ac120002",
             name: "Leite condensado - Nestlé",
-            quantity: 20,
+            amount: 20,
           },
           {
             uuid: "6cb5a76a8-c01f-11ec-9d64-0242ac120002",
             name: "Leite condensado - Nestlé",
-            quantity: 20,
+            amount: 20,
           },
           {
             uuid: "6cb57d6a8-c01f-11ec-9d64-0242ac120002",
             name: "Leite condensado - Nestlé",
-            quantity: 20,
+            amount: 20,
           },
         ],
       },
@@ -58,12 +87,12 @@ export default () => {
           {
             uuid: "6cb576a8-cd01f-11ec-9d64-0242ac120002",
             name: "Leite condensado - Nestlé",
-            quantity: 20,
+            amount: 20,
           },
           {
             uuid: "6cb576a8-c01f-11ezc-9d64-0242ac120002",
             name: "Leite condensado - Nestlé",
-            quantity: 20,
+            amount: 20,
           },
         ],
       },
@@ -73,12 +102,12 @@ export default () => {
           {
             uuid: "6cb576a8-c01fc-11ec-9d64-0242ac120002",
             name: "Leite condensado - Nestlé",
-            quantity: 20,
+            amount: 20,
           },
           {
             uuid: "6cb576a8-c01f-11ecv-9d64-0242ac120002",
             name: "Leite condensado - Nestlé",
-            quantity: 20,
+            amount: 20,
           },
         ],
       },
@@ -87,22 +116,22 @@ export default () => {
       {
         uuid: "6cb576a8-c01f-11ec-9d64-02z42ac120002",
         name: "Leite condensado - Nestlé",
-        quantity: 20,
+        amount: 20,
       },
       {
         uuid: "6cb576a8-c01f-11ec-9d64-0242acg120002",
         name: "Leite condensado - Nestlé",
-        quantity: 20,
+        amount: 20,
       },
       {
         uuid: "6cb576a8-c01f-11ec-9d64-0242ac12a0002",
         name: "Leite condensado - Nestlé",
-        quantity: 20,
+        amount: 20,
       },
       {
         uuid: "6cb576a8-c01f-11ec-9d64-0242ac1z20002",
         name: "Leite condensado - Nestlé",
-        quantity: 20,
+        amount: 20,
       },
     ],
   });
@@ -115,7 +144,7 @@ export default () => {
         <MoneyChart dashData={data.chart} />
       </div>
       <div className="near-end-itens-dash">
-        <NearEndIngredients dashData={data.nearEndIngredients}/>
+        <NearEndIngredients dashData={data.nearEndIngredients} />
       </div>
     </section>
   );

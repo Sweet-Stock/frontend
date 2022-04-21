@@ -8,7 +8,7 @@ export default props => {
            <h1>{props.data.date}</h1>
             <ul>
             {props.data.items.map((value) => (
-            <IngredientCardDash key={value.uuid} cardTitle={value.name} cardAmount={value.quantity}/>
+            <IngredientCardDash key={value.uuid} cardTitle={value.name} cardAmount={value.amount}/>
           ))}
             </ul>
        </div> 
