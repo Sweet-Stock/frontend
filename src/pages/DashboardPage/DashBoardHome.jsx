@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import NearExpireItemsList from "./DashHome/NearExpireItemsList";
 import MoneyChart from "./DashHome/MoneyChart";
 import NearEndIngredients from "./DashHome/NearEndIngredients";
+import OverviewCards from "./DashHome/OverviewCards";
 import api from "../../services/api";
 import "./DashBoardHome.css";
 
@@ -11,7 +13,7 @@ export default () => {
       nearEndIngredients: 38,
       productsSoldMonth: 50,
       expiredIngredients: 2,
-      monthExpenses: 8.456,
+      monthExpenses: 8.44,
     },
     chart: [
       {
@@ -54,7 +56,6 @@ export default () => {
         profit: 2000,
         spent: 1000,
       },
-
     ],
     nearExpireIngredients: [
       {
@@ -144,18 +145,31 @@ export default () => {
     },
   };
 
-  useEffect(() => {
-    api
-      .get("dashboards", config)
-      .then((res) => {
-        console.log(res.data);
-        setData(res.data);
-      })
-      .catch((err) => console.error(err));
-  }, []);
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   api
+  //     .get("dashboards", config)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setData(res.data);
+  //     })
+  //     .catch((err) => {
+  //       err.response.status === 401 ? navigate("/login") : console.error(err);
+  //       console.error(err);
+  //     });
+  // }, []);
 
   return (
     <section className="dash-board-home-body">
+      <div className="overview-card-dash">
+        <OverviewCards
+          nearEndIngredients={data.cards.nearEndIngredients}
+          productsSoldMonth={data.cards.productsSoldMonth}
+          expiredIngredients={data.cards.expiredIngredients}
+          monthExpenses={data.cards.monthExpenses}
+        />
+      </div>
       <div className="near-expire-items-list-dash">
         <NearExpireItemsList dashData={data?.nearExpireIngredients} />
       </div>

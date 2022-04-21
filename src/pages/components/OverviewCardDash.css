@@ -1,0 +1,66 @@
+.overview-card-dash-body {
+  position: relative;
+}
+.overview-card-dash-title {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.1rem;
+  line-height: 140%;
+
+  /* or 25px */
+  text-align: right;
+
+  color: #2f2e41;
+}
+.overview-card-dash-content {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 140%;
+
+  /* identical to box height, or 34px */
+  text-align: right;
+
+  color: #d38c88;
+}
+.overview-card-dash-sub-title {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 8px;
+
+  /* identical to box height, or 44% */
+
+  color: #263238;
+}
+.overview-card-dash-inner-body {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-flow: column;
+  width: 22.5rem;
+  height: 10rem;
+  background-color: #e0e0e0;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 1rem;
+  padding-left: 1rem;
+}
+.overview-card-dash-icon-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d38c88;
+  width: 4rem;
+  height: 4rem;
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 1rem;
+}
+.overview-card-dash-icon {
+  width: 2rem;
+}

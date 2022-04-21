@@ -1,0 +1,10 @@
+.overview-card-body{
+    padding: 1rem;
+    border-radius: 1rem;
+    width: 50rem;
+    height: 25rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: space-around;
+}

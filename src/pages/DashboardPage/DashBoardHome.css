@@ -3,6 +3,11 @@
   position: relative;
   height: 100vh;
 }
+.overview-card-dash{
+  position: absolute;
+  left: 1rem;
+  top: 1em;
+}
 .near-expire-items-list-dash {
   position: absolute;
   right: 1rem;
