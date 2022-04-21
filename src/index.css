@@ -16,7 +16,9 @@
 body {
   background-color: #e5e5e5;
 }
-
+a{
+  cursor: pointer;
+}
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
   width: 10px;

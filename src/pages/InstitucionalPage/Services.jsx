@@ -10,7 +10,7 @@ export default () => {
       <div className="service-container">
         <h1 className="service-title">SERVIÇOS</h1>
         <div>
-          <img  src={ServiceImage} alt="" />
+          <img src={ServiceImage} alt="" />
           <div>
             <img className="imgImportant" src={Logo} alt="" />
             <div>

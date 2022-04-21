@@ -1,7 +1,7 @@
 import React from "react";
-import "./Icon.css"
+import "./Icon.css";
 
-export default props => {
+export default (props) => {
   return (
     <div className={props.class}>
       <img src={props.icon} alt="" />

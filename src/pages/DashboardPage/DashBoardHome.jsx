@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NearExpireItemsList from "./DashHome/NearExpireItemsList";
 import MoneyChart from "./DashHome/MoneyChart";
 import NearEndIngredients from "./DashHome/NearEndIngredients";
+import api from "../../services/api";
 import "./DashBoardHome.css";
 
 export default () => {
@@ -135,16 +136,34 @@ export default () => {
       },
     ],
   });
+
+  let config = {
+    headers: {
+      Authorization:
+        "Bearer " + JSON.parse(sessionStorage.getItem("data")).token,
+    },
+  };
+
+  useEffect(() => {
+    api
+      .get("dashboards", config)
+      .then((res) => {
+        console.log(res.data);
+        setData(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <section className="dash-board-home-body">
       <div className="near-expire-items-list-dash">
-        <NearExpireItemsList dashData={data.nearExpireIngredients} />
+        <NearExpireItemsList dashData={data?.nearExpireIngredients} />
       </div>
       <div className="money-chart-dash">
-        <MoneyChart dashData={data.chart} />
+        <MoneyChart dashData={data?.chart} />
       </div>
       <div className="near-end-itens-dash">
-        <NearEndIngredients dashData={data.nearEndIngredients} />
+        <NearEndIngredients dashData={data?.nearEndIngredients} />
       </div>
     </section>
   );

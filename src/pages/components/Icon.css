@@ -79,6 +79,6 @@
   animation: iconColoring 0.3s normal;
 }
 .sidebar-icon-long:hover {
-  border-left: .5em solid #D38C88;
+  border-left: 0.5em solid #d38c88;
   border-radius: 0;
 }

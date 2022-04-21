@@ -12,7 +12,6 @@ import { Bar } from "react-chartjs-2";
 import "./MoneyChart.css";
 
 export default (props) => {
-
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -35,19 +34,19 @@ export default (props) => {
     },
   };
 
-  const labels = props.dashData.map((value)=>value.month);
+  const labels = props.dashData?.map((value) => value.month);
 
   const data = {
     labels,
     datasets: [
       {
         label: "Gasto - Mensais",
-        data: props.dashData.map((value)=> value.spent) ,
+        data: props.dashData?.map((value) => value.spent),
         backgroundColor: "#D38C88",
       },
       {
         label: "Lucro - Mensais",
-        data: props.dashData.map((value)=> value.profit),
+        data: props.dashData?.map((value) => value.profit),
         backgroundColor: "#2F2E41",
       },
     ],

@@ -18,9 +18,9 @@ export default () => {
   };
 
   const modal = {
-      login : inputEmail,
-      password : inputPassword
-  }
+    login: inputEmail,
+    password: inputPassword,
+  };
 
   const inputValidation = (condicion, inputId, titleId, divId) => {
     if (condicion) {
@@ -88,7 +88,7 @@ export default () => {
 
   const loginApi = () => {
     api
-      .post("/login",modal)
+      .post("/login", modal)
       .then((response) => {
         console.log(response);
         console.log(response.status);

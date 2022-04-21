@@ -47,7 +47,6 @@ export default () => {
           <Link to="/login">
             <Button content="ENTRAR" />
           </Link>
-        
         </div>
       </div>
     </header>

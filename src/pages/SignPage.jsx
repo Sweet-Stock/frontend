@@ -682,9 +682,14 @@ export default () => {
         </div>
         <div className="sign-aligner">
           <label className="have-login">
-            Já tem uma conta? Faça <a onClick={()=>{
-              navigate("/login")
-            }}>Login</a>
+            Já tem uma conta? Faça{" "}
+            <a
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Login
+            </a>
           </label>
         </div>
       </div>

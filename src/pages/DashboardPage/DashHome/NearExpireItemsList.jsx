@@ -1,14 +1,13 @@
 import React from "react";
-import IngredientDateDash from "../../components/IngredientDateDash"
+import IngredientDateDash from "../../components/IngredientDateDash";
 import "./NearExpireItemsList.css";
 
 export default (props) => {
-  
   return (
     <div className="near-expire-items-list-body">
-        <h1>Ingredientes próximos do vencimento</h1>
+      <h1>Ingredientes próximos do vencimento</h1>
       <div>
-        {props.dashData.map((value) => (
+        {props.dashData?.map((value) => (
           <IngredientDateDash key={value.date} data={value} />
         ))}
       </div>

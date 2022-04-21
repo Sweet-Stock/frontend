@@ -1,27 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Rubik:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Rubik:wght@400;700&display=swap");
 
 /*font-family: 'Raleway', sans-serif;
 font-family: 'Rubik', sans-serif;*/
 
 :root {
-  --main-color: #26223B;
-  --secondary-color: #D38C88;
-  --tertiary-color: #6B829A;
-  --neultral-color: #FCFDFE;
+  --main-color: #26223b;
+  --secondary-color: #d38c88;
+  --tertiary-color: #6b829a;
+  --neultral-color: #fcfdfe;
 }
-.input-button{
-    width: 130px !important;
-    height: 40px !important;
-    background: var(--secondary-color) !important;
-    border-radius: 5px !important;
-    font-family: 'Raleway', sans-serif !important;
-    border-style: none !important;
-    color: #FCFDFE !important;
-    font-style: normal !important;
-    font-weight: bold !important;
-    font-size: 1em !important;
-    line-height: 12px !important;
-    letter-spacing: 0.14em !important;
+.input-button {
+  cursor: pointer !important;
+  width: 130px !important;
+  height: 40px !important;
+  background: var(--secondary-color) !important;
+  border-radius: 5px !important;
+  font-family: "Raleway", sans-serif !important;
+  border-style: none !important;
+  color: #fcfdfe !important;
+  font-style: normal !important;
+  font-weight: bold !important;
+  font-size: 1em !important;
+  line-height: 12px !important;
+  letter-spacing: 0.14em !important;
 }
 /* .input-button:hover{
   animation: buttonHover .2s;
@@ -31,12 +32,12 @@ font-family: 'Rubik', sans-serif;*/
 } */
 
 @keyframes buttonHover {
-  from{
+  from {
     width: 130px;
     height: 40px;
     background: var(--secondary-color);
   }
-  to{
+  to {
     width: 135px;
     height: 45px;
     background: var(--main-color);

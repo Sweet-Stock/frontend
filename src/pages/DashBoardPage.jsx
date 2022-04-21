@@ -7,7 +7,7 @@ export default (props) => {
 
   React.useEffect(() => {
     console.log(page);
-  }, [page])
+  }, [page]);
 
   let dataStorage = JSON.parse(sessionStorage.getItem("data"));
 
@@ -15,44 +15,65 @@ export default (props) => {
     case 0:
       return (
         <>
-          <SideBar name={dataStorage?dataStorage.username:""} setPage={setPage} />
-          <DashBoardHome/>
+          <SideBar
+            name={dataStorage ? dataStorage.username : ""}
+            setPage={setPage}
+          />
+          <DashBoardHome />
         </>
       );
     case 1:
       return (
         <>
-          <SideBar name={dataStorage?dataStorage.username:""} setPage={setPage} />
+          <SideBar
+            name={dataStorage ? dataStorage.username : ""}
+            setPage={setPage}
+          />
         </>
       );
     case 2:
       return (
         <>
-          <SideBar name={dataStorage?dataStorage.username:""} setPage={setPage} />
+          <SideBar
+            name={dataStorage ? dataStorage.username : ""}
+            setPage={setPage}
+          />
         </>
       );
     case 3:
       return (
         <>
-          <SideBar name={dataStorage?dataStorage.username:""} setPage={setPage} />
+          <SideBar
+            name={dataStorage ? dataStorage.username : ""}
+            setPage={setPage}
+          />
         </>
       );
     case 4:
       return (
         <>
-          <SideBar name={dataStorage?dataStorage.username:""} setPage={setPage} />
+          <SideBar
+            name={dataStorage ? dataStorage.username : ""}
+            setPage={setPage}
+          />
         </>
       );
     case 5:
       return (
         <>
-        <SideBar name={dataStorage?dataStorage.username:""} setPage={setPage} />
+          <SideBar
+            name={dataStorage ? dataStorage.username : ""}
+            setPage={setPage}
+          />
         </>
       );
     default:
       return (
         <>
-          <SideBar name={dataStorage?dataStorage.username:""} setPage={setPage} />
+          <SideBar
+            name={dataStorage ? dataStorage.username : ""}
+            setPage={setPage}
+          />
         </>
       );
   }
