@@ -34,7 +34,7 @@ export default () => {
           </a>
         </div>
         <div className="address-cellNumber">
-          <h1>Rua Hadock Lobo, 285 - Consolação</h1>
+          <h1>Rua Haddock Lobo, 285 - Consolação</h1>
           <h1>(11) 1234-5678 / (11) 91234-5678</h1>
         </div>
       </div>
