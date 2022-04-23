@@ -119,6 +119,7 @@ export default (props) => {
       <img
         onClick={() => {
           setGrow(grow + 1);
+          props.setGrow(grow + 1)
         }}
         src={grow % 2 === 0 ? LittleArrowRight : LittleArrowLeft}
         className="sidebar-grow-btn"

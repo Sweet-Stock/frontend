@@ -1,9 +1,32 @@
-.dash-board-home-body {
-  margin-left: 18rem;
+@keyframes dashGrow {
+  from {
+    margin-left: 12rem;
+  }
+  to {
+    margin-left: 20rem;
+  }
+}
+@keyframes dashShrink {
+  from {
+    margin-left: 20rem;
+  }
+  to {
+    margin-left: 12rem;
+  }
+}
+.dash-board-home-body-short {
+  margin-left: 12rem;
   position: relative;
   height: 100vh;
+  animation: dashShrink 0.5s normal;
 }
-.overview-card-dash{
+.dash-board-home-body-grow {
+  margin-left: 20rem;
+  position: relative;
+  height: 100vh;
+  animation: dashGrow 0.5s normal;
+}
+.overview-card-dash {
   position: absolute;
   left: 1rem;
   top: 1em;

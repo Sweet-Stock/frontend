@@ -4,7 +4,7 @@ import DashBoardHome from "./DashboardPage/DashBoardHome";
 
 export default (props) => {
   const [page, setPage] = React.useState(0);
-
+  const [grow, setGrow] = React.useState(0);
   React.useEffect(() => {
     console.log(page);
   }, [page]);
@@ -18,8 +18,9 @@ export default (props) => {
           <SideBar
             name={dataStorage ? dataStorage.username : ""}
             setPage={setPage}
+            setGrow={setGrow}
           />
-          <DashBoardHome />
+          <DashBoardHome grow={grow} />
         </>
       );
     case 1:

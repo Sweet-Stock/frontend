@@ -7,7 +7,7 @@ import OverviewCards from "./DashHome/OverviewCards";
 import api from "../../services/api";
 import "./DashBoardHome.css";
 
-export default () => {
+export default (props) => {
   const [data, setData] = React.useState({
     cards: {
       nearEndIngredients: 38,
@@ -161,7 +161,13 @@ export default () => {
   // }, []);
 
   return (
-    <section className="dash-board-home-body">
+    <section
+      className={
+        props.grow % 2 === 0
+          ? "dash-board-home-body-short"
+          : "dash-board-home-body-grow"
+      }
+    >
       <div className="overview-card-dash">
         <OverviewCards
           nearEndIngredients={data.cards.nearEndIngredients}

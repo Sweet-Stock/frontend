@@ -23,7 +23,7 @@ export default (props) => {
       <OverviewCardDash
         imgSrc={Confectionery}
         title="Ingredientes vencidos"
-        subTitle="Visualizar Ingredientes vencidos"
+        subTitle="Visualizar Ingredientes"
         amount={props.expiredIngredients}
       />
       <OverviewCardDash
