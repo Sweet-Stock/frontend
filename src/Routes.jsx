@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import InstitucionalPage from "./pages/InstitucionalPage";
-import DashBoardPage from "./pages/DashBoardPage";
-import ChooseSignPage from "./pages/ChooseSignPage";
-import SignPage from "./pages/SignPage";
-import LoginPage from "./pages/LoginPage";
-import ErrorPage from "./pages/ErrorPage";
+import InstitucionalPage from "./pages/institucional_page/InstitucionalPage";
+import DashBoardPage from "./pages/DashboardPage/DashBoardPage";
+import ChooseSignPage from "./pages/choose_sign_page/ChooseSignPage";
+import SignPage from "./pages/sign_up/SignPage";
+import LoginPage from "./pages/login/LoginPage";
+import ErrorPage from "./pages/error/ErrorPage";
 export default () => {
   return (
     <BrowserRouter>
