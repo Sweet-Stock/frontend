@@ -138,16 +138,20 @@ export default (props) => {
     ],
   });
 
-  let config = {
-    headers: {
-      Authorization:
-        "Bearer " + JSON.parse(sessionStorage.getItem("data")).token,
-    },
-  };
+  let config = null;
+
+  let dataStorage = sessionStorage.getItem("data");
 
   const navigate = useNavigate();
 
   // useEffect(() => {
+  //   if (dataStorage == undefined || dataStorage == "null") return;
+  //   config = {
+  //     headers: {
+  //       Authorization:
+  //         "Bearer " + JSON.parse(sessionStorage.getItem("data")).token,
+  //     },
+  //   };
   //   api
   //     .get("dashboards", config)
   //     .then((res) => {

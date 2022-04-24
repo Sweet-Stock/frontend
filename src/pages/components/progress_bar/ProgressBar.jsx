@@ -6,13 +6,26 @@ import "./ProgressBar.css";
   
 export default (props) => {
 
-  return (
-    <div className="progress-bg">
-        <img className="progress-bg-bar" src={BgProgressBar} alt=""/>
-        <img src={props.img === 0 ? IconAtive : IconInative} alt=""/>
-        <img src={props.img === 1 ? IconAtive : IconInative} alt=""/>
-        <img src={props.img === 2 ? IconAtive : IconInative} alt=""/>
-        <img src={props.img === 3 ? IconAtive : IconInative} alt=""/>
-    </div>
-  );
+  switch (props.progressBar) {
+    case "short":
+      return (
+        <div className="progress-bg">
+            <img className="progress-bg-bar" src={BgProgressBar} alt=""/>
+            <img src={props.img === 0 ? IconAtive : IconInative} alt=""/>
+            <img src={props.img === 1 ? IconAtive : IconInative} alt=""/>
+        </div>
+      );
+      break;
+  
+    default:
+      return (
+        <div className="progress-bg">
+            <img className="progress-bg-bar" src={BgProgressBar} alt=""/>
+            <img src={props.img === 0 ? IconAtive : IconInative} alt=""/>
+            <img src={props.img === 1 ? IconAtive : IconInative} alt=""/>
+            <img src={props.img === 2 ? IconAtive : IconInative} alt=""/>
+            <img src={props.img === 3 ? IconAtive : IconInative} alt=""/>
+        </div>
+      );
+  }
 };
