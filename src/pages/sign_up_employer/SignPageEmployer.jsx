@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/button/Button";
 import InputMask from "react-input-mask";
@@ -10,16 +10,16 @@ import api from "../../services/api";
 import "./SignPageEmployer.css";
 
 export default () => {
-  const [signProgress, setSignProgress] = React.useState(0);
-  const [password, setPassword] = React.useState(true);
-  const [passwordStrength, setPasswordStrength] = React.useState("red");
+  const [signProgress, setSignProgress] = useState(0);
+  const [password, setPassword] = useState(true);
+  const [passwordStrength, setPasswordStrength] = useState("red");
 
-  const [inputName, setInputName] = React.useState(null);
-  const [inputCompanyName, setCompanyInputName] = React.useState(null);
-  const [inputPhone, setInputPhone] = React.useState(null);
-  const [inputEmail, setInputEmail] = React.useState(null);
-  const [inputPassword, setInputPassword] = React.useState(null);
-  const [inputConfirmPassword, setInputConfirmPassword] = React.useState(null);
+  const [inputName, setInputName] = useState(null);
+  const [inputCompanyName, setCompanyInputName] = useState(null);
+  const [inputPhone, setInputPhone] = useState(null);
+  const [inputEmail, setInputEmail] = useState(null);
+  const [inputPassword, setInputPassword] = useState(null);
+  const [inputConfirmPassword, setInputConfirmPassword] = useState(null);
 
   const strengthTest = (password) => {
     if (

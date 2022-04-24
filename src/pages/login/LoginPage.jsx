@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/button/Button";
 import InputMask from "react-input-mask";
@@ -8,10 +8,10 @@ import api from "../../services/api";
 import "./LoginPage.css";
 
 export default () => {
-  const [password, setPassword] = React.useState(true);
+  const [password, setPassword] = useState(true);
 
-  const [inputEmail, setInputEmail] = React.useState(null);
-  const [inputPassword, setInputPassword] = React.useState(null);
+  const [inputEmail, setInputEmail] = useState(null);
+  const [inputPassword, setInputPassword] = useState(null);
 
   const passwordEye = () => {
     password ? setPassword(false) : setPassword(true);

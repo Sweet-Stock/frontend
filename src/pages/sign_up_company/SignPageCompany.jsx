@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/button/Button";
 import InputMask from "react-input-mask";
@@ -11,27 +11,27 @@ import api from "../../services/api";
 import "./SignPageCompany.css";
 
 export default () => {
-  const [signProgress, setSignProgress] = React.useState(0);
-  const [person, setPerson] = React.useState("FISICA");
-  const [password, setPassword] = React.useState(true);
-  const [passwordStrength, setPasswordStrength] = React.useState("red");
+  const [signProgress, setSignProgress] = useState(0);
+  const [person, setPerson] = useState("FISICA");
+  const [password, setPassword] = useState(true);
+  const [passwordStrength, setPasswordStrength] = useState("red");
 
-  const [inputName, setInputName] = React.useState(null);
-  const [inputFantasyName, setFantasyInputName] = React.useState(null);
-  const [inputPhone, setInputPhone] = React.useState(null);
-  const [inputCEO, setInputCEO] = React.useState(null);
-  const [inputCPF, setInputCPF] = React.useState("");
-  const [inputCNPJ, setInputCNPJ] = React.useState("");
-  const [inputCEP, setInputCEP] = React.useState(null);
-  const [inputStreet, setInputStreet] = React.useState("");
-  const [inputNumber, setInputNumber] = React.useState(null);
-  const [inputComplement, setInputComplement] = React.useState(null);
-  const [inputCity, setInputCity] = React.useState(null);
-  const [inputState, setInputState] = React.useState(null);
-  const [inputNeighbor, setInputNeighbor] = React.useState("");
-  const [inputEmail, setInputEmail] = React.useState(null);
-  const [inputPassword, setInputPassword] = React.useState(null);
-  const [inputConfirmPassword, setInputConfirmPassword] = React.useState(null);
+  const [inputName, setInputName] = useState(null);
+  const [inputFantasyName, setFantasyInputName] = useState(null);
+  const [inputPhone, setInputPhone] = useState(null);
+  const [inputCEO, setInputCEO] = useState(null);
+  const [inputCPF, setInputCPF] = useState("");
+  const [inputCNPJ, setInputCNPJ] = useState("");
+  const [inputCEP, setInputCEP] = useState(null);
+  const [inputStreet, setInputStreet] = useState("");
+  const [inputNumber, setInputNumber] = useState(null);
+  const [inputComplement, setInputComplement] = useState(null);
+  const [inputCity, setInputCity] = useState(null);
+  const [inputState, setInputState] = useState(null);
+  const [inputNeighbor, setInputNeighbor] = useState("");
+  const [inputEmail, setInputEmail] = useState(null);
+  const [inputPassword, setInputPassword] = useState(null);
+  const [inputConfirmPassword, setInputConfirmPassword] = useState(null);
 
   const modal = {
     name: inputName,
