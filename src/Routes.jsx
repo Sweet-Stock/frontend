@@ -4,6 +4,7 @@ import InstitucionalPage from "./pages/institucional_page/InstitucionalPage";
 import DashBoardPage from "./pages/DashboardPage/DashBoardPage";
 import ChooseSignPage from "./pages/choose_sign_page/ChooseSignPage";
 import SignPageCompany from "./pages/sign_up_company/SignPageCompany";
+import SignAfterPage from "./pages/sign_up_employer/sign_up_after_page/SignAfterPage";
 import SignPageEmployer from "./pages/sign_up_employer/SignPageEmployer";
 import LoginPage from "./pages/login/LoginPage";
 import ErrorPage from "./pages/error/ErrorPage";
@@ -19,6 +20,7 @@ export default () => {
             <Route index element={<ChooseSignPage />} />
             <Route path="empresa" element={<SignPageCompany />} />
             <Route path="funcionario" element={<SignPageEmployer />} />
+            <Route path="espera" element={<SignAfterPage />} />
           </Route>
           <Route path="login" element={<LoginPage />} />
           <Route path="error">

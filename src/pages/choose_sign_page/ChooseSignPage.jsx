@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/button/Button";
-import BusinessDecisions from "../images/Business decisions-pana 1.svg"
-import "../choose_sign_page/ChooseSignPage.css";
+import BusinessDecisions from "../images/Business decisions-pana 1.svg";
+import "./ChooseSignPage.css";
 
 export default () => {
+  sessionStorage.setItem("lastLocation", "/cadastro");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    let dataStorage = sessionStorage.getItem("data");
+
+    if (dataStorage != undefined)
+      if (dataStorage != "null") navigate("/dashboard");
+  }, []);
 
   return (
     <section className="choose-sign-root">

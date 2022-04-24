@@ -8,6 +8,8 @@ import Contact from "./contact/Contact";
 import Footer from "./footer/Footer";
 
 export default () => {
+  sessionStorage.setItem("lastLocation", "/");
+
   return (
     <>
       <NavBar />

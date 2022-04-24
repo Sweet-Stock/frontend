@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/button/Button";
 import InputMask from "react-input-mask";
@@ -8,6 +8,8 @@ import api from "../../services/api";
 import "./LoginPage.css";
 
 export default () => {
+  sessionStorage.setItem("lastLocation", "/login");
+
   const [password, setPassword] = useState(true);
 
   const [inputEmail, setInputEmail] = useState(null);
@@ -104,6 +106,13 @@ export default () => {
   };
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    let dataStorage = sessionStorage.getItem("data");
+
+    if (dataStorage != undefined)
+      if (dataStorage != "null") navigate("/dashboard");
+  }, []);
 
   const login = (statusCode) => {
     switch (statusCode) {

@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SideBar from "./sidebar/SideBar";
 import DashBoardHome from "./dashboard_home/DashBoardHome";
 
 export default (props) => {
-  const [page, setPage] = React.useState(0);
-  const [grow, setGrow] = React.useState(0);
-  React.useEffect(() => {
+  sessionStorage.setItem("lastLocation", "/dashboard");
+
+  const [page, setPage] = useState(0);
+  const [grow, setGrow] = useState(0);
+
+  useEffect(() => {
     console.log(page);
   }, [page]);
 
