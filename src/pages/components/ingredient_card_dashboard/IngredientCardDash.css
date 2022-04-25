@@ -1,7 +1,7 @@
 .ingredient-card-body {
   display: flex;
   flex-flow: row;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
   width: 20rem;
   height: 4rem;
@@ -9,6 +9,7 @@
 }
 .ingredient-card-body > img{
   width: 2.5em;
+  margin:0 1rem;
 }
 .card-title {
   font-family: "Roboto";

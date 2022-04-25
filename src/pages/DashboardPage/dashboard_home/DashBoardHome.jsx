@@ -144,25 +144,25 @@ export default (props) => {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (dataStorage == undefined || dataStorage == "null") return;
-  //   config = {
-  //     headers: {
-  //       Authorization:
-  //         "Bearer " + JSON.parse(sessionStorage.getItem("data")).token,
-  //     },
-  //   };
-  //   api
-  //     .get("dashboards", config)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setData(res.data);
-  //     })
-  //     .catch((err) => {
-  //       err.response.status === 401 ? navigate("/login") : console.error(err);
-  //       console.error(err);
-  //     });
-  // }, []);
+  useEffect(() => {
+    if (dataStorage == undefined || dataStorage == "null") return;
+    config = {
+      headers: {
+        Authorization:
+          "Bearer " + JSON.parse(sessionStorage.getItem("data")).token,
+      },
+    };
+    api
+      .get("dashboards", config)
+      .then((res) => {
+        console.log(res.data);
+        setData(res.data);
+      })
+      .catch((err) => {
+        err.response.status === 401 ? navigate("/login") : console.error(err);
+        console.error(err);
+      });
+  }, []);
 
   return (
     <section

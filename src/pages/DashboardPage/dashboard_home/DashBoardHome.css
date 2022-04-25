@@ -28,21 +28,21 @@
 }
 .overview-card-dash {
   position: absolute;
-  left: 1rem;
+  left: 2rem;
   top: 1em;
 }
 .near-expire-items-list-dash {
   position: absolute;
-  right: 1rem;
+  right: 2rem;
   top: 1em;
 }
 .money-chart-dash {
   position: absolute;
-  left: 1rem;
+  left: 2rem;
   bottom: 1em;
 }
 .near-end-itens-dash {
   position: absolute;
-  right: 1rem;
+  right: 2rem;
   bottom: 1em;
 }
