@@ -1,28 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../components/button/Button";
+import Button from "./components/Button";
 import InputMask from "react-input-mask";
-import Eye from "../images/Eye.svg";
-import LoginBg from "../images/login-bg.svg";
-import api from "../../services/api";
+import Eye from "./images/Eye.svg";
+import LoginBg from "./images/login-bg.svg";
+import api from "../services/api";
 import "./LoginPage.css";
 
 export default () => {
-  sessionStorage.setItem("lastLocation", "/login");
+  const [password, setPassword] = React.useState(true);
 
-  const [password, setPassword] = useState(true);
-
-  const [inputEmail, setInputEmail] = useState(null);
-  const [inputPassword, setInputPassword] = useState(null);
+  const [inputEmail, setInputEmail] = React.useState(null);
+  const [inputPassword, setInputPassword] = React.useState(null);
 
   const passwordEye = () => {
     password ? setPassword(false) : setPassword(true);
   };
 
   const modal = {
-    login: inputEmail,
-    password: inputPassword,
-  };
+      login : inputEmail,
+      password : inputPassword
+  }
 
   const inputValidation = (condicion, inputId, titleId, divId) => {
     if (condicion) {
@@ -90,11 +88,11 @@ export default () => {
 
   const loginApi = () => {
     api
-      .post("/login", modal)
+      .post("/login",modal)
       .then((response) => {
         console.log(response);
         console.log(response.status);
-        sessionStorage.setItem("data", JSON.stringify(response.data));
+        sessionStorage.setItem("token", JSON.stringify(response.data));
         login(response.status);
       })
       .catch((err) => {
@@ -106,13 +104,6 @@ export default () => {
   };
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    let dataStorage = sessionStorage.getItem("data");
-
-    if (dataStorage != undefined)
-      if (dataStorage != "null") navigate("/dashboard");
-  }, []);
 
   const login = (statusCode) => {
     switch (statusCode) {

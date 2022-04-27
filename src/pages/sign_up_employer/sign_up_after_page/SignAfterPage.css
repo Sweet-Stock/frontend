@@ -1,0 +1,41 @@
+.sing-after-page-body {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100vh;
+}
+.sing-after-page-mensage {
+  width: 40%;
+  aspect-ratio: 15/10;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content:space-evenly;
+  background-color: #2f2e41;
+  border-radius: 20px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.sing-after-page-mensage > h1 {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 3rem;
+  color: #d38c88;
+}
+.sing-after-page-mensage > span > h2 {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.8rem;
+  text-align: center;
+  color: #fafafa;
+}
+.sing-after-page-mensage > img {
+  width: 15%;
+}
+.sing-after-page-image {
+  width: 40%;
+}
