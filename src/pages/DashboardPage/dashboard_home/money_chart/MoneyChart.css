@@ -6,8 +6,8 @@
   border-radius: 1rem;
 }
 .money-chart {
-  width: 50rem !important;
-  height: 25rem !important;
+  width: 47rem !important;
+  height: 22rem !important;
 }
 @media (max-width: 1281px) {
   .money-chart {
