@@ -19,30 +19,71 @@
   position: relative;
   height: 100vh;
   animation: dashShrink 0.5s normal;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* grid-gap: 5%; */
+  /* grid-template-areas:
+  "overview-card-dash near-expire-items-list-dash"
+  "money-chart-dash near-end-itens-dash"; */
 }
 .dash-board-home-body-grow {
   margin-left: 20rem;
   position: relative;
   height: 100vh;
   animation: dashGrow 0.5s normal;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  /* grid-template-areas: "overview-card-dash near-expire-items-list-dash"
+    "money-chart-dash "
+    "money-chart-dash near-end-itens-dash";*/
+}
+.dash-board-home-body-short,
+.dash-board-home-body-grow > div {
+  display: grid;
+  place-items: center;
 }
 .overview-card-dash {
-  position: absolute;
-  left: 2rem;
-  top: 1em;
+  grid-row: 1/2;
 }
 .near-expire-items-list-dash {
-  position: absolute;
-  right: 2rem;
-  top: 1em;
+  grid-row: 1/2;
 }
 .money-chart-dash {
-  position: absolute;
-  left: 2rem;
-  bottom: 1em;
+  grid-column: 1;
+  grid-row: 2/2;
 }
 .near-end-itens-dash {
-  position: absolute;
-  right: 2rem;
-  bottom: 1em;
+  grid-column: 2;
+  grid-row: 2/2;
+}
+
+/* .overview-card-dash {
+  grid-area: overview-card-dash;
+  margin: 1.5rem 0 0 0;
+}
+.near-expire-items-list-dash {
+  grid-area: near-expire-items-list-dash;
+  margin: 1.5rem 2rem 0 0;
+}
+.money-chart-dash {
+  grid-area: money-chart-dash;
+  width: 50rem !important;
+  height: 25rem !important;
+}
+.near-end-itens-dash {
+  grid-area: near-end-itens-dash;
+  margin: 0 2rem 1.5rem 0;
+}
+@media (max-width: 1281px) {
+  .money-chart-dash {
+    width: 40rem !important;
+    height: 20rem !important;
+  }
+} */
+.dash-board-home-loading{
+  margin: 20px;
+  width: 200px;
+  height: 200px;
+  position: relative;
 }

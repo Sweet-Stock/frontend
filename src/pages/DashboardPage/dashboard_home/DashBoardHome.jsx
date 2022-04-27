@@ -9,136 +9,8 @@ import api from "../../../services/api";
 import "./DashBoardHome.css";
 
 export default (props) => {
-  const [hasData, setHasData] = React.useState(true);
-  const [data, setData] = React.useState({
-    cards: {
-      nearEndIngredients: 38,
-      productsSoldMonth: 50,
-      expiredIngredients: 2,
-      monthExpenses: 8.44,
-    },
-    chart: [
-      {
-        month: "janeiro",
-        profit: 2000,
-        spent: 1000,
-      },
-      {
-        month: "janeiro",
-        profit: 2000,
-        spent: 1000,
-      },
-      {
-        month: "janeiro",
-        profit: 2000,
-        spent: 1000,
-      },
-      {
-        month: "janeiro",
-        profit: 2000,
-        spent: 1000,
-      },
-      {
-        month: "janeiro",
-        profit: 2000,
-        spent: 1000,
-      },
-      {
-        month: "janeiro",
-        profit: 2000,
-        spent: 1000,
-      },
-      {
-        month: "janeiro",
-        profit: 2000,
-        spent: 1000,
-      },
-      {
-        month: "janeiro",
-        profit: 2000,
-        spent: 1000,
-      },
-    ],
-    nearExpireIngredients: [
-      {
-        date: "30-04-2022",
-        items: [
-          {
-            uuid: "6cba576a8-c01f-11ec-9d64-0242ac120002",
-            name: "Leite condensado - Nestlé",
-            amount: 20,
-          },
-          {
-            uuid: "6cb576a8-c01fa-11ec-9d64-0242ac120002",
-            name: "Leite condensado - Nestlé",
-            amount: 20,
-          },
-          {
-            uuid: "6cb5a76a8-c01f-11ec-9d64-0242ac120002",
-            name: "Leite condensado - Nestlé",
-            amount: 20,
-          },
-          {
-            uuid: "6cb57d6a8-c01f-11ec-9d64-0242ac120002",
-            name: "Leite condensado - Nestlé",
-            amount: 20,
-          },
-        ],
-      },
-      {
-        date: "01-05-2022",
-        items: [
-          {
-            uuid: "6cb576a8-cd01f-11ec-9d64-0242ac120002",
-            name: "Leite condensado - Nestlé",
-            amount: 20,
-          },
-          {
-            uuid: "6cb576a8-c01f-11ezc-9d64-0242ac120002",
-            name: "Leite condensado - Nestlé",
-            amount: 20,
-          },
-        ],
-      },
-      {
-        date: "01-04-2022",
-        items: [
-          {
-            uuid: "6cb576a8-c01fc-11ec-9d64-0242ac120002",
-            name: "Leite condensado - Nestlé",
-            amount: 20,
-          },
-          {
-            uuid: "6cb576a8-c01f-11ecv-9d64-0242ac120002",
-            name: "Leite condensado - Nestlé",
-            amount: 20,
-          },
-        ],
-      },
-    ],
-    nearEndIngredients: [
-      {
-        uuid: "6cb576a8-c01f-11ec-9d64-02z42ac120002",
-        name: "Leite condensado - Nestlé",
-        amount: 20,
-      },
-      {
-        uuid: "6cb576a8-c01f-11ec-9d64-0242acg120002",
-        name: "Leite condensado - Nestlé",
-        amount: 20,
-      },
-      {
-        uuid: "6cb576a8-c01f-11ec-9d64-0242ac12a0002",
-        name: "Leite condensado - Nestlé",
-        amount: 20,
-      },
-      {
-        uuid: "6cb576a8-c01f-11ec-9d64-0242ac1z20002",
-        name: "Leite condensado - Nestlé",
-        amount: 20,
-      },
-    ],
-  });
+  const [hasData, setHasData] = React.useState(null);
+  const [data, setData] = React.useState({});
 
   let config = null;
 
@@ -159,9 +31,7 @@ export default (props) => {
       .then((res) => {
         console.log(res.data);
         setData(res.data);
-        res.data.chart.length !== 0 ?
-        setHasData(true):
-        setHasData(false);
+        res.data.chart.length !== 0 ? setHasData(true) : setHasData(false);
       })
       .catch((err) => {
         err.response.status === 401 ? navigate("/login") : console.error(err);
@@ -197,10 +67,10 @@ export default (props) => {
         >
           <div className="overview-card-dash">
             <OverviewCards
-              nearEndIngredients={data.cards.nearEndIngredients}
-              productsSoldMonth={data.cards.productsSoldMonth}
-              expiredIngredients={data.cards.expiredIngredients}
-              monthExpenses={data.cards.monthExpenses}
+              nearEndIngredients={data?.cards?.nearEndIngredients}
+              productsSoldMonth={data?.cards?.productsSoldMonth}
+              expiredIngredients={data?.cards?.expiredIngredients}
+              monthExpenses={data?.cards?.monthExpenses}
             />
           </div>
           <div className="near-expire-items-list-dash">
@@ -215,6 +85,14 @@ export default (props) => {
         </section>
       );
     default:
-      break;
+      return (
+        <section
+          className={
+            props.grow % 2 === 0
+              ? "dash-board-home-body-short"
+              : "dash-board-home-body-grow"
+          }
+        ></section>
+      );
   }
 };

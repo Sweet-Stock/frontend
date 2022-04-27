@@ -30,7 +30,7 @@ export default (props) => {
         imgSrc={Paycheque}
         title="Gastos Mensal"
         subTitle="Visualizar Gasto Mensal"
-        amount={"R$ "+props.monthExpenses}
+        amount={"R$ "+props.monthExpenses?.toFixed(2)}
       />
     </div>
   );

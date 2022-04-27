@@ -6,12 +6,12 @@
   border-radius: 1rem;
 }
 .money-chart {
-  width: 47rem !important;
-  height: 22rem !important;
+  width: 45rem !important;
+  height: 22.5rem !important;
 }
-@media (max-width: 1281px) {
+/* @media (max-width: 121px) {
   .money-chart {
     width: 40rem !important;
     height: 20rem !important;
   }
-}
+} */
