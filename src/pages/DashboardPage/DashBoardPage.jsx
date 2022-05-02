@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SideBar from "./sidebar/SideBar";
 import DashBoardHome from "./dashboard_home/DashBoardHome";
-
+import DashBoardEmploye from "./dashboard_employes/DashBoardEmploye";
 export default (props) => {
   sessionStorage.setItem("lastLocation", "/dashboard");
 
@@ -32,6 +32,7 @@ export default (props) => {
           <SideBar
             name={dataStorage ? dataStorage.username : ""}
             setPage={setPage}
+            setGrow={setGrow}
           />
         </>
       );
@@ -41,7 +42,9 @@ export default (props) => {
           <SideBar
             name={dataStorage ? dataStorage.username : ""}
             setPage={setPage}
+            setGrow={setGrow}
           />
+          <DashBoardEmploye grow={grow} />
         </>
       );
     case 3:
