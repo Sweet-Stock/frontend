@@ -1,5 +1,5 @@
 import React from "react";
-import { EmployeList } from "./employe_list/EmployeList";
+import { EmployeListHead } from "./employe_list/EmployeList";
 import PlusBtn from "../../images/plusbtn.svg";
 import PlusPeople from "../../images/pluspeople.svg";
 
@@ -22,7 +22,7 @@ export default (props) => {
         </span>
       </div>
 
-      <EmployeList/>
+      <EmployeListHead/>
     </section>
   );
 };
