@@ -3,8 +3,7 @@ import SideBar from "./sidebar/SideBar";
 import DashBoardHome from "./dashboard_home/DashBoardHome";
 import DashBoardEmploye from "./dashboard_employes/DashBoardEmploye";
 export default (props) => {
-  sessionStorage.setItem("lastLocation", "/dashboard");
-
+  
   const [page, setPage] = useState(0);
   const [grow, setGrow] = useState(0);
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { EmployeListHead } from "./employe_list/EmployeList";
+import { EmployeListHead, EmployeList } from "./employe_list/EmployeList";
 import PlusBtn from "../../images/plusbtn.svg";
 import PlusPeople from "../../images/pluspeople.svg";
 
@@ -21,8 +21,21 @@ export default (props) => {
           <img className="cursor-pointer h-16" src={PlusBtn} alt="" />
         </span>
       </div>
-
-      <EmployeListHead/>
+      <div className="overflow-y-auto my-12 font-[Rubik] font-thin text-sm">
+        <EmployeListHead />
+        <EmployeList />
+        <EmployeList />
+        <EmployeList />
+        <EmployeList />
+        <EmployeList />
+        <EmployeList />
+        <EmployeList />
+        <EmployeList />
+        <EmployeList />
+        <EmployeList />
+        <EmployeList />
+        <EmployeList />
+      </div>
     </section>
   );
 };

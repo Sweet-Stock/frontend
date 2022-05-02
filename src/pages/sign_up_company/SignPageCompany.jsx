@@ -11,8 +11,6 @@ import api from "../../services/api";
 import "./SignPageCompany.css";
 
 export default () => {
-  sessionStorage.setItem("lastLocation", "/cadastro/empresa");
-
   const [signProgress, setSignProgress] = useState(0);
   const [person, setPerson] = useState("FISICA");
   const [password, setPassword] = useState(true);

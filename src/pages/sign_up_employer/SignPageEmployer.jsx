@@ -10,7 +10,6 @@ import api from "../../services/api";
 import "./SignPageEmployer.css";
 
 export default () => {
-  sessionStorage.setItem("lastLocation", "/cadastro/funcionario");
   const [signProgress, setSignProgress] = useState(0);
   const [password, setPassword] = useState(true);
   const [passwordStrength, setPasswordStrength] = useState("red");
