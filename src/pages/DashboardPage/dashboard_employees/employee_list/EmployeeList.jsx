@@ -1,12 +1,12 @@
 import React from "react";
-import IconTeste from "../../../images/icon_twiter.svg"
+import IconTeste from "../../../images/icon_twiter.svg";
 
-export const EmployeListHead = (props) => {
+export const EmployeeListHead = (props) => {
   return (
-    <table>
+    <table className={props.classProperty ? "invisible" : "mt-12"}>
       <thead>
         <tr className="flex flex-row">
-          <td className="w-40 flex items-center justify-center p-3 text-2xl text-se border-b-2 border-solid border-gray-300">
+          <td className="w-32 flex items-center justify-center p-3 text-2xl text-se border-b-2 border-solid border-gray-300">
             Foto
           </td>
           <td className="w-80 flex items-center justify-start  p-3 text-2xl border-b-2 border-solid border-gray-300">
@@ -23,13 +23,13 @@ export const EmployeListHead = (props) => {
     </table>
   );
 };
-export const EmployeList = (props) => {
+export const EmployeeList = (props) => {
   return (
     <table>
       <tbody>
         <tr className="flex flex-row">
-          <td className="w-40 flex items-center justify-center p-3 text-2xl text-se border-b-2 border-solid border-gray-300">
-            <img src={IconTeste} alt="" className="h-fit rounded-full"/>
+          <td className="w-32 flex items-center justify-center p-3 text-2xl text-se border-b-2 border-solid border-gray-300">
+            <img src={IconTeste} alt="" className="h-fit rounded-full" />
           </td>
           <td className="w-80 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
             Cleber

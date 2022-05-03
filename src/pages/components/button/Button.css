@@ -11,7 +11,8 @@ font-family: 'Rubik', sans-serif;*/
 }
 .input-button {
   cursor: pointer !important;
-  width: 130px !important;
+  min-width: 130px !important;
+  max-width:fit-content !important;
   height: 40px !important;
   background: var(--secondary-color) !important;
   border-radius: 5px !important;

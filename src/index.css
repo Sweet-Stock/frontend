@@ -42,6 +42,10 @@ a{
   border-radius: 10px;
   border: 3px none var(--neultral-color);
 }
+
+input {
+  outline: none !important;
+}
 /* width 
 ::-webkit-scrollbar {
   width: 10px;

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const env = "prod";
+const env = "dev";
 
 const api = axios.create(
   env === "dev"

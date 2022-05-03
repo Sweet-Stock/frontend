@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SideBar from "./sidebar/SideBar";
 import DashBoardHome from "./dashboard_home/DashBoardHome";
-import DashBoardEmploye from "./dashboard_employes/DashBoardEmploye";
+import DashBoardEmployee from "./dashboard_employees/DashBoardEmployee";
 export default (props) => {
   
   const [page, setPage] = useState(0);
@@ -43,7 +43,7 @@ export default (props) => {
             setPage={setPage}
             setGrow={setGrow}
           />
-          <DashBoardEmploye grow={grow} />
+          <DashBoardEmployee grow={grow} />
         </>
       );
     case 3:
