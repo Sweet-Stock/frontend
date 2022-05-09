@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export default (props) => {
   const navigate = useNavigate();
   const goHome = () => {
-    navigate(sessionStorage.getItem("lastLocation"));
+    navigate(-1);
   };
   switch (props.status) {
     case "404":

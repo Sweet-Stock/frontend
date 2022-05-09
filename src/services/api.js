@@ -1,16 +1,9 @@
-import axios from "axios";
+import axios from 'axios'
 
-const env = "dev";
+const env = process.env.REACT_APP_API_KEY
 
-const api = axios.create(
-  env === "dev"
-    ? {
-        baseURL: "http://localhost:8080/v1/sweet-stock",
-      }
-    : {
-        baseURL:
-          "https://sweet-stock-api-1650235559435.azurewebsites.net/v1/sweet-stock",
-      }
-);
+const api = axios.create({
+  baseURL: env
+})
 
-export default api;
+export default api
