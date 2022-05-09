@@ -119,6 +119,7 @@ export const EmployeeListSign = ({
               onChange={() => {
                 setIsChecked(!isChecked)
                 isSelect && setIsHeadSelect(false)
+                isChecked && userUUIDs.push('a')
               }}
             />
           </td>
