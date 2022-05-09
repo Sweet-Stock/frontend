@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import IconTeste from '../../../../images/icon_twiter.svg'
+import React, { useState, useEffect } from "react";
+import IconTeste from "../../../../images/icon_twiter.svg";
 
 export const EmployeeListHead = ({ classProperty }) => {
   return (
-    <table className={classProperty ? 'invisible' : 'mt-12'}>
+    <table className={classProperty ? "invisible" : "mt-12"}>
       <thead>
         <tr className="flex flex-row">
           <td className="w-32 flex items-center justify-center p-3 text-2xl text-se border-b-2 border-solid border-gray-300">
@@ -21,10 +21,10 @@ export const EmployeeListHead = ({ classProperty }) => {
         </tr>
       </thead>
     </table>
-  )
-}
+  );
+};
 
-export const EmployeeList = props => {
+export const EmployeeList = (props) => {
   return (
     <table>
       <tbody>
@@ -44,14 +44,14 @@ export const EmployeeList = props => {
         </tr>
       </tbody>
     </table>
-  )
-}
+  );
+};
 
 export const EmployeeListHeadSign = ({
   setIsSelect,
   isSelect,
   setIsHeadSelect,
-  isHeadSelect
+  isHeadSelect,
 }) => {
   return (
     <table className="mt-12">
@@ -74,27 +74,29 @@ export const EmployeeListHeadSign = ({
               type="checkbox"
               checked={isHeadSelect}
               onChange={() => {
-                setIsHeadSelect(!isSelect)
-                setIsSelect(!isSelect)
+                setIsHeadSelect(!isSelect);
+                setIsSelect(!isSelect);
               }}
             />
           </td>
         </tr>
       </thead>
     </table>
-  )
-}
+  );
+};
 
-export const EmployeeListSign = ({
-  isSelect,
-  setIsHeadSelect,
-  userUUIDs
-}) => {
-  const [isChecked, setIsChecked] = useState(isSelect)
+export const EmployeeListSign = ({ isSelect, setIsHeadSelect, userUUIDs }) => {
+  const [isChecked, setIsChecked] = useState(isSelect);
 
-  useEffect(() =>  setIsChecked(isSelect), [isSelect])
+  const handleAddUuid = () => {
+    console.log(userUUIDs);
+    userUUIDs.forEach(
+      (element, index) =>
+        userUUIDs[index] === element && delete userUUIDs[index]
+    );
+  };
 
-
+  useEffect(() => setIsChecked(isSelect), [isSelect]);
 
   return (
     <table>
@@ -117,14 +119,15 @@ export const EmployeeListSign = ({
               type="checkbox"
               checked={isChecked}
               onChange={() => {
-                setIsChecked(!isChecked)
-                isSelect && setIsHeadSelect(false)
-                isChecked && userUUIDs.push('a')
+                setIsChecked(!isChecked);
+                isSelect && setIsHeadSelect(false);
+                isChecked && userUUIDs.push(Math.random() * 10);
+                handleAddUuid()
               }}
             />
           </td>
         </tr>
       </tbody>
     </table>
-  )
-}
+  );
+};
