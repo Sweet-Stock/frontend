@@ -24,8 +24,8 @@ export default () => {
     password: inputPassword,
   };
 
-  const inputValidation = (condicion, inputId, titleId, divId) => {
-    if (condicion) {
+  const inputValidation = (condition, inputId, titleId, divId) => {
+    if (condition) {
       document.getElementById(inputId).animate(
         [
           {
