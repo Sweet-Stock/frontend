@@ -1,39 +1,37 @@
-import React, { useState,useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../components/button/Button";
+import Button from "./components/Button";
 import InputMask from "react-input-mask";
-import ProgressBar from "../components/progress_bar/ProgressBar";
-import Eye from "../images/Eye.svg";
-import SignBg from "../images/Sign up-pana 1.svg";
-import PasswordHealth from "../components/password_health/PasswordHealth";
+import ProgressBar from "./components/ProgressBar";
+import Eye from "./images/Eye.svg";
+import SignBg from "./images/Sign up-pana 1.svg";
+import PasswordHealth from "./components/PasswordHealth";
 import axios from "axios";
-import api from "../../services/api";
-import "./SignPageCompany.css";
+import api from "../services/api";
+import "./SignPage.css";
 
 export default () => {
-  sessionStorage.setItem("lastLocation", "/cadastro/empresa");
+  const [signProgress, setSignProgress] = React.useState(0);
+  const [person, setPerson] = React.useState("FISICA");
+  const [password, setPassword] = React.useState(true);
+  const [passwordStrength, setPasswordStrength] = React.useState("red");
 
-  const [signProgress, setSignProgress] = useState(0);
-  const [person, setPerson] = useState("FISICA");
-  const [password, setPassword] = useState(true);
-  const [passwordStrength, setPasswordStrength] = useState("red");
-
-  const [inputName, setInputName] = useState(null);
-  const [inputFantasyName, setFantasyInputName] = useState(null);
-  const [inputPhone, setInputPhone] = useState(null);
-  const [inputCEO, setInputCEO] = useState(null);
-  const [inputCPF, setInputCPF] = useState("");
-  const [inputCNPJ, setInputCNPJ] = useState("");
-  const [inputCEP, setInputCEP] = useState(null);
-  const [inputStreet, setInputStreet] = useState("");
-  const [inputNumber, setInputNumber] = useState(null);
-  const [inputComplement, setInputComplement] = useState(null);
-  const [inputCity, setInputCity] = useState(null);
-  const [inputState, setInputState] = useState(null);
-  const [inputNeighbor, setInputNeighbor] = useState("");
-  const [inputEmail, setInputEmail] = useState(null);
-  const [inputPassword, setInputPassword] = useState(null);
-  const [inputConfirmPassword, setInputConfirmPassword] = useState(null);
+  const [inputName, setInputName] = React.useState(null);
+  const [inputFantasyName, setFantasyInputName] = React.useState(null);
+  const [inputPhone, setInputPhone] = React.useState(null);
+  const [inputCEO, setInputCEO] = React.useState(null);
+  const [inputCPF, setInputCPF] = React.useState("");
+  const [inputCNPJ, setInputCNPJ] = React.useState("");
+  const [inputCEP, setInputCEP] = React.useState(null);
+  const [inputStreet, setInputStreet] = React.useState("");
+  const [inputNumber, setInputNumber] = React.useState(null);
+  const [inputComplement, setInputComplement] = React.useState(null);
+  const [inputCity, setInputCity] = React.useState(null);
+  const [inputState, setInputState] = React.useState(null);
+  const [inputNeighbor, setInputNeighbor] = React.useState("");
+  const [inputEmail, setInputEmail] = React.useState(null);
+  const [inputPassword, setInputPassword] = React.useState(null);
+  const [inputConfirmPassword, setInputConfirmPassword] = React.useState(null);
 
   const modal = {
     name: inputName,
@@ -320,7 +318,7 @@ export default () => {
             .then((response) => {
               console.log(response);
               console.log(response.status);
-              sessionStorage.setItem("data", JSON.stringify(response.data));
+              sessionStorage.setItem("token", JSON.stringify(response.data));
               login(response.status);
             })
             .catch((err) => {
@@ -342,13 +340,6 @@ export default () => {
     }
   };
   const navigate = useNavigate();
-
-  useEffect(() => {
-    let dataStorage = sessionStorage.getItem("data");
-
-    if (dataStorage != undefined)
-      if (dataStorage != "null") navigate("/dashboard");
-  }, []);
 
   const login = (statusCode) => {
     switch (statusCode) {
@@ -691,14 +682,9 @@ export default () => {
         </div>
         <div className="sign-aligner">
           <label className="have-login">
-            Já tem uma conta? Faça{" "}
-            <a
-              onClick={() => {
-                navigate("/login");
-              }}
-            >
-              Login
-            </a>
+            Já tem uma conta? Faça <a onClick={()=>{
+              navigate("/login")
+            }}>Login</a>
           </label>
         </div>
       </div>
