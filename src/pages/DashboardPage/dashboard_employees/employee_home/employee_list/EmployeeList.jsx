@@ -88,10 +88,13 @@ export const EmployeeListHeadSign = ({
 export const EmployeeListSign = ({
   isSelect,
   setIsHeadSelect,
+  userUUIDs
 }) => {
   const [isChecked, setIsChecked] = useState(isSelect)
 
   useEffect(() =>  setIsChecked(isSelect), [isSelect])
+
+
 
   return (
     <table>

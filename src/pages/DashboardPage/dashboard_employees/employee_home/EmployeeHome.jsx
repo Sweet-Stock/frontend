@@ -10,11 +10,12 @@ import axios from 'axios'
 export default ({ grow, setPage }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [isDisabled, setIsDisabled] = useState(false)
   const [inputEmail, setInputEmail] = useState(null)
 
   const handleClick = event => {
     event.preventDefault()
-
+    setIsDisabled(true)
     setIsLoading(true)
 
     const options = {
@@ -31,12 +32,13 @@ export default ({ grow, setPage }) => {
       .request(options)
       .then(res => {
         console.log(res.status)
-        setIsOpen(false)
         setIsLoading(false)
+        setIsDisabled(true)
       })
       .catch(error => {
         console.error(error)
         setIsLoading(false)
+        setIsDisabled(false)
       })
   }
 
@@ -152,6 +154,7 @@ export default ({ grow, setPage }) => {
             <Button
               content="Voltar"
               type="button"
+              isDisabled={isDisabled}
               onClick={() => setIsOpen(false)}
             />
             <Button
