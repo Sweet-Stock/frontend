@@ -5,27 +5,39 @@ import { Dialog } from '@headlessui/react'
 import { EmployeeListHead, EmployeeList } from './employee_list/EmployeeList'
 import PlusBtn from '../../../images/plusbtn.svg'
 import PlusPeople from '../../../images/pluspeople.svg'
-import api from '../../../../services/api'
+import axios from 'axios'
 
 export default ({ grow, setPage }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [inputEmail, setInputEmail] = useState(null)
 
   const handleClick = event => {
-    const config = {
+    event.preventDefault()
+
+    setIsLoading(true)
+
+    const options = {
+      method: 'POST',
+      url: 'http://localhost:8080/v1/sweet-stock/accesses/invite',
+      params: { email: inputEmail },
       headers: {
         Authorization:
           'Bearer ' + JSON.parse(sessionStorage.getItem('data')).token
       }
     }
-    event.preventDefault()
-    api
-      .post(`/accesses/invite?email=${inputEmail}`, config)
+
+    axios
+      .request(options)
       .then(res => {
-        setIsOpen(true)
         console.log(res.status)
+        setIsOpen(false)
+        setIsLoading(false)
       })
-      .catch(err => console.error(err))
+      .catch(error => {
+        console.error(error)
+        setIsLoading(false)
+      })
   }
 
   const inputValidation = (condition, inputId) => {
@@ -142,7 +154,12 @@ export default ({ grow, setPage }) => {
               type="button"
               onClick={() => setIsOpen(false)}
             />
-            <Button content="Enviar" type="button" onClick={handleClick} />
+            <Button
+              content="Enviar"
+              type="button"
+              onClick={handleClick}
+              isLoading={isLoading}
+            />
           </div>
         </Dialog.Panel>
       </Dialog>
