@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Button from '../../../components/button/Button'
 import InputMask from 'react-input-mask'
 import { Dialog } from '@headlessui/react'
@@ -6,12 +6,27 @@ import { EmployeeListHead, EmployeeList } from './employee_list/EmployeeList'
 import PlusBtn from '../../../images/plusbtn.svg'
 import PlusPeople from '../../../images/pluspeople.svg'
 import axios from 'axios'
+import api from '../../../../services/api'
 
 export default ({ grow, setPage }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isDisabled, setIsDisabled] = useState(false)
   const [inputEmail, setInputEmail] = useState(null)
+
+  const config = {
+    headers: {
+      Authorization:
+        'Bearer ' + JSON.parse(sessionStorage.getItem('data')).token
+    }
+  }
+
+  useEffect(() => {
+    api
+      .get('/employees', config)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err))
+  }, [])
 
   const handleClick = event => {
     event.preventDefault()
