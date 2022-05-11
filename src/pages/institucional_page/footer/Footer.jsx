@@ -10,7 +10,7 @@ export default () => {
     <footer className="footer">
       <div className="footer-container">
         <img src={Logo} alt="" />
-        <div className="social-media">
+        <div className="social-media flex">
           <a
             rel="noreferrer"
             target="_blank"
