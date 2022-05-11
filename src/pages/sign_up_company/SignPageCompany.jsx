@@ -319,6 +319,8 @@ export default () => {
               console.log(response.status)
               sessionStorage.setItem('data', JSON.stringify(response.data))
               login(response.status)
+              setIsDisabled(false)
+              setIsLoading(false)
             })
             .catch(err => {
               console.error(err)
@@ -328,6 +330,8 @@ export default () => {
                 JSON.stringify(err.response.status)
               )
               login(err.response.status)
+              setIsDisabled(false)
+              setIsLoading(false)
             })
           setIsDisabled(false)
           setIsLoading(false)
