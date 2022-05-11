@@ -17,7 +17,7 @@ module.exports = {
         }
       },
       animation: {
-        shake: 'shake 0.5s ease-in'
+        shake: 'shake 0.5s ease-out'
       },
       keyframes: {
         shake: {

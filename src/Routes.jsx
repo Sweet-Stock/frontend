@@ -28,9 +28,9 @@ export default () => {
             path="teste"
             element={
               <Input
-                label="Teste"
+                label="Login"
                 pattern="[a-z]*"
-                message="daskjdjsadjsajdasjdjasdjasdjasjdasjdsaj"
+                message="Email incorreto"
               />
             }
           />

@@ -7,14 +7,16 @@ export default ({
   alwaysShowMask,
   pattern,
   message,
-  onChange
+  onChange,
+  required
 }) => {
   return (
     <div className="w-4/12 h-auto bg-main-500 flex gap-7 items-start flex-col ">
       <InputMask
-        className="peer invalid:text-red-600 invalid:border-red-500 invalid:animate-shake pl-2 mr-0 h-8 w-full font-[Rubik] font-light text-2xl border-b-[1px] border-solid border-bg_neutral-500 rounded-none order-2"
+        className="peer focus:invalid:text-red-600 invalid:border-red-500 invalid:animate-shake pl-2 mr-0 h-8 w-full font-[Rubik] font-light text-2xl border-b-[1px] border-solid border-bg_neutral-500 rounded-none order-2"
         mask={mask}
         pattern={pattern}
+        required={required ? required : false}
         alwaysShowMask={alwaysShowMask ? alwaysShowMask : true}
         onChange={onChange}
       />
@@ -25,7 +27,7 @@ export default ({
 
       <p
         id="text_div_id"
-        className="peer-invalid:text-red-600 peer-invalid:animate-shake peer-invalid:visible invisible font-[Rubik] text-xl text-bg_neutral-500 font-light order-3"
+        className="peer-invalid:text-red-600 peer-invalid:animate-shake peer-invalid:visible invisible font-[Rubik] text-xl text-bg_neutral-500 font-light order-3 "
       >
         {message}
       </p>
