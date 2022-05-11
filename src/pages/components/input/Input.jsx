@@ -13,7 +13,7 @@ export default ({
   return (
     <div className="w-4/12 h-auto bg-main-500 flex gap-7 items-start flex-col ">
       <InputMask
-        className="peer focus:invalid:text-red-600 :invalid:border-red-500 invalid:animate-shake pl-2 mr-0 h-8 w-full font-[Rubik] font-light text-2xl border-b-[1px] border-solid border-bg_neutral-500 rounded-none order-2"
+        className="peer focus:invalid:text-red-600 invalid:border-red-500 invalid:animate-shake pl-2 mr-0 h-8 w-full font-[Rubik] font-light text-2xl border-b-[1px] border-solid border-bg_neutral-500 rounded-none order-2"
         mask={mask}
         pattern={pattern}
         required={required ? required : false}
