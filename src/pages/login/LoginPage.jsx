@@ -97,12 +97,14 @@ export default () => {
         console.log(response.status)
         sessionStorage.setItem('data', JSON.stringify(response.data))
         login(response.status)
+        setIsLoading(false)
       })
       .catch(err => {
         console.error(err)
         console.log(err.response.status)
         sessionStorage.setItem('status', JSON.stringify(err.response.status))
         login(err.response.status)
+        setIsLoading(false)
       })
     setIsLoading(false)
   }

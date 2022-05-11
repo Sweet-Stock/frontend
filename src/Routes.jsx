@@ -24,6 +24,16 @@ export default () => {
             <Route path="espera" element={<SignAfterPage />} />
           </Route>
           <Route path="login" element={<LoginPage />} />
+          <Route
+            path="teste"
+            element={
+              <Input
+                label="Teste"
+                pattern="[a-z]*"
+                message="daskjdjsadjsajdasjdjasdjasdjasjdasjdsaj"
+              />
+            }
+          />
           <Route path="error">
             <Route path={'404'} element={<ErrorPage status={'404'} />} />
             <Route path={'500'} element={<ErrorPage status={'500'} />} />
