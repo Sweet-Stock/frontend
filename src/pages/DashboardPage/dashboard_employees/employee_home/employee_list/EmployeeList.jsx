@@ -121,7 +121,7 @@ export const EmployeeListSign = ({ isSelect, setIsHeadSelect, userUUIDs }) => {
               onChange={() => {
                 setIsChecked(!isChecked)
                 isSelect && setIsHeadSelect(false)
-                !isChecked && userUUIDs.push(Math.random() * 10)
+                !isChecked && userUUIDs.push(JSON.stringify(Math.random() * 10))
                 handleAddUuid()
               }}
             />

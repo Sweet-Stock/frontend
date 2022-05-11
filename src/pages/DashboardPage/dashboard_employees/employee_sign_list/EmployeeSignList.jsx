@@ -27,7 +27,7 @@ export default ({ grow }) => {
 
   useEffect(() => {
     api
-      .get('/employees/not-aproved', config)
+      .get('/employees/not-approved', config)
       .then(res => console.log(res.data))
       .catch(err => console.log(err))
   }, [])
