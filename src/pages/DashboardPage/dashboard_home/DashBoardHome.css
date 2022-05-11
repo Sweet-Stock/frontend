@@ -15,7 +15,7 @@
   }
 }
 .dash-board-home-body-short {
-  margin-left: 12rem;
+  padding-left: 12rem;
   position: relative;
   height: 100vh;
   animation: dashShrink 0.5s normal;
@@ -27,7 +27,7 @@
   "money-chart-dash near-end-itens-dash"; */
 }
 .dash-board-home-body-grow {
-  margin-left: 20rem;
+  padding-left: 20rem;
   position: relative;
   height: 100vh;
   animation: dashGrow 0.5s normal;
