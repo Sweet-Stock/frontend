@@ -9,7 +9,7 @@ import {
 export default ({ grow }) => {
   const [isSelect, setIsSelect] = useState(false)
   const [isHeadSelect, setIsHeadSelect] = useState(false)
-  let usersUUIDs = []
+  let usersUUIDs = [{ uuid: '' }]
 
   const config = {
     headers: {
@@ -20,7 +20,7 @@ export default ({ grow }) => {
 
   const handleApprovedSubmit = () => {
     api
-      .put('/employees', usersUUIDs, config)
+      .patch('/employees', usersUUIDs, config)
       .then(res => console.log(res.data))
       .catch(err => console.log(err))
   }

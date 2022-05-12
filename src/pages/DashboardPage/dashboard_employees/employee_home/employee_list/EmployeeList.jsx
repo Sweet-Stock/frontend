@@ -85,16 +85,25 @@ export const EmployeeListHeadSign = ({
   )
 }
 
-export const EmployeeListSign = ({ isSelect, setIsHeadSelect, userUUIDs }) => {
+export const EmployeeListSign = ({
+  isSelect,
+  setIsHeadSelect,
+  userUUIDs,
+  uuid
+}) => {
   const [isChecked, setIsChecked] = useState(isSelect)
 
-  const handleAddUuid = () => {
-    userUUIDs.map(value => console.log(value))
+  useEffect(
+    () => (isChecked ? handleAddUuid(uuid) : handleRemoveUuid(uuid)),
+    [isChecked]
+  )
+
+  const handleAddUuid = uuid => userUUIDs.push(uuid)
+
+  const handleRemoveUuid = uuid =>
     userUUIDs.forEach(
-      (element, index) =>
-        userUUIDs[index] === element && delete userUUIDs[index]
+      (element, index) => element == uuid && delete userUUIDs[index]
     )
-  }
 
   useEffect(() => setIsChecked(isSelect), [isSelect])
 
@@ -121,8 +130,6 @@ export const EmployeeListSign = ({ isSelect, setIsHeadSelect, userUUIDs }) => {
               onChange={() => {
                 setIsChecked(!isChecked)
                 isSelect && setIsHeadSelect(false)
-                !isChecked && userUUIDs.push(JSON.stringify(Math.random() * 10))
-                handleAddUuid()
               }}
             />
           </td>

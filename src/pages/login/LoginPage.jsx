@@ -100,11 +100,11 @@ export default () => {
         setIsLoading(false)
       })
       .catch(err => {
+        setIsLoading(false)
         console.error(err)
         console.log(err.response.status)
         sessionStorage.setItem('status', JSON.stringify(err.response.status))
         login(err.response.status)
-        setIsLoading(false)
       })
     setIsLoading(false)
   }
