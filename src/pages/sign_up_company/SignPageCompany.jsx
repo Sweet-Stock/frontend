@@ -442,7 +442,7 @@ export default () => {
                 setPerson(value.target.value)
               }}
             >
-              <option value="FISICA">Pessoa Fisica</option>
+              <option value="FISICA">Pessoa Física</option>
               <option value="JURIDICA">Pessoa Jurídica</option>
             </select>
           </div>
@@ -465,7 +465,7 @@ export default () => {
             </p>
           </div>
           <div className={signProgress === 1 ? '' : 'display-none'}>
-            <h1 id="cpf_title_id">{person === 'JURIDICA' ? 'CNJP' : 'CPF'}</h1>
+            <h1 id="cpf_title_id">{person === 'JURIDICA' ? 'CNPJ' : 'CPF'}</h1>
             <InputMask
               mask={
                 person === 'JURIDICA' ? '99.999.999/9999-99' : '999.999.999-99'
@@ -644,7 +644,7 @@ export default () => {
               }}
             />
             <p id="password_div_id" className="password-text">
-              A senha deve conter 8 caracteres, contendo letras maiusculas ,
+              A senha deve conter 8 caracteres, contendo letras maiúsculas ,
               minusculas e números
             </p>
           </div>
@@ -666,7 +666,7 @@ export default () => {
               }}
             />
             <p id="confirmPassword_div_id" className="password-text">
-              A senha deve conter 8 caracteres, contendo letras maiusculas ,
+              A senha deve conter 8 caracteres, contendo letras maiúsculas ,
               minusculas e números
             </p>
           </div>

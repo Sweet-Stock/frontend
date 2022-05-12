@@ -28,7 +28,7 @@ export default ({ grow, setPage }) => {
       .catch(err => console.log(err))
   }, [])
 
-  const handleClick = event => {
+  const handleClick = async event => {
     event.preventDefault()
     setIsDisabled(true)
     setIsLoading(true)
@@ -43,17 +43,17 @@ export default ({ grow, setPage }) => {
       }
     }
 
-    axios
+    await axios
       .request(options)
       .then(res => {
-        console.log(res.status)
         setIsLoading(false)
         setIsDisabled(true)
+        console.log(res.status)
       })
       .catch(error => {
-        console.error(error)
         setIsLoading(false)
         setIsDisabled(false)
+        console.error(error)
       })
   }
 
