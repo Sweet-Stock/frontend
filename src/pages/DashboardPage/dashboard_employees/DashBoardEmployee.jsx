@@ -7,11 +7,11 @@ export default ({ grow }) => {
 
   switch (page) {
     case true:
-      return <EmployeeHome grow={grow} setPage={setPage}/>
+      return <EmployeeHome grow={grow} setPage={setPage} />
 
     case false:
-      return <EmployeeSignList grow={grow} />
-      
+      return <EmployeeSignList grow={grow} setPage={setPage} />
+
     default:
       break
   }

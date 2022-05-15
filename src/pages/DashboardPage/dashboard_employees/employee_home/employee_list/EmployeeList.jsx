@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import IconTeste from '../../../../images/icon_twiter.svg'
+import IconMock from '../../../../images/profilephoto.jpg'
 
 export const EmployeeListHead = ({ classProperty }) => {
   return (
@@ -12,10 +12,10 @@ export const EmployeeListHead = ({ classProperty }) => {
           <td className="w-80 flex items-center justify-start  p-3 text-2xl border-b-2 border-solid border-gray-300">
             Nome
           </td>
-          <td className="w-80 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
+          <td className="w-96 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
             Email
           </td>
-          <td className="w-80 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
+          <td className="w-52 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
             Telefone
           </td>
         </tr>
@@ -24,22 +24,26 @@ export const EmployeeListHead = ({ classProperty }) => {
   )
 }
 
-export const EmployeeList = props => {
+export const EmployeeList = ({ icon, name, email, phoneNumber }) => {
   return (
     <table>
       <tbody>
         <tr className="flex flex-row">
           <td className="w-32 flex items-center justify-center p-3 text-2xl text-se border-b-2 border-solid border-gray-300">
-            <img src={IconTeste} alt="" className="h-fit rounded-full" />
+            <img
+              src={icon ? icon : IconMock}
+              alt=""
+              className="h-12 rounded-full"
+            />
           </td>
           <td className="w-80 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
-            Cleber
+            {name}
           </td>
-          <td className="w-80 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
-            cleber@teste.teste
+          <td className="w-96 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
+            {email}
           </td>
-          <td className="w-80 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
-            (11) 99453-8251
+          <td className="w-52 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
+            {phoneNumber}
           </td>
         </tr>
       </tbody>
@@ -63,10 +67,10 @@ export const EmployeeListHeadSign = ({
           <td className="w-80 flex items-center justify-start  p-3 text-2xl border-b-2 border-solid border-gray-300">
             Nome
           </td>
-          <td className="w-80 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
+          <td className="w-96 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
             Email
           </td>
-          <td className="w-80 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
+          <td className="w-52 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
             Telefone
           </td>
           <td className="w-32 flex items-center justify-center p-3 text-2xl border-b-2 border-solid border-gray-300">
@@ -86,12 +90,17 @@ export const EmployeeListHeadSign = ({
 }
 
 export const EmployeeListSign = ({
+  icon,
+  name,
+  email,
+  phoneNumber,
   isSelect,
+  isHeadSelect,
   setIsHeadSelect,
   userUUIDs,
   uuid
 }) => {
-  const [isChecked, setIsChecked] = useState(isSelect)
+  const [isChecked, setIsChecked] = useState(false)
 
   useEffect(
     () => (isChecked ? handleAddUuid(uuid) : handleRemoveUuid(uuid)),
@@ -105,23 +114,27 @@ export const EmployeeListSign = ({
       (element, index) => element == uuid && delete userUUIDs[index]
     )
 
-  useEffect(() => setIsChecked(isSelect), [isSelect])
+  useEffect(() => setIsChecked(isHeadSelect), [isHeadSelect])
 
   return (
     <table>
       <tbody>
         <tr className="flex flex-row">
           <td className="w-32 flex items-center justify-center p-3 text-2xl text-se border-b-2 border-solid border-gray-300">
-            <img src={IconTeste} alt="" className="h-fit rounded-full" />
+            <img
+              src={icon ? icon : IconMock}
+              alt=""
+              className="h-12 rounded-full"
+            />
           </td>
           <td className="w-80 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
-            Cléber
+            {name}
           </td>
-          <td className="w-80 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
-            cleber@teste.teste
+          <td className="w-96 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
+            {email}
           </td>
-          <td className="w-80 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
-            (11) 99453-8251
+          <td className="w-52 flex items-center justify-start p-3 text-2xl border-b-2 border-solid border-gray-300">
+            {phoneNumber}
           </td>
           <td className="w-32 flex items-center justify-center p-3 text-2xl border-b-2 border-solid border-gray-300">
             <input

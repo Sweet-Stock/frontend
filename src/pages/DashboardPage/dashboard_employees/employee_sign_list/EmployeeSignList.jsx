@@ -6,10 +6,14 @@ import {
   EmployeeListSign
 } from '../employee_home/employee_list/EmployeeList'
 
-export default ({ grow }) => {
+export default ({ grow, setPage }) => {
   const [isSelect, setIsSelect] = useState(false)
   const [isHeadSelect, setIsHeadSelect] = useState(false)
-  let usersUUIDs = [{ uuid: '' }]
+  const [data, setData] = useState([])
+  const [sendUUIDs, setSendUUIDs] = useState(0)
+  const usersUUIDs = {
+    uuids: []
+  }
 
   const config = {
     headers: {
@@ -19,18 +23,22 @@ export default ({ grow }) => {
   }
 
   const handleApprovedSubmit = () => {
+    console.log(usersUUIDs)
     api
-      .patch('/employees', usersUUIDs, config)
-      .then(res => console.log(res.data))
+      .post('/employees/approve', usersUUIDs, config)
+      .then(res => {
+        res.status === 204 && alert("Por favor selecione uma funcionário")
+        setSendUUIDs(sendUUIDs + 1)
+      })
       .catch(err => console.log(err))
   }
 
   useEffect(() => {
     api
       .get('/employees/not-approved', config)
-      .then(res => console.log(res.data))
+      .then(res => setData(res.data))
       .catch(err => console.log(err))
-  }, [])
+  }, [sendUUIDs])
   return (
     <section
       className={
@@ -43,7 +51,13 @@ export default ({ grow }) => {
         <h1 className="text-secondary-500 font-bold font-[Rubik] text-5xl ">
           Funcionários para aprovação
         </h1>
-        <Button onClick={handleApprovedSubmit} content="Aceitar" />
+        <div className="flex gap-2">
+          <Button onClick={() => setPage(true)} content="Voltar" />
+          <Button
+            onClick={() => handleApprovedSubmit(usersUUIDs)}
+            content="Aceitar"
+          />
+        </div>
       </div>
 
       <EmployeeListHeadSign
@@ -53,21 +67,19 @@ export default ({ grow }) => {
         setIsHeadSelect={setIsHeadSelect}
       />
       <span className="w-fit overflow-y-auto overflow-x-hidden mb-12 font-[Rubik] font-thin text-sm">
-        <EmployeeListSign
-          isSelect={isSelect}
-          setIsHeadSelect={setIsHeadSelect}
-          userUUIDs={usersUUIDs}
-        />
-        <EmployeeListSign
-          isSelect={isSelect}
-          setIsHeadSelect={setIsHeadSelect}
-          userUUIDs={usersUUIDs}
-        />
-        <EmployeeListSign
-          isSelect={isSelect}
-          setIsHeadSelect={setIsHeadSelect}
-          userUUIDs={usersUUIDs}
-        />
+        {data.map(({ name, email, telephoneNumber, uuid }) => (
+          <EmployeeListSign
+            key={uuid}
+            isHeadSelect={isHeadSelect}
+            isSelect={isSelect}
+            setIsHeadSelect={setIsHeadSelect}
+            userUUIDs={usersUUIDs?.uuids}
+            name={name}
+            email={email}
+            phoneNumber={telephoneNumber}
+            uuid={uuid}
+          />
+        ))}
       </span>
     </section>
   )

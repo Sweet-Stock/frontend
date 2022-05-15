@@ -16,8 +16,11 @@ import { useNavigate } from "react-router-dom";
 export default (props) => {
   const [verify, setVerify] = React.useState(true);
   const [grow, setGrow] = React.useState(0);
+  
   const navigate = useNavigate();
+
   let dataStorage = sessionStorage.getItem("data");
+
   useEffect(() => {
     if (dataStorage == undefined || dataStorage == "null") {
       navigate("/login");
@@ -46,7 +49,7 @@ export default (props) => {
     },
     {
       icon: PeopleIcon,
-      content: "Funcionarios",
+      content: "Funcionários",
       classShort: "sidebar-icon-short",
       classLong: "sidebar-icon-long",
       dashPage: 2,

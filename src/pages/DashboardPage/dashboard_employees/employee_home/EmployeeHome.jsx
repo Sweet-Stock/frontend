@@ -13,6 +13,7 @@ export default ({ grow, setPage }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [isDisabled, setIsDisabled] = useState(false)
   const [inputEmail, setInputEmail] = useState(null)
+  const [data, setData] = useState([])
 
   const config = {
     headers: {
@@ -24,7 +25,7 @@ export default ({ grow, setPage }) => {
   useEffect(() => {
     api
       .get('/employees', config)
-      .then(res => console.log(res.data))
+      .then(res => setData(res.data))
       .catch(err => console.log(err))
   }, [])
 
@@ -129,7 +130,14 @@ export default ({ grow, setPage }) => {
             : 'w-fit overflow-y-auto overflow-x-hidden mb-12 font-[Rubik] font-thin text-sm'
         }
       >
-        <EmployeeList />
+        {data.map(({ name, email, telephoneNumber, uuid }) => (
+          <EmployeeList
+            name={name}
+            email={email}
+            phoneNumber={telephoneNumber}
+            key={uuid}
+          />
+        ))}
       </span>
       <Dialog
         className="absolute top-[25%] left-[25%] right-[25%] aspect-[2/1] rounded-3xl bg-main-500 w-1/2 flex justify-around items-center shadow-md shadow-black"
