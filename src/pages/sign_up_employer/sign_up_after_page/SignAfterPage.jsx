@@ -9,12 +9,12 @@ export default (props) => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    let dataStorage = sessionStorage.getItem("data");
+  // useEffect(() => {
+  //   let dataStorage = sessionStorage.getItem("data");
 
-    if (dataStorage != undefined)
-      if (dataStorage != "null") navigate("/dashboard");
-  }, []);
+  //   if (dataStorage != undefined)
+  //     if (dataStorage != "null") navigate("/dashboard");
+  // }, []);
 
   return (
     <section className="sing-after-page-body">

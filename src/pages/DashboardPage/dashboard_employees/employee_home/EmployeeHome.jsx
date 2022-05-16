@@ -48,7 +48,7 @@ export default ({ grow, setPage }) => {
       .request(options)
       .then(res => {
         setIsLoading(false)
-        setIsDisabled(true)
+        setIsDisabled(false)
         console.log(res.status)
       })
       .catch(error => {

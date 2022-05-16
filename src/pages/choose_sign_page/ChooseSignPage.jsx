@@ -24,7 +24,7 @@ export default () => {
         <div className="choose-sign-aligner">
           <label className="have-choose-sign">
             Já tem uma conta? Faça {""}
-            <a onClick={() => navigate("/choose-sign")}>login</a>
+            <a onClick={() => navigate("/login")}>login</a>
           </label>
         </div>
         <div className="choose-sign-container">
