@@ -333,10 +333,16 @@ export default () => {
             <input
               type="file"
               id="photo_input_id"
-              onChange={async () => {
+              onChange={async (e) => {
                 const file = document.querySelector('#photo_input_id').files[0]
                 const fileInBase64 = await toBase64(file)
-                setInputPhoto(fileInBase64)
+
+                let image = e.currentTarget.files[0]
+                const buffer = await image.arrayBuffer()
+                let byteArray = new Int8Array(buffer)
+
+                console.log(byteArray)
+                setInputPhoto(byteArray)
                 console.log(fileInBase64)
                 inputValidation(
                   !fileInBase64.startsWith('data:image/'),
