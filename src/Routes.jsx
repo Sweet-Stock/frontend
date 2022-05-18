@@ -8,8 +8,6 @@ import SignAfterPage from './pages/sign_up_employer/sign_up_after_page/SignAfter
 import SignPageEmployer from './pages/sign_up_employer/SignPageEmployer'
 import LoginPage from './pages/login/LoginPage'
 import ErrorPage from './pages/error/ErrorPage'
-import { DashboardIngredients } from './pages/DashboardPage/dashboard_ingredients/DashboardIngredients'
-import { CardIngredients } from './pages/components/Ingredient_modal_card/CardIngredients'
 
 export default () => {
   return (
@@ -17,9 +15,7 @@ export default () => {
       <Routes>
         <Route path="/">
           <Route index element={<InstitucionalPage />} />
-          <Route path="dashboard" element={<DashBoardPage />} />{' '}
-          <Route path="teste" element={<CardIngredients />} />
-          <Route path="teste2" element={<DashboardIngredients />} />
+          <Route path="dashboard" element={<DashBoardPage />} />
           <Route path="cadastro">
             <Route index element={<ChooseSignPage />} />
             <Route path="empresa" element={<SignPageCompany />} />

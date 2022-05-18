@@ -44,7 +44,7 @@ export default ({ grow, setPage }) => {
         setSendUUIDs(sendUUIDs + 1)
       })
   }
-
+ 
   useEffect(() => {
     api
       .get('/employees/not-approved', config)

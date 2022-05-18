@@ -1,106 +1,106 @@
-import React, { useState, useEffect } from 'react'
-import Button from '../../../components/button/Button'
-import InputMask from 'react-input-mask'
-import { Dialog } from '@headlessui/react'
-import { EmployeeListHead, EmployeeList } from './employee_list/EmployeeList'
-import PlusBtn from '../../../images/plusbtn.svg'
-import PlusPeople from '../../../images/pluspeople.svg'
-import axios from 'axios'
-import api from '../../../../services/api'
+import React, { useState, useEffect } from "react";
+import Button from "../../../components/button/Button";
+import InputMask from "react-input-mask";
+import { Dialog } from "@headlessui/react";
+import { EmployeeListHead, EmployeeList } from "./employee_list/EmployeeList";
+import PlusBtn from "../../../images/plusbtn.svg";
+import PlusPeople from "../../../images/pluspeople.svg";
+import axios from "axios";
+import api from "../../../../services/api";
 
 export default ({ grow, setPage }) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [isDisabled, setIsDisabled] = useState(false)
-  const [inputEmail, setInputEmail] = useState(null)
-  const [data, setData] = useState([])
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [inputEmail, setInputEmail] = useState(null);
+  const [data, setData] = useState([]);
 
   const config = {
     headers: {
       Authorization:
-        'Bearer ' + JSON.parse(sessionStorage.getItem('data')).token
-    }
-  }
+        "Bearer " + JSON.parse(sessionStorage.getItem("data")).token,
+    },
+  };
 
   useEffect(() => {
     api
-      .get('/employees', config)
-      .then(res => setData(res.data))
-      .catch(err => console.log(err))
-  }, [])
+      .get("/employees", config)
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
-  const handleClick = async event => {
-    event.preventDefault()
-    setIsDisabled(true)
-    setIsLoading(true)
+  const handleClick = async (event) => {
+    event.preventDefault();
+    setIsDisabled(true);
+    setIsLoading(true);
 
     const options = {
-      method: 'POST',
-      url: 'http://localhost:8080/v1/sweet-stock/accesses/invite',
+      method: "POST",
+      url: process.env.REACT_APP_API_KEY + "/accesses/invite",
       params: { email: inputEmail },
       headers: {
         Authorization:
-          'Bearer ' + JSON.parse(sessionStorage.getItem('data')).token
-      }
-    }
+          "Bearer " + JSON.parse(sessionStorage.getItem("data")).token,
+      },
+    };
 
     await axios
       .request(options)
-      .then(res => {
-        setIsLoading(false)
-        setIsDisabled(false)
-        console.log(res.status)
+      .then((res) => {
+        setIsLoading(false);
+        setIsDisabled(false);
+        console.log(res.status);
       })
-      .catch(error => {
-        setIsLoading(false)
-        setIsDisabled(false)
-        console.error(error)
-      })
-  }
+      .catch((error) => {
+        setIsLoading(false);
+        setIsDisabled(false);
+        console.error(error);
+      });
+  };
 
   const inputValidation = (condition, inputId) => {
     if (condition) {
       document.getElementById(inputId).animate(
         [
           {
-            borderColor: 'var(--neultral-color)',
-            borderBottomWidth: '1px'
+            borderColor: "var(--neultral-color)",
+            borderBottomWidth: "1px",
           },
-          { borderColor: 'red', borderBottomWidth: '2px' },
+          { borderColor: "red", borderBottomWidth: "2px" },
           {
-            borderColor: 'var(--neultral-color)',
-            borderBottomWidth: '1px'
+            borderColor: "var(--neultral-color)",
+            borderBottomWidth: "1px",
           },
-          { borderColor: 'red', borderBottomWidth: '2px' },
+          { borderColor: "red", borderBottomWidth: "2px" },
           {
-            borderColor: 'var(--neultral-color)',
-            borderBottomWidth: '1px'
+            borderColor: "var(--neultral-color)",
+            borderBottomWidth: "1px",
           },
-          { borderColor: 'red', borderBottomWidth: '2px' },
+          { borderColor: "red", borderBottomWidth: "2px" },
           {
-            borderColor: 'var(--neultral-color)',
-            borderBottomWidth: '1px'
+            borderColor: "var(--neultral-color)",
+            borderBottomWidth: "1px",
           },
-          { borderColor: 'red', borderBottomWidth: '2px' }
+          { borderColor: "red", borderBottomWidth: "2px" },
         ],
         {
-          duration: 300
+          duration: 300,
         }
-      )
+      );
 
-      document.getElementById(inputId).style.borderColor = 'red'
+      document.getElementById(inputId).style.borderColor = "red";
     } else {
       document.getElementById(inputId).style.borderColor =
-        'var(--neultral-color)'
+        "var(--neultral-color)";
     }
-  }
+  };
 
   return (
     <section
       className={
         grow % 2 === 0
-          ? 'relative w-[100%] h-[100vh] pl-48 transition-all ease-in-out duration-500 flex flex-col items-center'
-          : 'relative w-[100%] h-[100vh] pl-80 transition-all ease-in-out duration-500 flex flex-col items-center'
+          ? "relative w-[100%] h-[100vh] pl-48 transition-all ease-in-out duration-500 flex flex-col items-center"
+          : "relative w-[100%] h-[100vh] pl-80 transition-all ease-in-out duration-500 flex flex-col items-center"
       }
     >
       <div className="w-[100%] flex flex-row gap-2 items-center justify-between pt-20">
@@ -126,8 +126,8 @@ export default ({ grow, setPage }) => {
       <span
         className={
           isOpen
-            ? 'invisible'
-            : 'w-fit overflow-y-auto overflow-x-hidden mb-12 font-[Rubik] font-thin text-sm'
+            ? "invisible"
+            : "w-fit overflow-y-auto overflow-x-hidden mb-12 font-[Rubik] font-thin text-sm"
         }
       >
         {data.map(({ name, email, telephoneNumber, uuid }) => (
@@ -156,14 +156,14 @@ export default ({ grow, setPage }) => {
             className=" mr-0 h-8 w-full font-[Rubik] font-light text-2xl border-b-[1px] border-solid border-bg_neutral-500 rounded-none"
             placeholder="email@email.com"
             id="email_input_id"
-            onBlur={text => {
-              setInputEmail(text.target.value.toLowerCase())
+            onBlur={(text) => {
+              setInputEmail(text.target.value.toLowerCase());
               inputValidation(
                 !text.target.value
                   .toLowerCase()
-                  .match('^[a-z0-9.]+@[a-z0-9]+.[a-z]+(.[a-z]+)?$'),
-                'email_input_id'
-              )
+                  .match("^[a-z0-9.]+@[a-z0-9]+.[a-z]+(.[a-z]+)?$"),
+                "email_input_id"
+              );
             }}
           />
           <Dialog.Description
@@ -190,5 +190,5 @@ export default ({ grow, setPage }) => {
         </Dialog.Panel>
       </Dialog>
     </section>
-  )
-}
+  );
+};

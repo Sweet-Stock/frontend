@@ -19,7 +19,7 @@ export function DashboardIngredients({
   stockAmount,
   image
 }) {
-  let [isOpen, setIsOpen] = useState(true)
+  let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
     setIsOpen(false)
@@ -39,7 +39,7 @@ export function DashboardIngredients({
         onClick={openModal}
       />
 
-      <div className="absolute h-[100vh] w-[100vw]">
+      <div className="fixed h-[100vh] w-[100vw]">
         <Transition appear show={isOpen} as={Fragment}>
           <Dialog as="div" className="relative z-10" onClose={closeModal}>
             <Transition.Child
