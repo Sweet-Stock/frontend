@@ -11,6 +11,9 @@ export default ({ grow, setPage }) => {
   const [isHeadSelect, setIsHeadSelect] = useState(false)
   const [data, setData] = useState([])
   const [sendUUIDs, setSendUUIDs] = useState(0)
+  const [isLoading, setIsLoading] = useState(false)
+  const [isDisabled, setIsDisabled] = useState(false)
+
   const usersUUIDs = {
     uuids: []
   }
@@ -22,15 +25,24 @@ export default ({ grow, setPage }) => {
     }
   }
 
-  const handleApprovedSubmit = () => {
-    console.log(usersUUIDs)
-    api
-      .post('/employees/approve', usersUUIDs, config)
+  const handleApprovedSubmit = async () => {
+    setIsLoading(true)
+    setIsDisabled(true)
+    await api
+      .put('/employees', usersUUIDs, config)
       .then(res => {
-        res.status === 204 && alert("Por favor selecione uma funcionário")
+        res.status === 204 && alert('Por favor selecione uma funcionário')
+        console.log(res)
+        setIsLoading(false)
+        setIsDisabled(false)
         setSendUUIDs(sendUUIDs + 1)
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        setIsLoading(false)
+        setIsDisabled(false)
+        console.log(err)
+        setSendUUIDs(sendUUIDs + 1)
+      })
   }
 
   useEffect(() => {
@@ -52,8 +64,13 @@ export default ({ grow, setPage }) => {
           Funcionários para aprovação
         </h1>
         <div className="flex gap-2">
-          <Button onClick={() => setPage(true)} content="Voltar" />
           <Button
+            isDisabled={isDisabled}
+            onClick={() => setPage(true)}
+            content="Voltar"
+          />
+          <Button
+            isLoading={isLoading}
             onClick={() => handleApprovedSubmit(usersUUIDs)}
             content="Aceitar"
           />
