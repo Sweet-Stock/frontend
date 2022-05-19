@@ -59,7 +59,7 @@ export default ({ grow, setPage }) => {
           : 'relative w-[100%] h-[100vh] pl-80 transition-all ease-in-out duration-500 flex flex-col items-center'
       }
     >
-      <div className="w-[100%] flex flex-row gap-2 items-center justify-around pt-20">
+      <div className="w-[100%] flex flex-row gap-2 items-center justify-between pt-20 pr-10">
         <h1 className="text-secondary-500 font-bold font-[Rubik] text-5xl ">
           Funcionários para aprovação
         </h1>

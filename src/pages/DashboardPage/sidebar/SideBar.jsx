@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import EditIcon from '../../images/pngwing.png'
+import EditIcon from '../../images/edit_profile_user_icon_148629.svg'
 import LittleArrowRight from '../../images/littlearrow.svg'
 import LittleArrowLeft from '../../images/littlearrowleft.svg'
 import DashIcon from '../../images/dashicon.svg'

@@ -1,5 +1,5 @@
 import PlusBtn from "../../images/plusbtn.svg";
-import { DashboardIngredients } from "./DashboardIngredients";
+import { DashboardIngredients } from "../../components/Ingredient_modal_card/IngredientsCardDash";
 
 export default ({ grow }) => {
   return (
