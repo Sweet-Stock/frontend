@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import SideBar from "./sidebar/SideBar";
 import DashBoardHome from "./dashboard_home/DashBoardHome";
 import DashBoardEmployee from "./dashboard_employees/DashBoardEmployee";
-import DashIngredients from "./dashboard_ingredients/DashIngredients";
 export default (props) => {
+  
   const [page, setPage] = useState(0);
   const [grow, setGrow] = useState(0);
 
@@ -52,9 +52,7 @@ export default (props) => {
           <SideBar
             name={dataStorage ? dataStorage.username : ""}
             setPage={setPage}
-            setGrow={setGrow}
           />
-          <DashIngredients grow={grow} />
         </>
       );
     case 4:

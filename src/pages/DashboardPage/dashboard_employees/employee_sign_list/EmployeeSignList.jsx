@@ -25,14 +25,14 @@ export default ({ grow, setPage }) => {
   const handleApprovedSubmit = () => {
     console.log(usersUUIDs)
     api
-      .patch('/employees/approve', usersUUIDs, config)
+      .post('/employees/approve', usersUUIDs, config)
       .then(res => {
         res.status === 204 && alert("Por favor selecione uma funcionário")
         setSendUUIDs(sendUUIDs + 1)
       })
       .catch(err => console.log(err))
   }
- 
+
   useEffect(() => {
     api
       .get('/employees/not-approved', config)
