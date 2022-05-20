@@ -5,8 +5,8 @@ import Edit from '../../images/edit.svg'
 import Delete from '../../images/delete.svg'
 import { propTypes } from 'react-bootstrap/esm/Image'
 import NoIngredients from '../../images/no_ingridient.png'
-import { CardIngredients } from '../../components/Ingredient_modal_card/CardIngredients'
-import { TextElement } from '../../components/ingredients_text_element/IngredientsTextElement'
+import { CardIngredients } from './CardIngredients'
+import { TextElement } from '../ingredients_text_element/IngredientsTextElement'
 
 export function DashboardIngredients({
   nameIngredient,
