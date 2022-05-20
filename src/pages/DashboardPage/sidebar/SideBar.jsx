@@ -22,6 +22,8 @@ export default props => {
 
   let dataStorage = sessionStorage.getItem('data')
 
+
+
   useEffect(() => {
     if (dataStorage == undefined || dataStorage == 'null') {
       navigate('/login')
@@ -85,12 +87,12 @@ export default props => {
         }
       >
         <div className="sidebar-photo-box">
-          <span className="relative">
+          <span className="relative bg-slate-50 rounded-full">
             <img
               className={
                 grow % 2 === 0 ? 'sidebar-photo-short' : 'sidebar-photo-long'
               }
-              src={dataStorage.image ? dataStorage?.image : ProfilePhoto}
+              src={JSON.parse(dataStorage).picture ? JSON.parse(dataStorage).picture : ProfilePhoto}
               alt=""
             />
             <label
