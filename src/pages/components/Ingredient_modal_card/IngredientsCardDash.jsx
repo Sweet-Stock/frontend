@@ -32,10 +32,11 @@ export function DashboardIngredients({
   return (
     <>
       <CardIngredients
-        nameIngredient="Leite"
-        valDate="11/12/2023"
-        brand="Nestle"
-        stockAmount="22"
+        nameIngredient={nameIngredient}
+        valDate={valDate}
+        brand={brand}
+        stockAmount={stockAmount}
+        image={image}
         onClick={openModal}
       />
 

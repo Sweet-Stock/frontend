@@ -92,7 +92,7 @@ export default props => {
               className={
                 grow % 2 === 0 ? 'sidebar-photo-short' : 'sidebar-photo-long'
               }
-              src={JSON.parse(dataStorage).picture ? JSON.parse(dataStorage).picture : ProfilePhoto}
+              src={JSON.parse(dataStorage)?.picture ? JSON.parse(dataStorage).picture : ProfilePhoto}
               alt=""
             />
             <label

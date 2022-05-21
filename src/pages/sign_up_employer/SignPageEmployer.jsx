@@ -30,7 +30,8 @@ export default () => {
     associateCode: inputCompanyName,
     telephoneNumber: inputPhone,
     email: inputEmail,
-    password: inputPassword
+    password: inputPassword,
+    picture: inputPhoto
   }
 
   const strengthTest = password => {
@@ -57,8 +58,8 @@ export default () => {
     password ? setPassword(false) : setPassword(true)
   }
 
-  const inputValidation = (condicion, inputId, titleId, divId) => {
-    if (condicion) {
+  const inputValidation = (condition, inputId, titleId, divId) => {
+    if (condition) {
       document.getElementById(inputId).animate(
         [
           {
@@ -207,7 +208,6 @@ export default () => {
               setIsDisabled(false)
               console.log(response)
               console.log(response.status)
-              sessionStorage.setItem('data', JSON.stringify(response.data))
               loginEmployee(response.status)
             })
             .catch(err => {
@@ -268,7 +268,7 @@ export default () => {
           <span></span>
         </span>
         <div className="sign-container">
-          <ProgressBar progressBar="short" img={signProgress} />
+          <span className="w-96"><ProgressBar progressBar="short" img={signProgress} /></span>
           <div className={signProgress === 0 ? '' : 'display-none'}>
             <h1 id="name_title_id">NOME</h1>
             <InputMask
@@ -333,17 +333,13 @@ export default () => {
             <input
               type="file"
               id="photo_input_id"
-              onChange={async (e) => {
+              onChange={async () => {
                 const file = document.querySelector('#photo_input_id').files[0]
                 const fileInBase64 = await toBase64(file)
 
-                let image = e.currentTarget.files[0]
-                const buffer = await image.arrayBuffer()
-                let byteArray = new Int8Array(buffer)
-
-                console.log(byteArray)
-                setInputPhoto(byteArray)
+                setInputPhoto(fileInBase64)
                 console.log(fileInBase64)
+
                 inputValidation(
                   !fileInBase64.startsWith('data:image/'),
                   'photo_input_id',

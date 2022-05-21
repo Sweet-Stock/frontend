@@ -21,6 +21,7 @@ export default () => {
   const [inputName, setInputName] = useState(null)
   const [inputFantasyName, setFantasyInputName] = useState(null)
   const [inputPhone, setInputPhone] = useState(null)
+  const [inputPhoto, setInputPhoto] = useState(null)
   const [inputCEO, setInputCEO] = useState(null)
   const [inputCPF, setInputCPF] = useState('')
   const [inputCNPJ, setInputCNPJ] = useState('')
@@ -52,7 +53,8 @@ export default () => {
       neighborhood: inputNeighbor
     },
     email: inputEmail,
-    password: inputPassword
+    password: inputPassword,
+    picture: inputPhoto
   }
 
   const requestViaCep = cep => {
@@ -344,6 +346,15 @@ export default () => {
         break
     }
   }
+
+  const toBase64 = file =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => resolve(reader.result)
+      reader.onerror = error => reject(error)
+    })
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -374,9 +385,11 @@ export default () => {
           <span></span>
         </span>
         <div className="sign-container">
-          <ProgressBar img={signProgress} />
+          <span className="w-[30rem]">
+            <ProgressBar img={signProgress} />
+          </span>
           <div className={signProgress === 0 ? '' : 'display-none'}>
-            <h1 id="name_title_id">NOME</h1>
+            <h1 id="name_title_id">NOME DA EMPRESA</h1>
             <InputMask
               id="name_input_id"
               onBlur={text => {
@@ -431,6 +444,30 @@ export default () => {
             />
             <p id="phone_div_id" className="message-alert">
               Número de celular inválido
+            </p>
+          </div>
+          <div className={signProgress === 0 ? '' : 'display-none'}>
+            <h1 id="photo_title_id">FOTO DE PERFIL</h1>
+            <input
+              type="file"
+              id="photo_input_id"
+              onChange={async () => {
+                const file = document.querySelector('#photo_input_id').files[0]
+                const fileInBase64 = await toBase64(file)
+
+                setInputPhoto(fileInBase64)
+                console.log(fileInBase64)
+
+                inputValidation(
+                  !fileInBase64.startsWith('data:image/'),
+                  'photo_input_id',
+                  'photo_title_id',
+                  'photo_div_id'
+                )
+              }}
+            />
+            <p id="photo_div_id" className="message-alert">
+              Formato de imagem invalido
             </p>
           </div>
           <div className={signProgress === 1 ? '' : 'display-none'}>
