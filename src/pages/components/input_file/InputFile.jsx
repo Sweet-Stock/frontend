@@ -1,36 +1,32 @@
-import React from 'react'
-import InputMask from 'react-input-mask'
+import React from "react";
+import InputMask from "react-input-mask";
 
 export default ({
   label,
-  mask,
-  alwaysShowMask,
   pattern,
   message,
   onChange,
   required,
   type,
   isNotVisible,
-  placeholder
+  placeholder,
 }) => {
   return (
     <div
       className={
         isNotVisible
-          ? 'invisible absolute -z-50'
-          : 'w-1/2 h-auto bg-main-500 flex gap-3 items-start flex-col '
+          ? "invisible absolute -z-50"
+          : "w-1/2 h-auto bg-main-500 flex gap-3 items-start flex-col "
       }
     >
-      <InputMask
-        id="input_id"
-        className="peer focus:invalid:text-red-600 invalid:border-red-500 invalid:animate-shake pl-2 pb-1 mr-0 h-8 w-full font-[Rubik] font-light text-2xl border-b-[1px] border-solid border-bg_neutral-500 rounded-none order-2 transition-colors text-white"
-        mask={mask ? mask : null}
+      <input
+        id="input_file_id"
+        className="peer focus:invalid:text-red-600 invalid:border-red-500 invalid:animate-shake pl-2 pb-12 mr-0 h-8  w-full font-[Rubik] font-light text-2xl border-b-[1px] border-solid border-bg_neutral-500 rounded-none order-2 transition-colors text-white"
         pattern={pattern ? pattern : null}
         required={required ? required : null}
-        alwaysShowMask={alwaysShowMask ? alwaysShowMask : null}
         onChange={onChange}
         placeholder={placeholder}
-        type={type ? type : 'input'}
+        type="file"
       />
 
       <h1 className="peer-invalid:text-red-600 peer-invalid:animate-shake text-2xl font-[Rubik] text-bg_neutral-500 order-1 transition-colors">
@@ -44,8 +40,8 @@ export default ({
         {message}
       </p>
     </div>
-  )
-}
+  );
+};
 /*
 <div>
             <h1 id="password_title_id">SENHA</h1>

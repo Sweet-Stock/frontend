@@ -9,6 +9,7 @@ import SignPageEmployer from './pages/sign_up_employer/SignPageEmployer'
 import LoginPage from './pages/login/LoginPage'
 import ErrorPage from './pages/error/ErrorPage'
 import ProviderFormPage from './pages/DashboardPage/dashboard_provider/dashboard_provider_pages/dashboard_provider_form_page/ProviderFormPage'
+import DashboardIngredientsForm from './pages/DashboardPage/dashboard_ingredients/dashboard_ingredients_form_page/DashboardIngredientsForm'
 
 export default () => {
   return (
@@ -17,7 +18,7 @@ export default () => {
         <Route path="/">
           <Route index element={<InstitucionalPage />} />
           <Route path="dashboard" element={<DashBoardPage />} />
-          <Route path="teste" element={<ProviderFormPage />} />
+          <Route path="teste" element={<DashboardIngredientsForm />} />
           <Route path="cadastro">
             <Route index element={<ChooseSignPage />} />
             <Route path="empresa" element={<SignPageCompany />} />
