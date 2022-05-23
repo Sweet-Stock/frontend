@@ -13,7 +13,7 @@ export default ({
   return (
     <button
       className="input-button flex justify-center items-center disabled:opacity-50"
-      type={type ? type : 'submit'}
+      type={type ? type : 'button'}
       onClick={onClick}
       onSubmit={onSubmit}
       disabled={isLoading || isDisabled}

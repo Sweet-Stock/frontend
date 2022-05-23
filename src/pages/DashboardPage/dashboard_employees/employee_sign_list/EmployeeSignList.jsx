@@ -44,7 +44,7 @@ export default ({ grow, setPage }) => {
         setSendUUIDs(sendUUIDs + 1)
       })
   }
- 
+
   useEffect(() => {
     api
       .get('/employees/not-approved', config)
@@ -84,9 +84,10 @@ export default ({ grow, setPage }) => {
         setIsHeadSelect={setIsHeadSelect}
       />
       <span className="w-fit overflow-y-auto overflow-x-hidden mb-12 font-[Rubik] font-thin text-sm">
-        {data.map(({ name, email, telephoneNumber, uuid }) => (
+        {data.map(({ picture, name, email, telephoneNumber, uuid }) => (
           <EmployeeListSign
             key={uuid}
+            icon={picture}
             isHeadSelect={isHeadSelect}
             isSelect={isSelect}
             setIsHeadSelect={setIsHeadSelect}
