@@ -14,7 +14,15 @@ export default ({ progressBar, img }) => {
           <img src={img === 1 ? IconAtive : IconInative} alt="" />
         </div>
       )
-      break
+    case 'medium':
+      return (
+        <div className="progress-bg">
+          <img className="progress-bg-bar" src={BgProgressBar} alt="" />
+          <img src={img === 0 ? IconAtive : IconInative} alt="" />
+          <img src={img === 1 ? IconAtive : IconInative} alt="" />
+          <img src={img === 2 ? IconAtive : IconInative} alt="" />
+        </div>
+      )
 
     default:
       return (

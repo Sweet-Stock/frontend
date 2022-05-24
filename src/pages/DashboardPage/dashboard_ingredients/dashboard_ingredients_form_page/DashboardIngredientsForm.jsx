@@ -11,6 +11,20 @@ export default ({ grow, setPage }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
 
+  const [inputName, setInputName] = useState(null);
+  const [inputBrand, setInputBrand] = useState(null);
+  const [inputProvider, setInputProvider] = useState(null);
+  const [inputBuyDate, setInputBuyDate] = useState(null);
+  const [inputValDate, setInputValDate] = useState(null);
+  const [inputStorage, setInputStorage] = useState(null);
+  const [inputMetric, setInputMetric] = useState(null);
+  const [inputValue, setInputValue] = useState(null);
+  const [inputPicture, setInputPicture] = useState(null);
+
+  const [progress, setProgress] = useState(0);
+
+  const [providers, setProviders] = useState([]);
+
   const isRefigerated = [
     {
       name: true,
@@ -58,14 +72,26 @@ export default ({ grow, setPage }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setIsRequired(true);
-    setIsLoading(true);
-    setIsDisabled(true);
+    if (progress !== 2) {
+      setProgress(progress + 1);
+      return;
+    }
 
-    await api.post("", config);
+    if (
+      inputName === null &&
+      inputBrand === null &&
+      inputBuyDate === null &&
+      inputMetric === null
+    ) {
+      setIsRequired(true);
+      setIsLoading(true);
+      setIsDisabled(true);
 
-    setIsLoading(false);
-    setIsDisabled(false);
+      await api.post("", config);
+
+      setIsLoading(false);
+      setIsDisabled(false);
+    }
   };
 
   const toBase64 = (file) =>
@@ -93,34 +119,34 @@ export default ({ grow, setPage }) => {
       <div className="w-full h-full flex justify-center items-center">
         <form
           onSubmit={handleSubmit}
-          className="h-[75vh] aspect-[4/3] rounded-2xl bg-main-500 flex justify-center items-center flex-col gap-1"
+          className="h-[80vh] aspect-[4/3] rounded-2xl bg-main-500 flex justify-center items-center flex-col gap-2"
         >
           <span className="w-2/5">
-            <ProgressBar progressBar="short" img={1} />
+            <ProgressBar progressBar="medium" img={progress} />
           </span>
           <Input
-            isNotVisible={true}
+            isNotVisible={progress !== 0}
             label="Nome"
             message="Por favor insira um nome"
-            onChange
+            onChange={(e) => setInputName(e.target.value)}
             required={isRequired}
           />
           <Input
-            isNotVisible={true}
+            isNotVisible={progress !== 0}
             label="Marca"
             message="Por favor insira uma marca"
-            onChange
+            onChange={(e) => setInputBrand(e.target.value)}
             required={isRequired}
           />
           <Input
-            isNotVisible={true}
+            isNotVisible={progress !== 0}
             label="Fornecedor"
             message="Por favor insira um fornecedor"
-            onChange
+            onChange={(e) => setInputProvider(e.target.value)}
             required={isRequired}
           />
           <Input
-            isNotVisible={true}
+            isNotVisible={progress !== 0}
             label="Data de compra"
             message="Por favor insira uma data"
             onChange
@@ -128,7 +154,7 @@ export default ({ grow, setPage }) => {
             type="date"
           />
           <Input
-            isNotVisible={true}
+            isNotVisible={progress !== 1}
             label="Data de validade"
             message="Por favor insira uma data"
             onChange
@@ -136,20 +162,21 @@ export default ({ grow, setPage }) => {
             type="date"
           />
           <Select
-            isNotVisible={false}
+            isNotVisible={progress !== 1}
             label="Armazenamento"
             onChange
             required={isRequired}
             options={isRefigerated}
           />
           <Select
-            isNotVisible={false}
+            isNotVisible={progress !== 1}
             label="Unidade de medida"
             onChange
             required={isRequired}
             options={unitMetrics}
           />
           <Input
+            isNotVisible={progress !== 2}
             label="Quantidade em estoque"
             pattern="^[0-9]*$"
             message="Por favor insira apenas números"
@@ -158,6 +185,7 @@ export default ({ grow, setPage }) => {
             placeholder="99999"
           />
           <Input
+            isNotVisible={progress !== 2}
             label="Valor"
             pattern="^[0-9]*$"
             message="Por favor insira apenas números"
@@ -166,12 +194,14 @@ export default ({ grow, setPage }) => {
             placeholder="99,99"
           />
           <InputFile
-            isNotVisible={false}
+            isNotVisible={progress !== 2}
             label="Imagem"
             message="Por favor insira uma Imagem"
             onChange={async () => {
               const file = document.querySelector("#input_file_id").files[0];
               const fileInBase64 = await toBase64(file);
+
+              setInputPicture(fileInBase64);
             }}
             required={isRequired}
           />
@@ -179,10 +209,16 @@ export default ({ grow, setPage }) => {
           <div className="flex w-1/2 justify-between items-center">
             <Button
               isDisabled={isDisabled}
-              onClick={() => setPage(true)}
+              onClick={() => {
+                progress === 0 ? setPage(true) : setProgress(progress - 1);
+              }}
               content="Voltar"
             />
-            <Button isLoading={isLoading} type="submit" content="Cadastrar" />
+            <Button
+              isLoading={isLoading}
+              type="submit"
+              content={progress === 2 ? "Cadastrar" : "Continuar"}
+            />
           </div>
         </form>
       </div>
