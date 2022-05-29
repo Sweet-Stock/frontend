@@ -6,7 +6,7 @@ import InputFile from '../../../components/input_file/InputFile'
 import ProgressBar from '../../../components/progress_bar/ProgressBar'
 import Select from '../../../components/select/Select'
 
-export default ({ grow, setPage }) => {
+export default ({ grow, setUpdate, uuid }) => {
   const [isRequired, setIsRequired] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isDisabled, setIsDisabled] = useState(false)
@@ -19,7 +19,6 @@ export default ({ grow, setPage }) => {
   const [inputStorage, setInputStorage] = useState(null)
   const [inputStorageType, setInputStorageType] = useState(null)
   const [inputMetric, setInputMetric] = useState(null)
-  const [inputValue, setInputValue] = useState(null)
   const [inputPicture, setInputPicture] = useState(null)
   const [inputQuantityPerUnit, setQuantityPerUnit] = useState(null)
   const [inputBuyValue, setInputBuyValue] = useState(null)
@@ -145,8 +144,8 @@ export default ({ grow, setPage }) => {
     setIsDisabled(true)
     setIsLoading(true)
     await api
-      .post('/ingredients', modal, config)
-      .then(() => setPage(true))
+      .put('/ingredients' + uuid, modal, config)
+      .then(() => setUpdate(true))
       .catch(err => console.error(err))
     setIsDisabled(false)
     setIsLoading(false)
@@ -170,7 +169,7 @@ export default ({ grow, setPage }) => {
     >
       <div className="w-[100%] flex flex-row gap-2 items-center justify-between pt-20 pr-10">
         <h1 className="text-secondary-500 font-bold font-[Rubik] text-5xl ">
-          Cadastro Ingrediente
+          Atualizar Ingrediente
         </h1>
         <div className="flex gap-2"></div>
       </div>
@@ -293,7 +292,7 @@ export default ({ grow, setPage }) => {
             <Button
               isDisabled={isDisabled}
               onClick={() => {
-                progress === 0 ? setPage(true) : setProgress(progress - 1)
+                progress === 0 ? setUpdate(true) : setProgress(progress - 1)
               }}
               content="Voltar"
             />

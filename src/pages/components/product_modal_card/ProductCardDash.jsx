@@ -3,27 +3,27 @@ import { Fragment, useState } from 'react'
 import Close from '../../images/Close.svg'
 import Edit from '../../images/edit.svg'
 import Delete from '../../images/delete.svg'
-import { propTypes } from 'react-bootstrap/esm/Image'
 import NoIngredients from '../../images/no_ingridient.png'
-import { CardIngredients } from './CardIngredients'
+import { CardProducts } from './CardProducts'
 import { TextElement } from '../ingredients_text_element/IngredientsTextElement'
 import api from '../../../services/api'
 
-export function DashboardIngredients({
+export function DashboardProductsModal({
   uuid,
-  nameIngredient,
-  valDate,
-  buyDate,
-  metric,
-  brand,
-  provider,
-  storageType,
-  stockAmount,
-  image,
+  name,
+  saleValue,
+  expirationDate,
+  dateInsert,
+  productedBy,
+  dateUpdate,
+  isRefigerated,
+  total,
+  unitMeasurement,
+  category,
+  picture,
   refresh,
   setRefresh,
-  setUpdate,
-  setUpdateUuid
+  setUpdate
 }) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -42,9 +42,9 @@ export function DashboardIngredients({
     }
   }
 
-  const handleDeleteIngredient = async () => {
+  const handleDeleteProduct = async () => {
     await api
-      .delete(`/ingredients/${uuid}`, config)
+      .delete('/products/' + uuid, config)
       .then(res => console.log(res.data))
       .catch(err => console.error(err))
     setIsOpen(false)
@@ -53,12 +53,12 @@ export function DashboardIngredients({
 
   return (
     <>
-      <CardIngredients
-        nameIngredient={nameIngredient}
-        valDate={valDate}
-        brand={brand}
-        stockAmount={stockAmount}
-        image={image}
+      <CardProducts
+        nameIngredient={name}
+        madeDate={dateInsert}
+        value={saleValue}
+        stockAmount={total}
+        image={picture}
         onClick={openModal}
       />
 
@@ -99,7 +99,7 @@ export function DashboardIngredients({
                       <div className="w-6/12 flex items-center justify-center">
                         <img
                           className="w-[40vw] rounded-xl"
-                          src={image ? image : NoIngredients}
+                          src={picture ? picture : NoIngredients}
                           alt=""
                         />
                       </div>
@@ -108,45 +108,37 @@ export function DashboardIngredients({
                           as="h3"
                           className="text-4xl font-bold leading-6 text-slate-800 flex justify-start items-start flex-col mt-4 mb-8"
                         >
-                          {nameIngredient}
+                          {name}
                         </Dialog.Title>
                         <div className="flex flex-col gap-1">
-                          <TextElement text="Marca:" content={brand} />
                           <TextElement
-                            text="Quantidade em estoque:"
-                            content={stockAmount}
+                            text="Quantidade em estoque: "
+                            content={total}
                           />
                           <TextElement
-                            text="Unidade de medida:"
-                            content={metric}
+                            text="Armazenamento: "
+                            content={
+                              isRefigerated ? 'Refrigerado' : 'Não Refrigerado'
+                            }
                           />
                           <TextElement
-                            text="Armazenamento:"
-                            content={storageType}
+                            text="Data de fabricação: "
+                            content={productedBy}
                           />
                           <TextElement
-                            text="Data de compra:"
-                            content={buyDate}
+                            text="Valor: "
+                            content={'R$' + saleValue?.toFixed(2)}
                           />
-                          <TextElement
-                            text="Data de Validade:"
-                            content={valDate}
-                          />
-                          <TextElement text="Fornecedor:" content={provider} />
-
                           <div className="flex flex-row mt-4">
                             <button
                               className="w-11 h-11 mr-4"
-                              onClick={handleDeleteIngredient}
+                              onClick={handleDeleteProduct}
                             >
                               <img src={Delete} alt="" />
                             </button>
                             <button
-                              onClick={() => {
-                                setUpdateUuid(uuid)
-                                setUpdate(false)
-                              }}
                               className="w-11 h-11 "
+                              onClick={() => setUpdate(false)}
                             >
                               <img src={Edit} alt="" />
                             </button>

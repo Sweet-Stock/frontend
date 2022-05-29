@@ -66,6 +66,7 @@ export default props => {
           <SideBar
             name={dataStorage ? dataStorage.username : ''}
             setPage={setPage}
+            setGrow={setGrow}
           />
           <DashboardProducts grow={grow} />
         </>
@@ -76,6 +77,7 @@ export default props => {
           <SideBar
             name={dataStorage ? dataStorage.username : ''}
             setPage={setPage}
+            setGrow={setGrow}
           />
         </>
       )
@@ -85,6 +87,7 @@ export default props => {
           <SideBar
             name={dataStorage ? dataStorage.username : ''}
             setPage={setPage}
+            setGrow={setGrow}
           />
         </>
       )

@@ -20,7 +20,15 @@ export default ({ grow, setPage }) => {
   const [inputValue, setInputValue] = useState(null)
   const [inputPicture, setInputPicture] = useState(null)
 
-  const modal = {}
+  const modal = {
+    name: inputName,
+    saleValue: inputValue,
+    productedBy: inputMadeDate,
+    isRefigerated: inputStorageType,
+    total: inputStorage,
+    unitMeasurement: inputMetric,
+    picture: inputPicture
+  }
 
   const [progress, setProgress] = useState(0)
 
@@ -92,7 +100,7 @@ export default ({ grow, setPage }) => {
           setIsRequired(true)
         } else {
           setIsRequired(false)
-          //sendProduct()
+          sendProduct()
         }
         break
 

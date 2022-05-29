@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import DashboardProductForm from './dashboard_products_form/DashboardProductForm'
+import DashboardProductsPage from './dashboard_products_page/DashboardProductsPage'
 
 export default ({ grow }) => {
   const [page, setPage] = useState(true)
   switch (page) {
     case true:
-      return <DashboardProductForm grow={grow} setPage={setPage} />
+      return <DashboardProductsPage grow={grow} setPage={setPage} />
     case false:
-      return <h1></h1>
+      return <DashboardProductForm grow={grow} setPage={setPage} />
 
     default:
       break
