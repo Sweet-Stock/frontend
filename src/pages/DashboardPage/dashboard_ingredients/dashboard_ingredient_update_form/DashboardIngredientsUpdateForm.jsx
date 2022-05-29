@@ -7,6 +7,9 @@ import ProgressBar from '../../../components/progress_bar/ProgressBar'
 import Select from '../../../components/select/Select'
 
 export default ({ grow, setUpdate, uuid }) => {
+  const [ingredientToUpdate, setIngredientToUpdate] = useState({})
+  //variável que está os dados do ingrediente
+
   const [isRequired, setIsRequired] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isDisabled, setIsDisabled] = useState(false)
@@ -24,6 +27,14 @@ export default ({ grow, setUpdate, uuid }) => {
   const [inputBuyValue, setInputBuyValue] = useState(null)
   const [inputStorageTemperature, setInputStorageTemperature] = useState(null)
   const [inputLotNumber, setInputLotNumber] = useState(null)
+
+  useEffect(() => {
+    //função que chama o ingrediente 
+    // api
+    //   .get(`/ingredients/${uuid}`, config)
+    //   .then(res => setIngredientToUpdate(res.data))
+    //   .catch(err => console.error(err))
+  }, [])
 
   const modal = {
     name: inputName,
