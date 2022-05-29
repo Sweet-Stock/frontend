@@ -7,8 +7,10 @@ import { propTypes } from 'react-bootstrap/esm/Image'
 import NoIngredients from '../../images/no_ingridient.png'
 import { CardIngredients } from './CardIngredients'
 import { TextElement } from '../ingredients_text_element/IngredientsTextElement'
+import api from '../../../services/api'
 
 export function DashboardIngredients({
+  uuid,
   nameIngredient,
   valDate,
   buyDate,
@@ -17,9 +19,11 @@ export function DashboardIngredients({
   provider,
   storageType,
   stockAmount,
-  image
+  image,
+  refresh,
+  setRefresh
 }) {
-  let [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
     setIsOpen(false)
@@ -27,6 +31,22 @@ export function DashboardIngredients({
 
   function openModal() {
     setIsOpen(true)
+  }
+
+  const config = {
+    headers: {
+      Authorization:
+        'Bearer ' + JSON.parse(sessionStorage.getItem('data')).token
+    }
+  }
+
+  const handleDeleteIngredient = async () => {
+    await api
+      .delete('/ingredients/' + uuid, config)
+      .then(res => console.log(res.data))
+      .catch(err => console.error(err))
+    setIsOpen(false)
+    setRefresh(!refresh)
   }
 
   return (
@@ -113,7 +133,10 @@ export function DashboardIngredients({
                           <TextElement text="Fornecedor:" content={provider} />
 
                           <div className="flex flex-row mt-4">
-                            <button className="w-11 h-11 mr-4">
+                            <button
+                              className="w-11 h-11 mr-4"
+                              onClick={handleDeleteIngredient}
+                            >
                               <img src={Delete} alt="" />
                             </button>
                             <button className="w-11 h-11 ">

@@ -4,6 +4,7 @@ import DashBoardHome from './dashboard_home/DashBoardHome'
 import DashBoardEmployee from './dashboard_employees/DashBoardEmployee'
 import DashIngredients from './dashboard_ingredients/DashIngredients'
 import DashBoardProvider from './dashboard_provider/DashBoardProvider'
+import DashboardProducts from './dashboard_products/DashboardProducts'
 export default props => {
   const [page, setPage] = useState(0)
   const [grow, setGrow] = useState(0)
@@ -66,6 +67,7 @@ export default props => {
             name={dataStorage ? dataStorage.username : ''}
             setPage={setPage}
           />
+          <DashboardProducts grow={grow} />
         </>
       )
     case 5:

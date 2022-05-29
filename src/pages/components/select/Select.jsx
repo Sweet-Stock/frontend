@@ -1,8 +1,6 @@
-import React from "react";
-import InputMask from "react-input-mask";
-
 export default ({
   label,
+  message,
   mask,
   alwaysShowMask,
   pattern,
@@ -11,14 +9,14 @@ export default ({
   type,
   isNotVisible,
   placeholder,
-  options,
+  options
 }) => {
   return (
     <div
       className={
         isNotVisible
-          ? "invisible absolute -z-50"
-          : "w-1/2 h-min bg-main-500 flex gap-3 items-start flex-col "
+          ? 'invisible absolute -z-50'
+          : 'w-1/2 h-min bg-main-500 flex gap-3 items-start flex-col '
       }
     >
       <select
@@ -30,15 +28,14 @@ export default ({
         alwaysShowMask={alwaysShowMask ? alwaysShowMask : null}
         onChange={onChange}
         placeholder={placeholder}
-        type={type ? type : "input"}
+        type={type ? type : 'input'}
       >
-        {options.map((options) => (
-          <option
-            className="bg-main-500"
-            key={options.name}
-            value={options.name}
-          >
-            {options.text}
+        <option className="bg-main-500" selected value={null} disabled>
+          Selecione uma opção
+        </option>
+        {options.map(({ key, value }) => (
+          <option className="bg-main-500" key={key} value={key}>
+            {value}
           </option>
         ))}
       </select>
@@ -46,9 +43,15 @@ export default ({
       <h1 className="peer-invalid:text-red-600 peer-invalid:animate-shake text-2xl font-[Rubik] text-bg_neutral-500 order-1 transition-colors">
         {label}
       </h1>
+      <p
+        id="text_div_id"
+        className="peer-invalid:text-red-600 peer-invalid:animate-shake peer-invalid:visible invisible transition-colors font-[Rubik] text-xl text-bg_neutral-500 font-light order-3 "
+      >
+        {message}
+      </p>
     </div>
-  );
-};
+  )
+}
 /*
 <div>
             <h1 id="password_title_id">SENHA</h1>

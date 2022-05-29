@@ -25,7 +25,7 @@ export default ({ grow, setPage }) => {
   useEffect(() => {
     api
       .get('/employees', config)
-      .then(res => setData(res.data))
+      .then(res => (res.data ? setData(res.data) : console.log(res.data)))
       .catch(err => console.log(err))
   }, [])
 

@@ -8,8 +8,8 @@ import SignAfterPage from './pages/sign_up_employer/sign_up_after_page/SignAfter
 import SignPageEmployer from './pages/sign_up_employer/SignPageEmployer'
 import LoginPage from './pages/login/LoginPage'
 import ErrorPage from './pages/error/ErrorPage'
-import ProviderFormPage from './pages/DashboardPage/dashboard_provider/dashboard_provider_pages/dashboard_provider_form_page/ProviderFormPage'
-import DashboardIngredientsForm from './pages/DashboardPage/dashboard_ingredients/dashboard_ingredients_form_page/DashboardIngredientsForm'
+import DashboardProductForm from './pages/DashboardPage/dashboard_products/dashboard_products_form/DashboardProductForm'
+import { IngredientsListBody } from './pages/components/product_select/ProductSelect'
 
 export default () => {
   return (
@@ -18,7 +18,6 @@ export default () => {
         <Route path="/">
           <Route index element={<InstitucionalPage />} />
           <Route path="dashboard" element={<DashBoardPage />} />
-          <Route path="teste" element={<DashboardIngredientsForm />} />
           <Route path="cadastro">
             <Route index element={<ChooseSignPage />} />
             <Route path="empresa" element={<SignPageCompany />} />
@@ -26,6 +25,8 @@ export default () => {
             <Route path="espera" element={<SignAfterPage />} />
           </Route>
           <Route path="login" element={<LoginPage />} />
+          <Route path="teste" element={<DashboardProductForm />} />
+          <Route path="teste2" element={<IngredientsListBody />} />
           <Route path="error">
             <Route path={'404'} element={<ErrorPage status={'404'} />} />
             <Route path={'500'} element={<ErrorPage status={'500'} />} />

@@ -3,6 +3,7 @@ import api from '../../../../services/api'
 import Button from '../../../components/button/Button'
 import Input from '../../../components/input/Input'
 import InputFile from '../../../components/input_file/InputFile'
+import { IngredientsListBody } from '../../../components/product_select/ProductSelect'
 import ProgressBar from '../../../components/progress_bar/ProgressBar'
 import Select from '../../../components/select/Select'
 
@@ -12,38 +13,16 @@ export default ({ grow, setPage }) => {
   const [isDisabled, setIsDisabled] = useState(false)
 
   const [inputName, setInputName] = useState(null)
-  const [inputBrand, setInputBrand] = useState(null)
-  const [inputProvider, setInputProvider] = useState(null)
-  const [inputBuyDate, setInputBuyDate] = useState(null)
-  const [inputValDate, setInputValDate] = useState(null)
+  const [inputMadeDate, setInputMadeDate] = useState(null)
   const [inputStorage, setInputStorage] = useState(null)
   const [inputStorageType, setInputStorageType] = useState(null)
   const [inputMetric, setInputMetric] = useState(null)
   const [inputValue, setInputValue] = useState(null)
   const [inputPicture, setInputPicture] = useState(null)
-  const [inputQuantityPerUnit, setQuantityPerUnit] = useState(null)
-  const [inputBuyValue, setInputBuyValue] = useState(null)
-  const [inputStorageTemperature, setInputStorageTemperature] = useState(null)
-  const [inputLotNumber, setInputLotNumber] = useState(null)
 
-  const modal = {
-    name: inputName,
-    unitMeasurement: inputMetric,
-    numberUnits: inputStorage,
-    quantityPerUnit: inputQuantityPerUnit,
-    expirationDate: inputValDate,
-    storageTemperature: inputStorageTemperature,
-    isRefigerated: inputStorageType,
-    buyValue: inputBuyValue,
-    provideCode: inputProvider,
-    numberLot: inputLotNumber,
-    brand: inputBrand,
-    picture: inputPicture
-  }
+  const modal = {}
 
   const [progress, setProgress] = useState(0)
-
-  const [providers, setProviders] = useState([])
 
   const isRefrigerated = [
     {
@@ -84,23 +63,16 @@ export default ({ grow, setPage }) => {
   const config = {
     headers: {
       Authorization:
-        'Bearer ' + JSON.parse(sessionStorage.getItem('data')).token
+        'Bearer ' + JSON.parse(sessionStorage.getItem('data'))?.token
     }
   }
-
-  useEffect(() => {
-    api
-      .get('/providers/providers-uuid', config)
-      .then(res => setProviders(res.data))
-      .catch(err => console.error(err))
-  }, [])
 
   const handleSubmit = async e => {
     e.preventDefault()
 
     switch (progress) {
       case 0:
-        if (inputBrand == null || inputStorage == null) {
+        if (false) {
           setIsRequired(true)
         } else {
           setIsRequired(false)
@@ -108,7 +80,7 @@ export default ({ grow, setPage }) => {
         }
         break
       case 1:
-        if (inputBuyDate == null || inputValDate == null) {
+        if (false) {
           setIsRequired(true)
         } else {
           setIsRequired(false)
@@ -116,23 +88,11 @@ export default ({ grow, setPage }) => {
         }
         break
       case 2:
-        if (inputValue == null || inputBuyValue == null) {
+        if (false) {
           setIsRequired(true)
         } else {
           setIsRequired(false)
-          setProgress(progress + 1)
-        }
-        break
-      case 3:
-        if (
-          inputQuantityPerUnit == null ||
-          inputStorageTemperature == null ||
-          inputLotNumber == null
-        ) {
-          setIsRequired(true)
-        } else {
-          setIsRequired(false)
-          sendIngredient()
+          //sendProduct()
         }
         break
 
@@ -141,11 +101,11 @@ export default ({ grow, setPage }) => {
     }
   }
 
-  const sendIngredient = async () => {
+  const sendProduct = async () => {
     setIsDisabled(true)
     setIsLoading(true)
     await api
-      .post('/ingredients', modal, config)
+      .post('/products', modal, config)
       .then(() => setPage(true))
       .catch(err => console.error(err))
     setIsDisabled(false)
@@ -170,14 +130,14 @@ export default ({ grow, setPage }) => {
     >
       <div className="w-[100%] flex flex-row gap-2 items-center justify-between pt-20 pr-10">
         <h1 className="text-secondary-500 font-bold font-[Rubik] text-5xl ">
-          Cadastro Ingrediente
+          Cadastro Produto
         </h1>
         <div className="flex gap-2"></div>
       </div>
       <div className="w-full h-full flex justify-center items-center">
         <form className="h-[80vh] aspect-[4/3] rounded-2xl bg-main-500 flex justify-center items-center flex-col gap-2">
           <span className="w-2/5">
-            <ProgressBar img={progress} />
+            <ProgressBar progressBar="medium" img={progress} />
           </span>
           <Input
             isNotVisible={progress !== 0}
@@ -186,23 +146,31 @@ export default ({ grow, setPage }) => {
             onChange={e => setInputName(e.target.value)}
             required={isRequired}
           />
-          <Input
-            isNotVisible={progress !== 0}
-            label="Marca"
-            message="Por favor insira uma marca"
-            onChange={e => setInputBrand(e.target.value)}
-            required={isRequired}
-          />
 
           <Select
             isNotVisible={progress !== 0}
-            label="Fornecedor"
-            onChange={e => setInputProvider(e.target.value)}
+            label="Armazenamento"
+            onChange={e => setInputStorageType(e.target.value)}
             required={isRequired}
-            options={providers}
+            options={isRefrigerated}
+          />
+          <Select
+            isNotVisible={progress !== 0}
+            label="Unidade de medida"
+            onChange={e => setInputMetric(e.target.value)}
+            required={isRequired}
+            options={unitMetrics}
           />
           <Input
-            isNotVisible={progress !== 0}
+            isNotVisible={progress !== 1}
+            label="Data de fabricação"
+            message="Por favor insira uma data"
+            onChange={e => setInputMadeDate(e.target.value)}
+            required={isRequired}
+            type="date"
+          />
+          <Input
+            isNotVisible={progress !== 1}
             label="Quantidade em estoque"
             pattern="^[0-9]*$"
             message="Por favor insira apenas números"
@@ -210,57 +178,8 @@ export default ({ grow, setPage }) => {
             required={isRequired}
             placeholder="99999"
           />
-          <Input
-            isNotVisible={progress !== 1}
-            label="Data de compra"
-            message="Por favor insira uma data"
-            onChange={e => setInputBuyDate(e.target.value)}
-            required={isRequired}
-            type="date"
-          />
-          <Input
-            isNotVisible={progress !== 1}
-            label="Data de validade"
-            message="Por favor insira uma data"
-            onChange={e => setInputValDate(e.target.value)}
-            required={isRequired}
-            type="date"
-          />
-          <Select
-            isNotVisible={progress !== 1}
-            label="Armazenamento"
-            onChange={e => setInputStorageType(e.target.value)}
-            required={isRequired}
-            options={isRefrigerated}
-          />
-          <Select
-            isNotVisible={progress !== 1}
-            label="Unidade de medida"
-            onChange={e => setInputMetric(e.target.value)}
-            required={isRequired}
-            options={unitMetrics}
-          />
-          <Input
-            isNotVisible={progress !== 2}
-            label="Valor"
-            pattern="^-?(?:0|[1-9][0-9]*)\.?[0-9]+$"
-            message="Por favor insira apenas números"
-            onChange={e => setInputValue(e.target.value)}
-            required={isRequired}
-            placeholder="99,99"
-          />
-          <Input
-            isNotVisible={progress !== 2}
-            label="Valor compra"
-            pattern="^-?(?:0|[1-9][0-9]*)\.?[0-9]+$"
-            message="Por favor insira apenas números"
-            onChange={e => setInputBuyValue(e.target.value)}
-            required={isRequired}
-            placeholder="99,99"
-          />
-
           <InputFile
-            isNotVisible={progress !== 2}
+            isNotVisible={progress !== 1}
             label="Imagem"
             message="Por favor insira uma Imagem"
             onChange={async () => {
@@ -272,32 +191,15 @@ export default ({ grow, setPage }) => {
             }}
           />
           <Input
-            isNotVisible={progress !== 3}
-            label="Quantidade por unidade"
-            pattern="^[0-9]*$"
+            isNotVisible={progress !== 1}
+            label="Valor"
+            pattern="^-?(?:0|[1-9][0-9]*)\.?[0-9]+$"
             message="Por favor insira apenas números"
-            onChange={e => setQuantityPerUnit(e.target.value)}
+            onChange={e => setInputValue(e.target.value)}
             required={isRequired}
             placeholder="99,99"
           />
-          <Input
-            isNotVisible={progress !== 3}
-            label="Numero de Lote"
-            message="Por favor insira um número de lote"
-            onChange={e => setInputLotNumber(e.target.value)}
-            required={isRequired}
-            placeholder="99"
-          />
-
-          <Input
-            isNotVisible={progress !== 3}
-            label="Temperatura de armazenamento"
-            message="Por favor insira uma temperatura"
-            onChange={e => setInputStorageTemperature(e.target.value)}
-            required={isRequired}
-            placeholder="99,99"
-          />
-
+          <IngredientsListBody isVisible={progress === 2} />
           <div className="flex w-1/2 justify-between items-center">
             <Button
               isDisabled={isDisabled}
@@ -308,7 +210,7 @@ export default ({ grow, setPage }) => {
             />
             <Button
               isLoading={isLoading}
-              content={progress === 3 ? 'Cadastrar' : 'Continuar'}
+              content={progress === 2 ? 'Cadastrar' : 'Continuar'}
               onClick={handleSubmit}
             />
           </div>

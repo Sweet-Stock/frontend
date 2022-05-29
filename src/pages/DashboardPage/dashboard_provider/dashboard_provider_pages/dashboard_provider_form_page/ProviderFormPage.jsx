@@ -12,6 +12,19 @@ export default ({ grow, setPage }) => {
   const [isRequired, setIsRequired] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isDisabled, setIsDisabled] = useState(false)
+  const [inputName, setInputName] = useState(null)
+  const [inputCnpj, setInputCnpj] = useState(null)
+  const [inputEmail, setInputEmail] = useState(null)
+  const [inputTelefone, setInputTelefone] = useState(null)
+  const [inputArrive, setInputArrive] = useState(null)
+
+  const modal = {
+    name: inputName,
+    cnpj: inputCnpj,
+    email: inputEmail,
+    telephone: inputTelefone,
+    averageTimeForDeliveryInDays: inputArrive
+  }
 
   const config = {
     headers: {
@@ -27,10 +40,11 @@ export default ({ grow, setPage }) => {
     setIsLoading(true)
     setIsDisabled(true)
 
-    await api.post('', config)
+    await api.post('/providers', modal, config)
 
     setIsLoading(false)
     setIsDisabled(false)
+    setPage(true)
   }
 
   return (
@@ -55,7 +69,7 @@ export default ({ grow, setPage }) => {
           <Input
             label="Nome"
             message="Por favor insira um nome"
-            onChange
+            onChange={e => setInputName(e.target.value)}
             required={isRequired}
           />
           <Input
@@ -63,7 +77,7 @@ export default ({ grow, setPage }) => {
             mask="99.999.999/9999-99"
             pattern="(^[0-9]{2,3}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}$)"
             message="Por favor insira um CNPJ válido"
-            onChange
+            onChange={e => setInputCnpj(e.target.value)}
             required={isRequired}
             placeholder="00.000.000/0000-00"
           />
@@ -71,24 +85,24 @@ export default ({ grow, setPage }) => {
             label="Email"
             pattern="^[a-z0-9.]+@[a-z0-9]+.[a-z]+(.[a-z]+)?$"
             message="Por favor insira um email válido"
-            onChange
+            onChange={e => setInputEmail(e.target.value)}
             required={isRequired}
             placeholder="email@email.com"
           />
           <Input
             label="Telefone"
             mask="99 99999-9999"
-            pattern="^[1-9]{2} [1-9]{0,1}[0-9]{1}[0-9]{3}-[0-9]{4}$"
+            pattern=""
             message="Por favor insira um número de telefone válido"
-            onChange
+            onChange={e => setInputTelefone(e.target.value)}
             required={isRequired}
             placeholder="00 00000-0000"
           />
           <Input
             label="Dias p/ Entrega"
-            pattern="[1-9]{1,2}"
+            pattern="[0-9]{1,2}"
             message="Por favor insira um número válido"
-            onChange
+            onChange={e => setInputArrive(e.target.value)}
             required={isRequired}
             placeholder="99"
           />

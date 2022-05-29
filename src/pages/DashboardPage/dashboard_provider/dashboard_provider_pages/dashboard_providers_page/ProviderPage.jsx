@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import api from '../../../../../services/api'
 import Button from '../../../../components/button/Button'
 import PlusBtn from '../../../../images/plusbtn.svg'
 import {
@@ -7,6 +8,22 @@ import {
 } from '../../dashboard_providers_list/ProvidersList'
 
 export default ({ grow, setPage }) => {
+  const [data, setData] = useState([])
+
+  const config = {
+    headers: {
+      Authorization:
+        'Bearer ' + JSON.parse(sessionStorage.getItem('data')).token
+    }
+  }
+
+  useEffect(() => {
+    api
+      .get('/providers', config)
+      .then(res => (res.data ? setData(res.data) : console.log(res.data)))
+      .catch(err => console.error(err))
+  }, [])
+
   return (
     <section
       className={
@@ -30,26 +47,25 @@ export default ({ grow, setPage }) => {
       </div>
       <ProviderListHead />
       <span className="w-fit overflow-y-auto overflow-x-hidden mb-12 font-[Rubik] font-thin text-sm">
-        <ProviderList />
-        <ProviderList />
-        <ProviderList />
-        <ProviderList />
-        <ProviderList />
-        <ProviderList />
-        <ProviderList />
-        <ProviderList />
-        <ProviderList />
-        <ProviderList />
-        <ProviderList />
-        <ProviderList />
-        <ProviderList />
-        <ProviderList />
-        <ProviderList />
-        <ProviderList />
-        <ProviderList />
-        <ProviderList />
-        <ProviderList />
-        <ProviderList />
+        {data.map(
+          ({
+            uuid,
+            name,
+            cnpj,
+            email,
+            telephone,
+            averageTimeForDeliveryInDays
+          }) => (
+            <ProviderList
+              key={uuid}
+              name={name}
+              cnpj={cnpj}
+              email={email}
+              telephone={telephone}
+              averageTimeForDeliveryInDays={averageTimeForDeliveryInDays}
+            />
+          )
+        )}
       </span>
     </section>
   )

@@ -15,7 +15,7 @@ export const ProviderListHead = ({ classProperty }) => {
           <td className="w-60 flex items-center justify-start p-5 text-2xl border-b-2 border-solid border-gray-300">
             Telefone
           </td>
-          <td className="w-48 flex items-center justify-start p-5 text-2xl border-b-2 border-solid border-gray-300">
+          <td className="w-52 flex items-center justify-start p-5 text-2xl border-b-2 border-solid border-gray-300">
             Dias p/ Entrega
           </td>
         </tr>
@@ -24,25 +24,31 @@ export const ProviderListHead = ({ classProperty }) => {
   )
 }
 
-export const ProviderList = ({ cnpj, name, email, phoneNumber,dayArrive }) => {
+export const ProviderList = ({
+  name,
+  cnpj,
+  email,
+  telephone,
+  averageTimeForDeliveryInDays
+}) => {
   return (
     <table>
       <tbody>
         <tr className="flex flex-row">
           <td className="w-80 flex items-center justify-start p-5 text-2xl text-se border-b-2 border-solid border-gray-300">
-            Arlene McCoy
+            {name}
           </td>
           <td className="w-80 flex items-center justify-start p-5 text-2xl border-b-2 border-solid border-gray-300">
-            72.761.860/0001-59
+            {cnpj}
           </td>
           <td className="w-80 flex items-center justify-start p-5 text-2xl border-b-2 border-solid border-gray-300">
-            email@email.com.br
+            {email}
           </td>
           <td className="w-60 flex items-center justify-start p-5 text-2xl border-b-2 border-solid border-gray-300">
-            (70) 4555-0127
+            {telephone}
           </td>
           <td className="w-48 flex items-center justify-start p-5 text-2xl border-b-2 border-solid border-gray-300">
-            10
+            {averageTimeForDeliveryInDays}
           </td>
         </tr>
       </tbody>
