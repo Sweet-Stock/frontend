@@ -203,7 +203,7 @@ export default ({ grow, setPage }) => {
           />
           <Input
             isNotVisible={progress !== 0}
-            label="Quantidade em estoque"
+            label="Quantidade de caixas"
             pattern="^[0-9]*$"
             message="Por favor insira apenas números"
             onChange={e => setInputStorage(e.target.value)}
@@ -264,7 +264,7 @@ export default ({ grow, setPage }) => {
           />
           <Input
             isNotVisible={progress !== 3}
-            label="Quantidade por unidade"
+            label="Quantidade por caixa"
             pattern="^[0-9]*$"
             message="Por favor insira apenas números"
             onChange={e => setQuantityPerUnit(e.target.value)}

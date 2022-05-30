@@ -3,7 +3,6 @@ import { Fragment, useState } from 'react'
 import Close from '../../images/Close.svg'
 import Edit from '../../images/edit.svg'
 import Delete from '../../images/delete.svg'
-import { propTypes } from 'react-bootstrap/esm/Image'
 import NoIngredients from '../../images/no_ingridient.png'
 import { CardIngredients } from './CardIngredients'
 import { TextElement } from '../ingredients_text_element/IngredientsTextElement'
@@ -98,7 +97,7 @@ export function DashboardIngredients({
                     <div className="flex flex-row gap-16 ">
                       <div className="w-6/12 aspect-square flex items-center justify-center">
                         <img
-                          className="h-full rounded-xl"
+                          className="h-full w-auto rounded-xl"
                           src={image ? image : NoIngredients}
                           alt=""
                         />

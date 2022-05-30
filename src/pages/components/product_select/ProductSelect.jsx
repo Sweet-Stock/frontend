@@ -55,7 +55,10 @@ export const IngredientsList = ({ name, amount, uuid }) => {
       <div className="flex flex-col">
         <label className="text-lg font-normal">Quantidade Utilizada</label>
         <input
-          className="bg-bg_neutral-500 border-b-2 text-main-500 border-solid border-main-500 invalid:bg-black"
+          type="number"
+          max={`${amount}`}
+          min="0"
+          className="bg-bg_neutral-500 border-b-2 text-main-500 border-solid border-main-500 invalid:border-red-500"
           onChange={e => setInputValue(e.target.value)}
         />
       </div>

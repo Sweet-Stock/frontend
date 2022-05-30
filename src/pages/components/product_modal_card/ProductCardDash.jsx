@@ -1,7 +1,9 @@
 import { Dialog, Transition } from '@headlessui/react'
+import Input from '../../components/input/Input'
 import { Fragment, useState } from 'react'
 import Close from '../../images/Close.svg'
-import Edit from '../../images/edit.svg'
+import MarketKart from '../../images/marketKart.svg'
+import OkBtn from '../../images/okbtn.svg'
 import Delete from '../../images/delete.svg'
 import NoIngredients from '../../images/no_ingridient.png'
 import { CardProducts } from './CardProducts'
@@ -26,6 +28,8 @@ export function DashboardProductsModal({
   setUpdate
 }) {
   const [isOpen, setIsOpen] = useState(false)
+  const [isMarketOpen, setIsMarketOpen] = useState(false)
+  const [amountUsed, setAmountUsed] = useState(false)
 
   function closeModal() {
     setIsOpen(false)
@@ -45,6 +49,14 @@ export function DashboardProductsModal({
   const handleDeleteProduct = async () => {
     await api
       .delete('/products/' + uuid, config)
+      .then(res => console.log(res.data))
+      .catch(err => console.error(err))
+    setIsOpen(false)
+    setRefresh(!refresh)
+  }
+  const handleAmountUsed = async () => {
+    await api
+      .put(`/products/${amountUsed}/${uuid}`, config)
       .then(res => console.log(res.data))
       .catch(err => console.error(err))
     setIsOpen(false)
@@ -98,7 +110,7 @@ export function DashboardProductsModal({
                     <div className="flex flex-row gap-16 ">
                       <div className="w-6/12 aspect-square flex items-center justify-center">
                         <img
-                          className="h-full rounded-xl"
+                          className="h-full w-auto rounded-xl"
                           src={picture ? picture : NoIngredients}
                           alt=""
                         />
@@ -129,7 +141,7 @@ export function DashboardProductsModal({
                             text="Valor: "
                             content={'R$' + saleValue?.toFixed(2)}
                           />
-                          <div className="flex flex-row mt-4">
+                          <div className="flex flex-row my-4">
                             <button
                               className="w-11 h-11 mr-4"
                               onClick={handleDeleteProduct}
@@ -138,9 +150,37 @@ export function DashboardProductsModal({
                             </button>
                             <button
                               className="w-11 h-11 "
-                              onClick={() => setUpdate(false)}
+                              onClick={() => setIsMarketOpen(!isMarketOpen)}
                             >
-                              <img src={Edit} alt="" />
+                              <img src={MarketKart} alt="" />
+                            </button>
+                          </div>
+                          <div
+                            className={
+                              isMarketOpen
+                                ? "'visible flex items-center justify-between'"
+                                : 'invisible'
+                            }
+                          >
+                            <input
+                              className="bg-zinc-50 border-b-2 text-main-500 border-solid border-main-500 invalid:border-red-500"
+                              placeholder="Quantidade usada"
+                              type="number"
+                              max={`${total}`}
+                              min="0"
+                              onChange={e =>
+                                setAmountUsed(e.target.value.value)
+                              }
+                            />
+                            <button
+                              className="w-11 h-11 mr-4"
+                              onClick={() =>
+                                amountUsed !== null
+                                  ? handleAmountUsed()
+                                  : alert('por favor insira uma quantidade')
+                              }
+                            >
+                              <img src={OkBtn} alt="" />
                             </button>
                           </div>
                         </div>
