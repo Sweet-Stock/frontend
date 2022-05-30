@@ -44,13 +44,13 @@ export default ({ grow, setPage }) => {
               <img
                 className="cursor-pointer h-16"
                 src={PlusBtn}
-                onClick={() => setPage(false)}
+                onClick={() => setPage('form')}
                 alt=""
               />{" "}
               <img
                 className="cursor-pointer h-16"
                 src={UploadBtn}
-                onClick={() => setPage(false)}
+                onClick={() => setPage('upload')}
                 alt=""
               />{" "}
             </div>

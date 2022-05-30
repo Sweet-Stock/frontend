@@ -146,7 +146,7 @@ export default ({ grow, setPage }) => {
     setIsLoading(true)
     await api
       .post('/ingredients', modal, config)
-      .then(() => setPage(true))
+      .then(() => setPage('page'))
       .catch(err => console.error(err))
     setIsDisabled(false)
     setIsLoading(false)
@@ -293,7 +293,7 @@ export default ({ grow, setPage }) => {
             <Button
               isDisabled={isDisabled}
               onClick={() => {
-                progress === 0 ? setPage(true) : setProgress(progress - 1)
+                progress === 0 ? setPage('page') : setProgress(progress - 1)
               }}
               content="Voltar"
             />

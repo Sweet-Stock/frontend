@@ -4,15 +4,19 @@ import { useState, useEffect } from 'react'
 import api from '../../../services/api'
 import DashBoardIngredientsPage from './dashboard_ingredients_cards_page/DashBoardIngredientsPage'
 import DashboardIngredientsForm from './dashboard_ingredients_form_page/DashboardIngredientsForm'
+import DashboardIngredientsUpdateForm from './dashboard_ingredient_update_form/DashboardIngredientsUpdateForm'
+import UploadIngredients from './dashboard_ingredient_upload/UploadIngredients'
 
 export default ({ grow }) => {
-  const [page, setPage] = useState(true)
+  const [page, setPage] = useState('page')
 
   switch (page) {
-    case true:
+    case 'page':
       return <DashBoardIngredientsPage setPage={setPage} grow={grow} />
-    case false:
+    case 'form':
       return <DashboardIngredientsForm setPage={setPage} grow={grow} />
+    case 'upload':
+      return <UploadIngredients setPage={setPage} grow={grow} />
 
     default:
       break
