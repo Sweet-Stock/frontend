@@ -18,7 +18,7 @@ export default (props) => {
   const downloadTxtFile = async () => {
     await handle();
     const element = document.createElement("a");
-    const file = new Blob(["dcfvgbhnjmkhdfdvgybdjhdbdusddgdhdahdh"], {
+    const file = new Blob([await handle()], {
       type: "text/plain",
     });
     element.href = URL.createObjectURL(file);
