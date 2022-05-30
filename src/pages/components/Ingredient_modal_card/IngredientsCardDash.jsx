@@ -94,15 +94,15 @@ export function DashboardIngredients({
                     >
                       <img className="w-[2vw] " src={Close} alt="" />
                     </button>
-                    <div className="flex flex-row gap-16 ">
+                    <div className="flex w-full flex-row gap-16 ">
                       <div className="w-6/12 aspect-square flex items-center justify-center">
                         <img
-                          className="h-full w-auto rounded-xl"
+                          className="h-auto w-full rounded-xl"
                           src={image ? image : NoIngredients}
                           alt=""
                         />
                       </div>
-                      <div className="w-auto flex flex-col items-start justify-center">
+                      <div className="w-6/12 flex flex-col items-start justify-center">
                         <Dialog.Title
                           as="h3"
                           className="text-4xl font-bold leading-6 text-slate-800 flex justify-start items-start flex-col mt-4 mb-8"

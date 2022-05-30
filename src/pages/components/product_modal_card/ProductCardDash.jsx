@@ -29,7 +29,7 @@ export function DashboardProductsModal({
 }) {
   const [isOpen, setIsOpen] = useState(false)
   const [isMarketOpen, setIsMarketOpen] = useState(false)
-  const [amountUsed, setAmountUsed] = useState(false)
+  const [amountUsed, setAmountUsed] = useState()
 
   function closeModal() {
     setIsOpen(false)
@@ -163,14 +163,12 @@ export function DashboardProductsModal({
                             }
                           >
                             <input
-                              className="bg-zinc-50 border-b-2 text-main-500 border-solid border-main-500 invalid:border-red-500"
+                              className="bg-zinc-50 border-b-2 text-main-500 border-solid border-main-500 focus:invalid:text-red-500 invalid:border-red-500 invalid:animate-shake"
                               placeholder="Quantidade usada"
                               type="number"
                               max={`${total}`}
                               min="0"
-                              onChange={e =>
-                                setAmountUsed(e.target.value.value)
-                              }
+                              onChange={e => setAmountUsed(e.target.value)}
                             />
                             <button
                               className="w-11 h-11 mr-4"

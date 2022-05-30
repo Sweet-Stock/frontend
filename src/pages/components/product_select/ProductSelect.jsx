@@ -58,7 +58,7 @@ export const IngredientsList = ({ name, amount, uuid }) => {
           type="number"
           max={`${amount}`}
           min="0"
-          className="bg-bg_neutral-500 border-b-2 text-main-500 border-solid border-main-500 invalid:border-red-500"
+          className="bg-bg_neutral-500 border-b-2 text-main-500 border-solid border-main-500 focus:invalid:text-red-500 invalid:border-red-500 invalid:animate-shake"
           onChange={e => setInputValue(e.target.value)}
         />
       </div>

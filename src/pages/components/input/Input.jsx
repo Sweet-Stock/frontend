@@ -25,7 +25,7 @@ export default ({
       <InputMask
         defaultValue={defaultValue ?? null}
         id="input_id"
-        className="peer focus:invalid:text-red-600 invalid:border-red-500 invalid:animate-shake pl-2 pb-1 mr-0 h-8 w-full font-[Rubik] font-light text-2xl border-b-[1px] border-solid border-bg_neutral-500 rounded-none order-2 transition-colors text-white"
+        className="peer focus:invalid:text-red-500 invalid:border-red-500 invalid:animate-shake pl-2 pb-1 mr-0 h-8 w-full font-[Rubik] font-light text-2xl border-b-[1px] border-solid border-bg_neutral-500 rounded-none order-2 transition-colors text-white"
         mask={mask ? mask : null}
         pattern={pattern ? pattern : null}
         required={required ? required : null}
