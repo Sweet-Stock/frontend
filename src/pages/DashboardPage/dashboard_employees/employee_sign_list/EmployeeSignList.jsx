@@ -11,6 +11,9 @@ export default ({ grow, setPage }) => {
   const [isHeadSelect, setIsHeadSelect] = useState(false)
   const [data, setData] = useState([])
   const [sendUUIDs, setSendUUIDs] = useState(0)
+  const [isLoading, setIsLoading] = useState(false)
+  const [isDisabled, setIsDisabled] = useState(false)
+
   const usersUUIDs = {
     uuids: []
   }
@@ -22,15 +25,24 @@ export default ({ grow, setPage }) => {
     }
   }
 
-  const handleApprovedSubmit = () => {
-    console.log(usersUUIDs)
-    api
-      .post('/employees/approve', usersUUIDs, config)
+  const handleApprovedSubmit = async () => {
+    setIsLoading(true)
+    setIsDisabled(true)
+    await api
+      .put('/employees', usersUUIDs, config)
       .then(res => {
-        res.status === 204 && alert("Por favor selecione uma funcionário")
+        res.status === 204 && alert('Por favor selecione uma funcionário')
+        console.log(res)
+        setIsLoading(false)
+        setIsDisabled(false)
         setSendUUIDs(sendUUIDs + 1)
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        setIsLoading(false)
+        setIsDisabled(false)
+        console.log(err)
+        setSendUUIDs(sendUUIDs + 1)
+      })
   }
 
   useEffect(() => {
@@ -47,13 +59,18 @@ export default ({ grow, setPage }) => {
           : 'relative w-[100%] h-[100vh] pl-80 transition-all ease-in-out duration-500 flex flex-col items-center'
       }
     >
-      <div className="w-[100%] flex flex-row gap-2 items-center justify-around pt-20">
+      <div className="w-[100%] flex flex-row gap-2 items-center justify-between pt-20 pr-10">
         <h1 className="text-secondary-500 font-bold font-[Rubik] text-5xl ">
           Funcionários para aprovação
         </h1>
         <div className="flex gap-2">
-          <Button onClick={() => setPage(true)} content="Voltar" />
           <Button
+            isDisabled={isDisabled}
+            onClick={() => setPage(true)}
+            content="Voltar"
+          />
+          <Button
+            isLoading={isLoading}
             onClick={() => handleApprovedSubmit(usersUUIDs)}
             content="Aceitar"
           />
@@ -67,9 +84,10 @@ export default ({ grow, setPage }) => {
         setIsHeadSelect={setIsHeadSelect}
       />
       <span className="w-fit overflow-y-auto overflow-x-hidden mb-12 font-[Rubik] font-thin text-sm">
-        {data.map(({ name, email, telephoneNumber, uuid }) => (
+        {data.map(({ picture, name, email, telephoneNumber, uuid }) => (
           <EmployeeListSign
             key={uuid}
+            icon={picture}
             isHeadSelect={isHeadSelect}
             isSelect={isSelect}
             setIsHeadSelect={setIsHeadSelect}

@@ -27,17 +27,19 @@ export default () => {
             <Route path="espera" element={<SignAfterPage />} />
           </Route>
           <Route path="login" element={<LoginPage />} />
+          <Route path="teste" element={<ExpiredIngredients />} />
+          <Route path="teste2" element={<IngredientsListBody />} />
           <Route path="error">
-            <Route path={'404'} element={<ErrorPage status={'404'} />} />
-            <Route path={'500'} element={<ErrorPage status={'500'} />} />
+            <Route path={"404"} element={<ErrorPage status={"404"} />} />
+            <Route path={"500"} element={<ErrorPage status={"500"} />} />
             <Route
-              path={sessionStorage.getItem('status')}
-              element={<ErrorPage status={sessionStorage.getItem('status')} />}
+              path={sessionStorage.getItem("status")}
+              element={<ErrorPage status={sessionStorage.getItem("status")} />}
             />
           </Route>
-          <Route path="*" element={<ErrorPage status={'404'} />} />
+          <Route path="*" element={<ErrorPage status={"404"} />} />
         </Route>
       </Routes>
     </BrowserRouter>
-  )
-}
+  );
+};

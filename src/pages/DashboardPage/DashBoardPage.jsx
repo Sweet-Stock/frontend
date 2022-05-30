@@ -8,79 +8,84 @@ export default (props) => {
   const [grow, setGrow] = useState(0);
 
   useEffect(() => {
-    console.log(page);
-  }, [page]);
+    console.log(page)
+  }, [page])
 
-  let dataStorage = JSON.parse(sessionStorage.getItem("data"));
+  let dataStorage = JSON.parse(sessionStorage.getItem('data'))
 
   switch (page) {
     case 0:
       return (
         <>
           <SideBar
-            name={dataStorage ? dataStorage.username : ""}
+            name={dataStorage ? dataStorage.username : ''}
             setPage={setPage}
             setGrow={setGrow}
           />
           <DashBoardHome grow={grow} />
         </>
-      );
+      )
     case 1:
       return (
         <>
           <SideBar
-            name={dataStorage ? dataStorage.username : ""}
+            name={dataStorage ? dataStorage.username : ''}
             setPage={setPage}
             setGrow={setGrow}
           />
+          <DashBoardProvider grow={grow} />
         </>
-      );
+      )
     case 2:
       return (
         <>
           <SideBar
-            name={dataStorage ? dataStorage.username : ""}
+            name={dataStorage ? dataStorage.username : ''}
             setPage={setPage}
             setGrow={setGrow}
           />
           <DashBoardEmployee grow={grow} />
         </>
-      );
+      )
     case 3:
       return (
         <>
           <SideBar
-            name={dataStorage ? dataStorage.username : ""}
+            name={dataStorage ? dataStorage.username : ''}
             setPage={setPage}
           />
         </>
-      );
+      )
     case 4:
       return (
         <>
           <SideBar
-            name={dataStorage ? dataStorage.username : ""}
+            name={dataStorage ? dataStorage.username : ''}
             setPage={setPage}
+            setGrow={setGrow}
           />
+          <DashboardProducts grow={grow} />
         </>
-      );
+      )
     case 5:
       return (
         <>
           <SideBar
-            name={dataStorage ? dataStorage.username : ""}
+            name={dataStorage ? dataStorage.username : ''}
             setPage={setPage}
+            setGrow={setGrow}
           />
         </>
-      );
+      )
     default:
       return (
         <>
           <SideBar
-            name={dataStorage ? dataStorage.username : ""}
+            name={dataStorage ? dataStorage.username : ''}
             setPage={setPage}
+            setGrow={setGrow}
           />
         </>
-      );
+      )
   }
-};
+}

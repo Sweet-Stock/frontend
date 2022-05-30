@@ -25,7 +25,7 @@ export default ({ grow, setPage }) => {
   useEffect(() => {
     api
       .get('/employees', config)
-      .then(res => setData(res.data))
+      .then(res => (res.data ? setData(res.data) : console.log(res.data)))
       .catch(err => console.log(err))
   }, [])
 
@@ -36,7 +36,7 @@ export default ({ grow, setPage }) => {
 
     const options = {
       method: 'POST',
-      url: 'http://localhost:8080/v1/sweet-stock/accesses/invite',
+      url: process.env.REACT_APP_API_KEY + '/accesses/invite',
       params: { email: inputEmail },
       headers: {
         Authorization:
@@ -130,8 +130,9 @@ export default ({ grow, setPage }) => {
             : 'w-fit overflow-y-auto overflow-x-hidden mb-12 font-[Rubik] font-thin text-sm'
         }
       >
-        {data.map(({ name, email, telephoneNumber, uuid }) => (
+        {data.map(({ picture, name, email, telephoneNumber, uuid }) => (
           <EmployeeList
+            icon={picture}
             name={name}
             email={email}
             phoneNumber={telephoneNumber}

@@ -4,33 +4,55 @@ import Confectionery from "../../../images/Confectionery.svg";
 import Paycheque from "../../../images/Paycheque.svg";
 import MoneyBox from "../../../images/Money Box.svg";
 import "./OverviewCards.css";
+import api from "../../../../services/api";
 
 export default (props) => {
+  const config = {
+    headers: {
+      Authorization:
+        "Bearer " + JSON.parse(sessionStorage.getItem("data")).token,
+    },
+  };
+
+  const handle = () => {
+    api
+      .get("/ingredients/arq-txt", config)
+      .then(async (res) => {
+        let blob = new Blob([res.data], { type: "text/plain" });
+        let link = document.createElement("a");
+        link.href = await URL.createObjectURL(blob);
+        link.download = "ingredientes_vencidos.txt";
+        link.click();
+        URL.revokeObjectURL(link.href);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="overview-card-body">
       <OverviewCardDash
         imgSrc={Confectionery}
         title="Ingredientes próximos do fim"
-        subTitle="Visualizar Ingredientes"
         amount={props.nearEndIngredients}
       />
       <OverviewCardDash
         imgSrc={MoneyBox}
         title="Produtos vendidos no mês"
-        subTitle="Visualizar produtos"
         amount={props.productsSoldMonth}
       />
       <OverviewCardDash
+        onClick={handle}
         imgSrc={Confectionery}
         title="Ingredientes vencidos"
-        subTitle="Visualizar Ingredientes"
+        subTitle="Download"
         amount={props.expiredIngredients}
       />
       <OverviewCardDash
         imgSrc={Paycheque}
         title="Gastos Mensal"
-        subTitle="Visualizar Gasto Mensal"
-        amount={"R$ "+props.monthExpenses?.toFixed(2)}
+        amount={"R$ " + props.monthExpenses?.toFixed(2)}
       />
     </div>
   );
