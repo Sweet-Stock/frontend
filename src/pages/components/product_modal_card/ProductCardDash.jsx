@@ -96,9 +96,9 @@ export function DashboardProductsModal({
                       <img className="w-[2vw] " src={Close} alt="" />
                     </button>
                     <div className="flex flex-row gap-16 ">
-                      <div className="w-6/12 flex items-center justify-center">
+                      <div className="w-6/12 aspect-square flex items-center justify-center">
                         <img
-                          className="w-[40vw] rounded-xl"
+                          className="h-full rounded-xl"
                           src={picture ? picture : NoIngredients}
                           alt=""
                         />

@@ -14,7 +14,7 @@ export function CardProducts({
       onClick={onClick}
       className="h-96 aspect-[9/10] z-10 bg-white m-7 rounded-lg border-y-secondary-500 border-gray-500 flex flex-col p-4 items-center justify-evenly"
     >
-      <div className=" w-3/6 mz-auto aspect-square items-center justify-center">
+      <div className=" w-3/6 mz-auto flex aspect-square items-center justify-center">
         <img className="h-full" src={image ? image : NoIngredients} alt="" />
       </div>
       <div className="  w-full px-5 gap-3 items-start content-start flex  justify-start flex-col ">
