@@ -9,17 +9,19 @@ export default ({
   type,
   isNotVisible,
   placeholder,
-  options
+  options,
+  defaultValue,
 }) => {
   return (
     <div
       className={
         isNotVisible
-          ? 'invisible absolute -z-50'
-          : 'w-1/2 h-min bg-main-500 flex gap-3 items-start flex-col '
+          ? "invisible absolute -z-50"
+          : "w-1/2 h-min bg-main-500 flex gap-3 items-start flex-col "
       }
     >
       <select
+        defaultValue={defaultValue ?? null}
         id="input_id"
         className="peer border-0 bg-main-500 focus:invalid:text-red-600 invalid:border-red-500 invalid:animate-shake pl-2 pb-1 mr-0 h-8 w-full font-[Rubik] font-light text-2xl border-b-[1px] border-solid border-bg_neutral-500 rounded-none order-2 transition-colors text-white"
         mask={mask ? mask : null}
@@ -28,7 +30,7 @@ export default ({
         alwaysShowMask={alwaysShowMask ? alwaysShowMask : null}
         onChange={onChange}
         placeholder={placeholder}
-        type={type ? type : 'input'}
+        type={type ? type : "input"}
       >
         <option className="bg-main-500" selected value={null} disabled>
           Selecione uma opção
@@ -50,8 +52,8 @@ export default ({
         {message}
       </p>
     </div>
-  )
-}
+  );
+};
 /*
 <div>
             <h1 id="password_title_id">SENHA</h1>

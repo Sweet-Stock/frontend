@@ -1,28 +1,30 @@
-import PlusBtn from '../../../images/plusbtn.svg'
-import DashboardIngredientsUpdateForm from '../dashboard_ingredient_update_form/DashboardIngredientsUpdateForm'
-import { DashboardIngredients } from '../../../components/Ingredient_modal_card/IngredientsCardDash'
-import { useState, useEffect } from 'react'
-import api from '../../../../services/api'
+import PlusBtn from "../../../images/plusbtn.svg";
+import UploadBtn from "../../../images/Upload.svg";
+import DashboardIngredientsUpdateForm from "../dashboard_ingredient_update_form/DashboardIngredientsUpdateForm";
+import { DashboardIngredients } from "../../../components/Ingredient_modal_card/IngredientsCardDash";
+import { useState, useEffect } from "react";
+import api from "../../../../services/api";
+import Button from "../../../components/button/Button";
 
 export default ({ grow, setPage }) => {
-  const [data, setData] = useState([])
-  const [refresh, setRefresh] = useState(true)
-  const [update, setUpdate] = useState(true)
-  const [updateUuid, setUpdateUuid] = useState(null)
+  const [data, setData] = useState([]);
+  const [refresh, setRefresh] = useState(true);
+  const [update, setUpdate] = useState(true);
+  const [updateUuid, setUpdateUuid] = useState(null);
 
   const config = {
     headers: {
       Authorization:
-        'Bearer ' + JSON.parse(sessionStorage.getItem('data')).token
-    }
-  }
+        "Bearer " + JSON.parse(sessionStorage.getItem("data")).token,
+    },
+  };
 
   useEffect(() => {
     api
-      .get('/ingredients', config)
-      .then(res => setData(res.data))
-      .catch(err => console.error(err))
-  }, [refresh])
+      .get("/ingredients", config)
+      .then((res) => setData(res.data))
+      .catch((err) => console.error(err));
+  }, [refresh]);
 
   switch (update) {
     case true:
@@ -30,8 +32,8 @@ export default ({ grow, setPage }) => {
         <section
           className={
             grow % 2 == 0
-              ? 'relative w-[100%] h-[100vh] pl-48 transition-all ease-in-out duration-500 flex flex-col items-center'
-              : 'relative w-[100%] h-[100vh] pl-80 transition-all ease-in-out duration-500 flex flex-col items-center'
+              ? "relative w-[100%] h-[100vh] pl-48 transition-all ease-in-out duration-500 flex flex-col items-center"
+              : "relative w-[100%] h-[100vh] pl-80 transition-all ease-in-out duration-500 flex flex-col items-center"
           }
         >
           <div className="w-[100%] flex flex-row gap-2 items-center justify-between pt-20">
@@ -44,7 +46,13 @@ export default ({ grow, setPage }) => {
                 src={PlusBtn}
                 onClick={() => setPage(false)}
                 alt=""
-              />
+              />{" "}
+              <img
+                className="cursor-pointer h-16"
+                src={UploadBtn}
+                onClick={() => setPage(false)}
+                alt=""
+              />{" "}
             </div>
           </div>
 
@@ -67,7 +75,7 @@ export default ({ grow, setPage }) => {
                 viewInReports,
                 picture,
                 brand,
-                total
+                total,
               }) => (
                 <DashboardIngredients
                   uuid={uuid}
@@ -79,7 +87,7 @@ export default ({ grow, setPage }) => {
                   brand={brand}
                   provider={provideCode}
                   storageType={
-                    isRefigerated ? 'refrigerado' : 'não refrigerado'
+                    isRefigerated ? "refrigerado" : "não refrigerado"
                   }
                   stockAmount={total}
                   image={picture}
@@ -92,17 +100,19 @@ export default ({ grow, setPage }) => {
             )}
           </span>
         </section>
-      )
+      );
     case false:
       return (
         <DashboardIngredientsUpdateForm
+          refresh={refresh}
+          setRefresh={setRefresh}
           grow={grow}
           setUpdate={setUpdate}
           uuid={updateUuid}
         />
-      )
+      );
 
     default:
-      break
+      break;
   }
-}
+};

@@ -1,42 +1,60 @@
-import { useEffect, useState } from 'react'
-import api from '../../../../services/api'
-import Button from '../../../components/button/Button'
-import Input from '../../../components/input/Input'
-import InputFile from '../../../components/input_file/InputFile'
-import ProgressBar from '../../../components/progress_bar/ProgressBar'
-import Select from '../../../components/select/Select'
+import { useEffect, useState } from "react";
+import api from "../../../../services/api";
+import Button from "../../../components/button/Button";
+import Input from "../../../components/input/Input";
+import InputFile from "../../../components/input_file/InputFile";
+import ProgressBar from "../../../components/progress_bar/ProgressBar";
+import Select from "../../../components/select/Select";
 
-export default ({ grow, setUpdate, uuid }) => {
-  const [ingredientToUpdate, setIngredientToUpdate] = useState({})
+export default ({ grow, setUpdate, uuid, refresh, setRefresh }) => {
+  const [ingredientToUpdate, setIngredientToUpdate] = useState({});
   //variável que está os dados do ingrediente
 
-  const [isRequired, setIsRequired] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [isDisabled, setIsDisabled] = useState(false)
+  const [isRequired, setIsRequired] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
 
-  const [inputName, setInputName] = useState(null)
-  const [inputBrand, setInputBrand] = useState(null)
-  const [inputProvider, setInputProvider] = useState(null)
-  const [inputBuyDate, setInputBuyDate] = useState(null)
-  const [inputValDate, setInputValDate] = useState(null)
-  const [inputStorage, setInputStorage] = useState(null)
-  const [inputStorageType, setInputStorageType] = useState(null)
-  const [inputMetric, setInputMetric] = useState(null)
-  const [inputPicture, setInputPicture] = useState(null)
-  const [inputQuantityPerUnit, setQuantityPerUnit] = useState(null)
-  const [inputBuyValue, setInputBuyValue] = useState(null)
-  const [inputStorageTemperature, setInputStorageTemperature] = useState(null)
-  const [inputLotNumber, setInputLotNumber] = useState(null)
+  const [inputName, setInputName] = useState(ingredientToUpdate?.name);
+  const [inputBrand, setInputBrand] = useState(ingredientToUpdate?.brand);
+  const [inputProvider, setInputProvider] = useState(
+    ingredientToUpdate?.provideCode
+  );
+  const [inputBuyDate, setInputBuyDate] = useState(null);
+  const [inputValDate, setInputValDate] = useState(
+    ingredientToUpdate?.expirationDate
+  );
+  const [inputStorage, setInputStorage] = useState(
+    ingredientToUpdate?.numberUnits
+  );
+  const [inputStorageType, setInputStorageType] = useState(
+    ingredientToUpdate?.isRefigerated
+  );
+  const [inputMetric, setInputMetric] = useState(
+    ingredientToUpdate?.unitMeasurement
+  );
+  const [inputPicture, setInputPicture] = useState(ingredientToUpdate?.picture);
+  const [inputQuantityPerUnit, setQuantityPerUnit] = useState(
+    ingredientToUpdate?.quantityPerUnit
+  );
+  const [inputBuyValue, setInputBuyValue] = useState(
+    ingredientToUpdate?.buyValue
+  );
+  const [inputStorageTemperature, setInputStorageTemperature] = useState(
+    ingredientToUpdate?.storageTemperature
+  );
+  const [inputLotNumber, setInputLotNumber] = useState(
+    ingredientToUpdate?.numberLot
+  );
 
   useEffect(() => {
-    //função que chama o ingrediente 
-    // api
-    //   .get(`/ingredients/${uuid}`, config)
-    //   .then(res => setIngredientToUpdate(res.data))
-    //   .catch(err => console.error(err))
-  }, [])
+    //função que chama o ingrediente
+    api
+      .get(`ingredients/ingredient-by-uuid/${uuid}`, config)
+      .then((res) => setIngredientToUpdate(res.data))
+      .catch((err) => console.error(err));
+  }, []);
 
-  const modal = {
+  let modal = {
     name: inputName,
     unitMeasurement: inputMetric,
     numberUnits: inputStorage,
@@ -48,134 +66,134 @@ export default ({ grow, setUpdate, uuid }) => {
     provideCode: inputProvider,
     numberLot: inputLotNumber,
     brand: inputBrand,
-    picture: inputPicture
-  }
+    picture: inputPicture,
+    //  buyDate: inputBuyDate,
+  };
 
-  const [progress, setProgress] = useState(0)
+  const [progress, setProgress] = useState(0);
 
-  const [providers, setProviders] = useState([])
+  const [providers, setProviders] = useState([]);
 
   const isRefrigerated = [
     {
       key: true,
-      value: 'Refrigerado'
+      value: "Refrigerado",
     },
     {
       key: false,
-      value: 'Não refrigerado'
-    }
-  ]
+      value: "Não refrigerado",
+    },
+  ];
   const unitMetrics = [
     {
-      key: 'LITRO',
-      value: 'Litros (L)'
+      key: "LITRO",
+      value: "Litros (L)",
     },
     {
-      key: 'MILILITRO',
-      value: 'Mililitros (ML)'
+      key: "MILILITRO",
+      value: "Mililitros (ML)",
     },
     {
-      key: 'QUILO',
-      value: 'Quilos (KG)'
+      key: "QUILO",
+      value: "Quilos (KG)",
     },
     {
-      key: 'MILIGRAMA',
-      value: 'Miligramas (MG)'
+      key: "MILIGRAMA",
+      value: "Miligramas (MG)",
     },
     {
-      key: 'UNIDADE',
-      value: 'Unidades (UN)'
+      key: "UNIDADE",
+      value: "Unidades (UN)",
     },
     {
-      key: 'GRAMA',
-      value: 'Gramas (GM)'
-    }
-  ]
+      key: "GRAMA",
+      value: "Gramas (GM)",
+    },
+  ];
   const config = {
     headers: {
       Authorization:
-        'Bearer ' + JSON.parse(sessionStorage.getItem('data')).token
-    }
-  }
+        "Bearer " + JSON.parse(sessionStorage.getItem("data")).token,
+    },
+  };
 
   useEffect(() => {
     api
-      .get('/providers/providers-uuid', config)
-      .then(res => setProviders(res.data))
-      .catch(err => console.error(err))
-  }, [])
+      .get("/providers/providers-uuid", config)
+      .then((res) => {
+        setProviders(res.data);
+        setRefresh(!refresh);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
-  const handleSubmit = async e => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     switch (progress) {
       case 0:
-        if (inputBrand == null || inputStorage == null) {
-          setIsRequired(true)
+        if (false) {
+          setIsRequired(true);
         } else {
-          setIsRequired(false)
-          setProgress(progress + 1)
+          setIsRequired(false);
+          setProgress(progress + 1);
         }
-        break
+        break;
       case 1:
-        if (inputBuyDate == null || inputValDate == null) {
-          setIsRequired(true)
+        if (false) {
+          setIsRequired(true);
         } else {
-          setIsRequired(false)
-          setProgress(progress + 1)
+          setIsRequired(false);
+          setProgress(progress + 1);
         }
-        break
+        break;
       case 2:
-        if (inputBuyValue == null) {
-          setIsRequired(true)
+        if (false) {
+          setIsRequired(true);
         } else {
-          setIsRequired(false)
-          setProgress(progress + 1)
+          setIsRequired(false);
+          setProgress(progress + 1);
         }
-        break
+        break;
       case 3:
-        if (
-          inputQuantityPerUnit == null ||
-          inputStorageTemperature == null ||
-          inputLotNumber == null
-        ) {
-          setIsRequired(true)
+        if (false) {
+          setIsRequired(true);
         } else {
-          setIsRequired(false)
-          sendIngredient()
+          setIsRequired(false);
+          sendIngredient();
         }
-        break
+        break;
 
       default:
-        break
+        break;
     }
-  }
+  };
 
   const sendIngredient = async () => {
-    setIsDisabled(true)
-    setIsLoading(true)
+    setIsDisabled(true);
+    setIsLoading(true);
     await api
-      .put('/ingredients' + uuid, modal, config)
+      .put("/ingredients/" + uuid, modal, config)
       .then(() => setUpdate(true))
-      .catch(err => console.error(err))
-    setIsDisabled(false)
-    setIsLoading(false)
-  }
+      .catch((err) => console.error(err));
+    setIsDisabled(false);
+    setIsLoading(false);
+  };
 
-  const toBase64 = file =>
+  const toBase64 = (file) =>
     new Promise((resolve, reject) => {
-      const reader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = () => resolve(reader.result)
-      reader.onerror = error => reject(error)
-    })
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
 
   return (
     <section
       className={
         grow % 2 === 0
-          ? 'relative w-[100%] h-[100vh] pl-48 transition-all ease-in-out duration-500 flex flex-col items-center'
-          : 'relative w-[100%] h-[100vh] pl-80 transition-all ease-in-out duration-500 flex flex-col items-center'
+          ? "relative w-[100%] h-[100vh] pl-48 transition-all ease-in-out duration-500 flex flex-col items-center"
+          : "relative w-[100%] h-[100vh] pl-80 transition-all ease-in-out duration-500 flex flex-col items-center"
       }
     >
       <div className="w-[100%] flex flex-row gap-2 items-center justify-between pt-20 pr-10">
@@ -190,72 +208,80 @@ export default ({ grow, setUpdate, uuid }) => {
             <ProgressBar img={progress} />
           </span>
           <Input
+            defaultValue={ingredientToUpdate?.name}
             isNotVisible={progress !== 0}
             label="Nome"
             message="Por favor insira um nome"
-            onChange={e => setInputName(e.target.value)}
+            onChange={(e) => setInputName(e.target.value)}
             required={isRequired}
           />
           <Input
+            defaultValue={ingredientToUpdate?.brand}
             isNotVisible={progress !== 0}
             label="Marca"
             message="Por favor insira uma marca"
-            onChange={e => setInputBrand(e.target.value)}
+            onChange={(e) => setInputBrand(e.target.value)}
             required={isRequired}
           />
 
           <Select
+            defaultValue={ingredientToUpdate?.provideCode}
             isNotVisible={progress !== 0}
             label="Fornecedor"
-            onChange={e => setInputProvider(e.target.value)}
+            onChange={(e) => setInputProvider(e.target.value)}
             required={isRequired}
             options={providers}
           />
           <Input
+            defaultValue={ingredientToUpdate?.numberUnits}
             isNotVisible={progress !== 0}
             label="Quantidade em estoque"
             pattern="^[0-9]*$"
             message="Por favor insira apenas números"
-            onChange={e => setInputStorage(e.target.value)}
+            onChange={(e) => setInputStorage(e.target.value)}
             required={isRequired}
             placeholder="99999"
           />
           <Input
+            //    defaultValue={ingredientToUpdate?.buyDate}
             isNotVisible={progress !== 1}
             label="Data de compra"
             message="Por favor insira uma data"
-            onChange={e => setInputBuyDate(e.target.value)}
+            onChange={(e) => setInputBuyDate(e.target.value)}
             required={isRequired}
             type="date"
           />
           <Input
+            defaultValue={ingredientToUpdate?.expirationDate}
             isNotVisible={progress !== 1}
             label="Data de validade"
             message="Por favor insira uma data"
-            onChange={e => setInputValDate(e.target.value)}
+            onChange={(e) => setInputValDate(e.target.value)}
             required={isRequired}
             type="date"
           />
           <Select
+            defaultValue={ingredientToUpdate?.isRefigerated}
             isNotVisible={progress !== 1}
             label="Armazenamento"
-            onChange={e => setInputStorageType(e.target.value)}
+            onChange={(e) => setInputStorageType(e.target.value)}
             required={isRequired}
             options={isRefrigerated}
           />
           <Select
             isNotVisible={progress !== 2}
             label="Unidade de medida"
-            onChange={e => setInputMetric(e.target.value)}
+            onChange={(e) => setInputMetric(e.target.value)}
             required={isRequired}
             options={unitMetrics}
           />
           <Input
+            defaultValue={ingredientToUpdate?.buyValue}
             isNotVisible={progress !== 2}
             label="Valor por unidade"
             pattern="^-?(?:0|[1-9][0-9]*)\.?[0-9]+$"
             message="Por favor insira apenas números"
-            onChange={e => setInputBuyValue(e.target.value)}
+            onChange={(e) => setInputBuyValue(e.target.value)}
             required={isRequired}
             placeholder="99,99"
           />
@@ -265,36 +291,39 @@ export default ({ grow, setUpdate, uuid }) => {
             label="Imagem"
             message="Por favor insira uma Imagem"
             onChange={async () => {
-              const file = document.querySelector('#input_file_id').files[0]
-              const fileInBase64 = await toBase64(file)
+              const file = document.querySelector("#input_file_id").files[0];
+              const fileInBase64 = await toBase64(file);
 
-              fileInBase64.startsWith('data:image/') &&
-                setInputPicture(fileInBase64)
+              fileInBase64.startsWith("data:image/") &&
+                setInputPicture(fileInBase64);
             }}
           />
           <Input
+            defaultValue={ingredientToUpdate?.quantityPerUnit}
             isNotVisible={progress !== 3}
             label="Quantidade por unidade"
             pattern="^[0-9]*$"
             message="Por favor insira apenas números"
-            onChange={e => setQuantityPerUnit(e.target.value)}
+            onChange={(e) => setQuantityPerUnit(e.target.value)}
             required={isRequired}
             placeholder="99,99"
           />
           <Input
+            defaultValue={ingredientToUpdate?.numberLot}
             isNotVisible={progress !== 3}
             label="Numero de Lote"
             message="Por favor insira um número de lote"
-            onChange={e => setInputLotNumber(e.target.value)}
+            onChange={(e) => setInputLotNumber(e.target.value)}
             required={isRequired}
             placeholder="99"
           />
 
           <Input
+            defaultValue={ingredientToUpdate?.storageTemperature}
             isNotVisible={progress !== 3}
             label="Temperatura de armazenamento"
             message="Por favor insira uma temperatura"
-            onChange={e => setInputStorageTemperature(e.target.value)}
+            onChange={(e) => setInputStorageTemperature(e.target.value)}
             required={isRequired}
             placeholder="99,99"
           />
@@ -303,18 +332,18 @@ export default ({ grow, setUpdate, uuid }) => {
             <Button
               isDisabled={isDisabled}
               onClick={() => {
-                progress === 0 ? setUpdate(true) : setProgress(progress - 1)
+                progress === 0 ? setUpdate(true) : setProgress(progress - 1);
               }}
               content="Voltar"
             />
             <Button
               isLoading={isLoading}
-              content={progress === 3 ? 'Cadastrar' : 'Continuar'}
+              content={progress === 3 ? "Atualizar" : "Continuar"}
               onClick={handleSubmit}
             />
           </div>
         </form>
       </div>
     </section>
-  )
-}
+  );
+};
