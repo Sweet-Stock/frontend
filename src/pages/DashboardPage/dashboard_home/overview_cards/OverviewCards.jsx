@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import OverviewCardDash from "../../../components/overview_card_dashboard/OverviewCardDash";
 import Confectionery from "../../../images/Confectionery.svg";
 import Paycheque from "../../../images/Paycheque.svg";
@@ -13,24 +13,21 @@ export default (props) => {
         "Bearer " + JSON.parse(sessionStorage.getItem("data")).token,
     },
   };
-  const [sla, setSla] = useState();
 
-  const downloadTxtFile = async () => {
-    await handle();
-    const element = document.createElement("a");
-    const file = new Blob([await handle()], {
-      type: "text/plain",
-    });
-    element.href = URL.createObjectURL(file);
-    element.download = "myFile.txt";
-    document.body.appendChild(element);
-    element.click();
-  };
-  const handle = async () => {
-    await api
+  const handle = () => {
+    api
       .get("/ingredients/arq-txt", config)
-      .then((res) => setSla(res.data))
-      .catch((error) => console.error(error));
+      .then(async (res) => {
+        let blob = new Blob([res.data], { type: "text/plain" });
+        let link = document.createElement("a");
+        link.href = await URL.createObjectURL(blob);
+        link.download = "ingredientes_vencidos.txt";
+        link.click();
+        URL.revokeObjectURL(link.href);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -46,10 +43,10 @@ export default (props) => {
         amount={props.productsSoldMonth}
       />
       <OverviewCardDash
-        onClick={downloadTxtFile}
+        onClick={handle}
         imgSrc={Confectionery}
         title="Ingredientes vencidos"
-        subTitle="Visualizar Ingredientes"
+        subTitle="Download"
         amount={props.expiredIngredients}
       />
       <OverviewCardDash
