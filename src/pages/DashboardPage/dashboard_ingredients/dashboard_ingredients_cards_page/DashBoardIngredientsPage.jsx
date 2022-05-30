@@ -99,15 +99,18 @@ export default ({ grow, setPage }) => {
             open={isOpen}
             onClose={() => setIsOpen(false)}
           >
-            <Dialog.Panel className="flex justify-center gap-4 items-center h-full flex-col">
+            <Dialog.Panel className="flex justify-center gap-4 items-center h-full w-full flex-col">
               <InputFile
                 label="Arquivo .txt"
                 message="Por favor insira um arquivo"
-                onChange={async () => {
+                onChange={async (e) => {
                   const file =
                     document.querySelector("#input_file_id").files[0];
                   const fileInBase64 = await toBase64(file);
                   //setInputPicture(fileInBase64)
+
+                  console.log(file)
+
                 }}
               />
               <Dialog.Description

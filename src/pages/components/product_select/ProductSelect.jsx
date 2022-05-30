@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import api from '../../../services/api'
 
 export const IngredientsList = ({ name, amount, uuid }) => {
-  const [inputValue, setInputValue] = useState(null)
+  const [inputValue, setInputValue] = useState('')
   const [isChecked, setIsChecked] = useState(false)
 
   const config = {
@@ -13,18 +13,24 @@ export const IngredientsList = ({ name, amount, uuid }) => {
   }
 
   const handleRemoveIngredient = async uuid => {
-    await api.delete('/products/confection-queue/' + uuid, config)
-  }
-  const handleAddIngredient = async (uuid, amount) => {
-    let item = {
-      uuidIngredient: uuid,
-      amount: amount
+    if (inputValue.length > 0) {
+      await api.delete('/products/confection-queue/' + uuid, config)
     }
-    console.log(item)
-    await api
-      .post('/products/confection-queue', item, config)
-      .then(res => console.log(res))
-      .catch(err => console.error(err))
+  }
+  const handleAddIngredient = async (uuid, amountUsed) => {
+    if (amountUsed <= amount) {
+      let item = {
+        uuidIngredient: uuid,
+        amount: amountUsed
+      }
+      console.log(item)
+      await api
+        .post('/products/confection-queue', item, config)
+        .then(res => console.log(res))
+        .catch(err => console.error(err))
+    } else {
+      alert('Insira uma quantidade valida')
+    }
   }
 
   useEffect(() => {
@@ -38,6 +44,7 @@ export const IngredientsList = ({ name, amount, uuid }) => {
       <div className="flex items-center">
         <input
           type="checkbox"
+          disabled={inputValue.length === 0 ? true : false}
           checked={isChecked}
           onChange={() => {
             setIsChecked(!isChecked)

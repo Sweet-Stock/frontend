@@ -70,13 +70,6 @@ export default props => {
       classShort: 'sidebar-icon-short',
       classLong: 'sidebar-icon-long',
       dashPage: 4
-    },
-    {
-      icon: FileIcon,
-      content: 'Relatórios',
-      classShort: 'sidebar-icon-short',
-      classLong: 'sidebar-icon-long',
-      dashPage: 5
     }
   ]
   return (
@@ -146,33 +139,3 @@ export default props => {
     </section>
   )
 }
-/*  <Icon
-            icon={DashIcon}
-            content={grow % 2 == 0 ? "" : "Dashboard"}
-            class={grow % 2 == 0 ? "sidebar-icon-short" : "sidebar-icon-long"}
-          />
-          <Icon
-            icon={DashIcon}
-            content={grow % 2 == 0 ? "" : "Funcionarios"}
-            class={grow % 2 == 0 ? "sidebar-icon-short" : "sidebar-icon-long"}
-          />
-          <Icon
-            icon={DashIcon}
-            content={grow % 2 == 0 ? "" : "Dashboard"}
-            class={grow % 2 == 0 ? "sidebar-icon-short" : "sidebar-icon-long"}
-          />
-          <Icon
-            icon={DashIcon}
-            content={grow % 2 == 0 ? "" : "Dashboard"}
-            class={grow % 2 == 0 ? "sidebar-icon-short" : "sidebar-icon-long"}
-          />
-          <Icon
-            icon={DashIcon}
-            content={grow % 2 == 0 ? "" : "Dashboard"}
-            class={grow % 2 == 0 ? "sidebar-icon-short" : "sidebar-icon-long"}
-          />
-          <Icon
-            icon={DashIcon}
-            content={grow % 2 == 0 ? "" : "Dashboard"}
-            class={grow % 2 == 0 ? "sidebar-icon-short" : "sidebar-icon-long"}
-          />*/
