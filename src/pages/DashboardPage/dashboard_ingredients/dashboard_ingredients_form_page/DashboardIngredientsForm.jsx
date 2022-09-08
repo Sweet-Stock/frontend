@@ -91,7 +91,7 @@ export default ({ grow, setPage }) => {
   useEffect(() => {
     api
       .get('/providers/providers-uuid', config)
-      .then(res => setProviders(res.data))
+      .then(res => res.data && setProviders(res.data))
       .catch(err => console.error(err))
   }, [])
 

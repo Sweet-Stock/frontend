@@ -169,6 +169,13 @@ export default ({ grow, setPage }) => {
             required={isRequired}
             options={unitMetrics}
           />
+          <Select
+            isNotVisible={progress !== 0}
+            label="Categoria"
+            onChange={e => setInputMetric(e.target.value)}
+            required={isRequired}
+            options={unitMetrics}
+          />
           <Input
             isNotVisible={progress !== 1}
             label="Data de fabricação"
