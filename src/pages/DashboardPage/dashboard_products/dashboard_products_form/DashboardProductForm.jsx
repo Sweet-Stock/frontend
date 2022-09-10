@@ -13,12 +13,14 @@ export default ({ grow, setPage }) => {
   const [isDisabled, setIsDisabled] = useState(false)
 
   const [inputName, setInputName] = useState(null)
+  const [inputCategory, setInputCategory] = useState(null)
   const [inputMadeDate, setInputMadeDate] = useState(null)
   const [inputStorage, setInputStorage] = useState(null)
   const [inputStorageType, setInputStorageType] = useState(null)
   const [inputMetric, setInputMetric] = useState(null)
   const [inputValue, setInputValue] = useState(null)
   const [inputPicture, setInputPicture] = useState(null)
+  const [inputIngredients, setInputIngredients] = useState([])
 
   const modal = {
     name: inputName,
@@ -27,10 +29,63 @@ export default ({ grow, setPage }) => {
     isRefigerated: inputStorageType,
     total: inputStorage,
     unitMeasurement: inputMetric,
-    picture: inputPicture
+    picture: inputPicture,
+    category: inputCategory,
+    ingredients: []
   }
 
   const [progress, setProgress] = useState(0)
+
+  const categoryEnum = [
+    {
+      key: 'CAKES',
+      value: 'Bolos'
+    },
+    {
+      key: 'CUPCAKES',
+      value: 'Cupcakes'
+    },
+    {
+      key: 'BROWNIES',
+      value: 'Brownies'
+    },
+    {
+      key: 'PUDDINGS',
+      value: 'Pudins'
+    },
+    {
+      key: 'ICE_CREAMS',
+      value: 'Sorvetes'
+    },
+    {
+      key: 'TRUFFLES',
+      value: 'Trufas'
+    },
+    {
+      key: 'PIES',
+      value: 'Tortas'
+    },
+    {
+      key: 'MOUSSES',
+      value: 'Mousses'
+    },
+    {
+      key: 'BRIGADEIROS',
+      value: 'Brigadeiros'
+    },
+    {
+      key: 'ZERO_SUGAR',
+      value: 'Zero Açúcar'
+    },
+    {
+      key: 'COOKIES',
+      value: 'Biscoitos'
+    },
+    {
+      key: 'FINE_SWEETS',
+      value: 'Doces Refinados'
+    }
+  ]
 
   const isRefrigerated = [
     {
@@ -118,6 +173,7 @@ export default ({ grow, setPage }) => {
       .catch(err => console.error(err))
     setIsDisabled(false)
     setIsLoading(false)
+    console.log(modal)
   }
 
   const toBase64 = file =>
@@ -172,9 +228,9 @@ export default ({ grow, setPage }) => {
           <Select
             isNotVisible={progress !== 0}
             label="Categoria"
-            onChange={e => setInputMetric(e.target.value)}
+            onChange={e => setInputCategory(e.target.value)}
             required={isRequired}
-            options={unitMetrics}
+            options={categoryEnum}
           />
           <Input
             isNotVisible={progress !== 1}
@@ -214,7 +270,7 @@ export default ({ grow, setPage }) => {
             required={isRequired}
             placeholder="99,99"
           />
-          <IngredientsListBody isVisible={progress === 2} />
+          <IngredientsListBody ingredientsList={inputIngredients} isVisible={progress === 2} />
           <div className="flex w-1/2 justify-between items-center">
             <Button
               isDisabled={isDisabled}
