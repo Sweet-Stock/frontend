@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import api from '../../../services/api'
 
-export const IngredientsList = ({ name, amount, uuid }) => {
+export const IngredientsList = ({ name, amount, uuid ,ingredientsList}) => {
   const [inputValue, setInputValue] = useState('')
   const [isChecked, setIsChecked] = useState(false)
 
@@ -19,16 +19,6 @@ export const IngredientsList = ({ name, amount, uuid }) => {
   }
   const handleAddIngredient = async (uuid, amountUsed) => {
     if (amountUsed <= amount) {
-      let item = {
-        uuidIngredient: uuid,
-        amount: amountUsed
-      }
-      console.log(item)
-      await api
-        .post('/products/confection-queue', item, config)
-        .then(res => console.log(res))
-        .catch(err => console.error(err))
-    } else {
       alert('Insira uma quantidade valida')
     }
   }
@@ -48,6 +38,7 @@ export const IngredientsList = ({ name, amount, uuid }) => {
           checked={isChecked}
           onChange={() => {
             setIsChecked(!isChecked)
+            ingredientsList.push(inputValue)
           }}
           className="aspect-square w-4"
         />
@@ -66,13 +57,16 @@ export const IngredientsList = ({ name, amount, uuid }) => {
           max={`${amount}`}
           min="0"
           className="bg-bg_neutral-500 border-b-2 text-main-500 border-solid border-main-500 focus:invalid:text-red-500 invalid:border-red-500 invalid:animate-shake"
-          onChange={e => setInputValue(e.target.value)}
+          onChange={e => setInputValue({
+            uuidIngredient: uuid,
+            quantity: e.target.value
+          })}
         />
       </div>
     </div>
   )
 }
-export const IngredientsListBody = ({ isVisible, name, amount }) => {
+export const IngredientsListBody = ({ isVisible, name, amount, ingredientsList}) => {
   const [ingredients, setIngredients] = useState([])
 
   const config = {
@@ -97,7 +91,7 @@ export const IngredientsListBody = ({ isVisible, name, amount }) => {
         </h1>
         <span className="overflow-y-auto overflow-x-hidden mb-10 font-[Rubik] font-thin text-sm pr-5">
           {ingredients.map(({ uuid, name, total }) => (
-            <IngredientsList uuid={uuid} name={name} amount={total} />
+            <IngredientsList uuid={uuid} name={name} amount={total} ingredientsList={ingredientsList}/>
           ))}
         </span>
       </div>
