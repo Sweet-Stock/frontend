@@ -31,7 +31,16 @@ export default ({ grow, setPage }) => {
     unitMeasurement: inputMetric,
     picture: inputPicture,
     category: inputCategory,
-    ingredients: []
+    ingredients: [],
+    nutritionalFacts: {
+      calories: 2.1,
+      sodium: 3.2,
+      sugars: 4.3,
+      protein: 5.4,
+      fat: 6.5,
+      weight: 7.6,
+      gluten: 8.7
+    }
   }
 
   const [progress, setProgress] = useState(0)
