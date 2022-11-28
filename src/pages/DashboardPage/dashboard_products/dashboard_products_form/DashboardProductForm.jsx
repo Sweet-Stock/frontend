@@ -26,11 +26,13 @@ export default ({ grow, setPage }) => {
     name: inputName,
     saleValue: inputValue,
     productedBy: inputMadeDate,
-    isRefigerated: inputStorageType,
+    isRefigerated: Boolean(inputStorageType),
     total: inputStorage,
     unitMeasurement: inputMetric,
     picture: inputPicture,
-    category: inputCategory,
+    category: {
+      id: inputCategory,
+    },
     ingredients: []
   }
 
@@ -270,7 +272,10 @@ export default ({ grow, setPage }) => {
             required={isRequired}
             placeholder="99,99"
           />
-          <IngredientsListBody ingredientsList={inputIngredients} isVisible={progress === 2} />
+          <IngredientsListBody
+            ingredientsList={inputIngredients}
+            isVisible={progress === 2}
+          />
           <div className="flex w-1/2 justify-between items-center">
             <Button
               isDisabled={isDisabled}

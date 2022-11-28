@@ -7,7 +7,7 @@ import CarIcon from '../../images/carIcon.svg'
 import PeopleIcon from '../../images/People.svg'
 import BaskIcon from '../../images/Bagage.svg'
 import ProductIcon from '../../images/Confectionery.svg'
-import FileIcon from '../../images/Documents Folder.svg'
+import PurchaseIcon from '../../images/purchase-icon.svg'
 import ProfilePhoto from '../../images/profilephoto.jpg'
 import Icon from '../../components/icon/Icon'
 import LogoutIcon from '../../images/iconlogout.svg'
@@ -70,7 +70,14 @@ export default props => {
       classShort: 'sidebar-icon-short',
       classLong: 'sidebar-icon-long',
       dashPage: 4
-    }
+    },
+    {
+      icon: PurchaseIcon,
+      content: 'Pedidos',
+      classShort: 'sidebar-icon-short',
+      classLong: 'sidebar-icon-long',
+      dashPage: 5
+    },
   ]
   return (
     <section className="sidebar">
