@@ -5,6 +5,7 @@ import DashBoardEmployee from './dashboard_employees/DashBoardEmployee'
 import DashIngredients from './dashboard_ingredients/DashIngredients'
 import DashBoardProvider from './dashboard_provider/DashBoardProvider'
 import DashboardProducts from './dashboard_products/DashboardProducts'
+import OrderPage from './dashboard_orders/OrderPage'
 export default props => {
   const [page, setPage] = useState(0)
   const [grow, setGrow] = useState(0)
@@ -79,6 +80,7 @@ export default props => {
             setPage={setPage}
             setGrow={setGrow}
           />
+          <OrderPage grow={grow}/>
         </>
       )
     default:
