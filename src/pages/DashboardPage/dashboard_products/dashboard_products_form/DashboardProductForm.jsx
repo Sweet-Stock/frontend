@@ -37,12 +37,12 @@ export default ({ grow, setPage }) => {
     total: inputStorage,
     unitMeasurement: inputMetric,
     picture: inputPicture,
-    category:{
+    category: {
       id: inputCategory
     },
     ingredients: [],
     nutritionalFacts: {
-      calories:inputCalories,
+      calories: inputCalories,
       sodium: inputSodium,
       sugars: inputSugars,
       protein: inputProtein,
@@ -150,7 +150,7 @@ export default ({ grow, setPage }) => {
 
   const handleSubmit = async e => {
     e.preventDefault()
-
+    console.log(progress)
     switch (progress) {
       case 0:
         if (false) {
@@ -175,6 +175,7 @@ export default ({ grow, setPage }) => {
           setIsRequired(false)
           setProgress(progress + 1)
         }
+        break
       case 3:
         if (false) {
           setIsRequired(true)
@@ -183,7 +184,6 @@ export default ({ grow, setPage }) => {
           sendProduct()
         }
         break
-
       default:
         break
     }
@@ -298,7 +298,6 @@ export default ({ grow, setPage }) => {
           <Input
             isNotVisible={progress !== 1}
             label="Calorias"
-            
             message="Por favor insira apenas números"
             onChange={e => setInputCalories(e.target.value)}
             required={isRequired}
@@ -307,7 +306,6 @@ export default ({ grow, setPage }) => {
           <Input
             isNotVisible={progress !== 2}
             label="Sódio"
-            
             message="Por favor insira apenas números"
             onChange={e => setInputSodium(e.target.value)}
             required={isRequired}
@@ -316,7 +314,6 @@ export default ({ grow, setPage }) => {
           <Input
             isNotVisible={progress !== 2}
             label="Açucares"
-            
             message="Por favor insira apenas números"
             onChange={e => setInputSugars(e.target.value)}
             required={isRequired}
@@ -325,7 +322,6 @@ export default ({ grow, setPage }) => {
           <Input
             isNotVisible={progress !== 2}
             label="Proteínas"
-            
             message="Por favor insira apenas números"
             onChange={e => setInputProtein(e.target.value)}
             required={isRequired}
@@ -334,7 +330,6 @@ export default ({ grow, setPage }) => {
           <Input
             isNotVisible={progress !== 2}
             label="Gorduras"
-            
             message="Por favor insira apenas números"
             onChange={e => setInputFat(e.target.value)}
             required={isRequired}
@@ -356,7 +351,10 @@ export default ({ grow, setPage }) => {
             required={isRequired}
             placeholder="99,99"
           />
-          <IngredientsListBody ingredientsList={inputIngredients} isVisible={progress === 3} />
+          <IngredientsListBody
+            ingredientsList={inputIngredients}
+            isVisible={progress === 3}
+          />
           <div className="flex w-1/2 justify-between items-center">
             <Button
               isDisabled={isDisabled}
