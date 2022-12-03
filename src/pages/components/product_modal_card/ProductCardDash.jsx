@@ -68,7 +68,7 @@ export function DashboardProductsModal({
       <CardProducts
         nameIngredient={name}
         madeDate={dateInsert}
-        value={saleValue}
+        value={'R$ ' + saleValue?.toFixed(2)}
         stockAmount={total}
         image={picture}
         onClick={openModal}
@@ -139,7 +139,7 @@ export function DashboardProductsModal({
                           />
                           <TextElement
                             text="Valor: "
-                            content={'R$' + saleValue?.toFixed(2)}
+                            content={'R$ ' + saleValue?.toFixed(2)}
                           />
                           <div className="flex flex-row my-4">
                             <button

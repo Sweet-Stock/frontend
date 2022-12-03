@@ -37,17 +37,7 @@ export default ({ grow, setPage }) => {
     total: inputStorage,
     unitMeasurement: inputMetric,
     picture: inputPicture,
-<<<<<<< HEAD
-    category: {
-=======
-<<<<<<< HEAD
-    category: {
-      id: inputCategory,
-    },
-    ingredients: []
-=======
     category:{
->>>>>>> 21c3a54ae1d3c7f8ba48d2adc65337b8a5b3504d
       id: inputCategory
     },
     ingredients: [],
@@ -60,7 +50,6 @@ export default ({ grow, setPage }) => {
       weight: inputWeight,
       gluten: inputGluten
     }
->>>>>>> 8eaa16d3e528f343f9ef10cf6d53d887db586304
   }
 
   const [progress, setProgress] = useState(0)
@@ -367,8 +356,6 @@ export default ({ grow, setPage }) => {
             ingredientsList={inputIngredients}
             isVisible={progress === 3}
           />
-
-          <IngredientsListBody ingredientsList={inputIngredients} isVisible={progress === 3} />
 
           <div className="flex w-1/2 justify-between items-center">
             <Button

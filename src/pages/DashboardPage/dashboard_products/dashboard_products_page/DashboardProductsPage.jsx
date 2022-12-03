@@ -19,7 +19,10 @@ export default ({ grow, setPage }) => {
   useEffect(() => {
     api
       .get('/products', config)
-      .then(res => setData(res.data))
+      .then(res => {
+        setData(res.data)
+        sessionStorage.setItem('products',JSON.stringify(res.data))
+      })
       .catch(err => console.error(err))
   }, [refresh])
 

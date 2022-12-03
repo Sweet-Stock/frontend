@@ -9,6 +9,7 @@ import PasswordHealth from '../components/password_health/PasswordHealth'
 import axios from 'axios'
 import api from '../../services/api'
 import './SignPageCompany.css'
+import { CheckBox } from '../components/checkbox'
 
 export default () => {
   const [signProgress, setSignProgress] = useState(0)
@@ -36,6 +37,17 @@ export default () => {
   const [inputPassword, setInputPassword] = useState(null)
   const [inputConfirmPassword, setInputConfirmPassword] = useState(null)
 
+  const [inputOpenedTime, setInputOpenedTime] = useState('')
+  const [inputClosedTime, setInputClosedTime] = useState('')
+
+  const [isSunday, setIsSunday] = useState(false)
+  const [isMonday, setIsMonday] = useState(false)
+  const [isTuesday, setIsTuesday] = useState(false)
+  const [isWednesday, setIsWednesday] = useState(false)
+  const [isThursday, setIsThursday] = useState(false)
+  const [isFriday, setIsFriday] = useState(false)
+  const [isSaturday, setIsSaturday] = useState(false)
+
   const modal = {
     name: inputName,
     fantasyName: inputFantasyName,
@@ -54,7 +66,18 @@ export default () => {
     },
     email: inputEmail,
     password: inputPassword,
-    picture: inputPhoto
+    picture: inputPhoto,
+    hoursCompany: {
+      horaAbertura: inputOpenedTime,
+      horaFechar: inputClosedTime,
+      sunday: isSunday,
+      monday: isMonday,
+      tuesday: isTuesday,
+      wednesday: isWednesday,
+      thursday: isThursday,
+      friday: isFriday,
+      saturday: isSaturday
+    }
   }
 
   const requestViaCep = cep => {
@@ -469,6 +492,50 @@ export default () => {
             <p id="photo_div_id" className="message-alert">
               Formato de imagem invalido
             </p>
+            <div className="flex flex-row my-4 gap-2">
+              <CheckBox
+                label="Domingo"
+                onChange={() => {
+                  setIsSunday(!isSunday)
+                }}
+              />
+              <CheckBox
+                label="Segunda"
+                onChange={() => {
+                  setIsMonday(!isMonday)
+                }}
+              />
+              <CheckBox
+                label="Terça"
+                onChange={() => {
+                  setIsTuesday(!isTuesday)
+                }}
+              />
+              <CheckBox
+                label="Quarta"
+                onChange={() => {
+                  setIsWednesday(!isWednesday)
+                }}
+              />
+              <CheckBox
+                label="Quinta"
+                onChange={() => {
+                  setIsThursday(!isThursday)
+                }}
+              />
+              <CheckBox
+                label="Sexta"
+                onChange={() => {
+                  setIsFriday(!isFriday)
+                }}
+              />
+              <CheckBox
+                label="Sábado"
+                onChange={() => {
+                  setIsSaturday(!isSaturday)
+                }}
+              />
+            </div>
           </div>
           <div className={signProgress === 1 ? '' : 'display-none'}>
             <h1>TIPO DE PESSOA</h1>
@@ -530,6 +597,46 @@ export default () => {
             />
             <p id="cpf_div_id" className="message-alert">
               {person === 'JURIDICA' ? 'CNPJ' : 'CPF'} inválido
+            </p>
+          </div>
+          <div className={signProgress === 1 ? '' : 'display-none'}>
+            <h1 id="open_time_title_id">HORÁRIO DE ABERTURA</h1>
+            <InputMask
+              mask="99:99"
+              alwaysShowMask={true}
+              id="open_time_input_id"
+              onBlur={text => {
+                setInputOpenedTime(text.target.value)
+                inputValidation(
+                  false,
+                  'pen_time_input_id',
+                  'open_time_title_id',
+                  'open_time_div_id'
+                )
+              }}
+            />
+            <p id="open_time_div_id" className="message-alert">
+            Horario inválido
+            </p>
+          </div>
+          <div className={signProgress === 1 ? '' : 'display-none'}>
+            <h1 id="closed_time_title_id">HORÁRIO DE FECHAMENTO</h1>
+            <InputMask
+              mask="99:99"
+              alwaysShowMask={true}
+              id="closed_time_input_id"
+              onBlur={text => {
+                setInputClosedTime(text.target.value)
+                inputValidation(
+                  false,
+                  'pen_time_input_id',
+                  'closed_time_title_id',
+                  'closed_time_div_id'
+                )
+              }}
+            />
+            <p id="closed_time_div_id" className="message-alert">
+            Horario inválido
             </p>
           </div>
 
