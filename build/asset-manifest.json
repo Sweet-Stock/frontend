@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.0dfbc297.css",
-    "main.js": "/static/js/main.7097780f.js",
+    "main.css": "/static/css/main.8dc03a97.css",
+    "main.js": "/static/js/main.cf643432.js",
     "static/media/Supermarket workers-pana 1.svg": "/static/media/Supermarket workers-pana 1.861a918b9022decb23080edfa6276244.svg",
     "static/media/500Error.svg": "/static/media/500Error.37bddeea1dc669592aed72c78a64824d.svg",
     "static/media/404Error.svg": "/static/media/404Error.f68736bceaa0b42847224d8cc8e91ac2.svg",
@@ -23,6 +23,7 @@
     "static/media/img_contato.svg": "/static/media/img_contato.a7dfc4c74b6ad16869392e9d1d1ac3c2.svg",
     "static/media/profilephoto.jpg": "/static/media/profilephoto.cf7e8da2ac20ace2d35c.jpg",
     "static/media/pluspeople.svg": "/static/media/pluspeople.9472b92af77c57c9634306e7fa8d7b01.svg",
+    "static/media/Restart.svg": "/static/media/Restart.1cfdd132ccf69c04e15133577c4f5e69.svg",
     "static/media/Box Important.svg": "/static/media/Box Important.50046b58cc351c4bc76eecd6e84cb8cc.svg",
     "static/media/Important Mail.svg": "/static/media/Important Mail.a20fcaf775faeb2b0edee640a237f3de.svg",
     "static/media/Eye.svg": "/static/media/Eye.1341199640314fcd8c38893b92ff056f.svg",
@@ -37,10 +38,10 @@
     "static/media/Confectionery.svg": "/static/media/Confectionery.bb169c2cc851523d599be303d8ffd2e4.svg",
     "static/media/icon_instagram.svg": "/static/media/icon_instagram.be5c66a1c03bea32428e65bd85856550.svg",
     "static/media/Close.svg": "/static/media/Close.da99c5a2f60b50b11b0b61d64682042c.svg",
+    "static/media/purchase-icon.svg": "/static/media/purchase-icon.8809763d8fd98717265206ea242bf847.svg",
     "static/media/edit.svg": "/static/media/edit.0d199a6ef95ff55fc7003e5b99032fbb.svg",
     "static/media/plusbtn.svg": "/static/media/plusbtn.25ae6e4629d776890c0fe416875e466d.svg",
     "static/media/arrow-error.svg": "/static/media/arrow-error.f2680d0053b58e9198624a9cd02b8144.svg",
-    "static/media/Documents Folder.svg": "/static/media/Documents Folder.9d3dade813dc70c929d3a53178bd2e7f.svg",
     "static/media/People.svg": "/static/media/People.f1321b1b56736e3357d615f5cc55669b.svg",
     "static/media/delete.svg": "/static/media/delete.f3e1a91b9d91c9e742cb992df3074980.svg",
     "index.html": "/index.html",
@@ -56,11 +57,11 @@
     "static/media/littlearrow.svg": "/static/media/littlearrow.84591028f6b2f9a3aee6b01c09315fd7.svg",
     "static/media/littlearrowleft.svg": "/static/media/littlearrowleft.c3b4633d8d7425ab074925cf83de73d9.svg",
     "static/media/backGroundHome.svg": "/static/media/backGroundHome.dd5f77fd5042f1df2d23f225fdaa1b32.svg",
-    "main.0dfbc297.css.map": "/static/css/main.0dfbc297.css.map",
-    "main.7097780f.js.map": "/static/js/main.7097780f.js.map"
+    "main.8dc03a97.css.map": "/static/css/main.8dc03a97.css.map",
+    "main.cf643432.js.map": "/static/js/main.cf643432.js.map"
   },
   "entrypoints": [
-    "static/css/main.0dfbc297.css",
-    "static/js/main.7097780f.js"
+    "static/css/main.8dc03a97.css",
+    "static/js/main.cf643432.js"
   ]
 }
