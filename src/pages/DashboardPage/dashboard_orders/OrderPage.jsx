@@ -12,7 +12,8 @@ const handleFetchCompanyName = async () => {
         'Bearer ' + JSON.parse(sessionStorage.getItem('data')).token
     }
   }
-  const apiResult = (await api.get('/companies/get-name-company-jwt', config)).data
+  const apiResult = (await api.get('/companies/get-name-company-jwt', config))
+    .data
   return apiResult
 }
 
@@ -22,8 +23,13 @@ export default function OrderPage({ grow, setPage }) {
 
   useEffect(async () => {
     apiNova
-      .get(`/order/get-users-orders-by-company/${await handleFetchCompanyName()}`)
-      .then(res => setOrders(res.data))
+      .get(
+        `/order/get-users-orders-by-company/${await handleFetchCompanyName()}`
+      )
+      .then(res => {
+        console.log(res.data)
+        res.data ? setOrders(res.data) : setOrders([])
+      })
   }, [refreshPage])
 
   return (
@@ -48,14 +54,21 @@ export default function OrderPage({ grow, setPage }) {
         </div>
       </div>
       <OrderListHead />
-      {orders.map(order =>(
-        <OrderList 
-        orderDate={order.dateOrder}
-        status={order.statusOrder}
-        address={"order"}
-        key={order.idOrder}
-        itens={order.quantityItems}
-        name={"order"}
+      {orders.map(order => (
+        <OrderList
+          orderDate={
+            new Date(order.dateOrder).getDay() +
+            '/' +
+            new Date(order.dateOrder).getMonth() +
+            '/' +
+            new Date(order.dateOrder).getFullYear()
+          }
+          status={order.statusOrder}
+          address={`${order.address.street}, ${order.address.number}`}
+          key={order.idOrder}
+          itens={order.quantityItems}
+          name={order.nameUser}
+          uuid={order.idOrder}
         />
       ))}
       <span className="w-fit overflow-y-auto overflow-x-hidden mb-12 font-[Rubik] font-thin text-sm"></span>

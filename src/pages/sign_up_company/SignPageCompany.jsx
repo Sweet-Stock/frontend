@@ -392,6 +392,9 @@ export default () => {
       case 201:
         navigate('/dashboard')
         break
+      case 400:
+        navigate('/login')
+        break
       case 401:
         alert('Email já cadastrado')
         break
